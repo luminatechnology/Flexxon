@@ -1,0 +1,160 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9BC6D61A-5D4B-4D57-BC6B-5E3F9D04377E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FlexxonCustomizations</RootNamespace>
+    <AssemblyName>FlexxonCustomizations</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <WarningLevel>3</WarningLevel>
+    <FileVersion>20.102.0015</FileVersion>
+    <InformationalVersion>20.102.0015</InformationalVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PX.Common">
+      <HintPath>..\..\..\..\Bin\PX.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PX.CS.Contracts">
+      <HintPath>..\..\..\..\Bin\PX.CS.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Data">
+      <HintPath>..\..\..\..\Bin\PX.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PX.Data.BQL.Fluent">
+      <HintPath>..\..\..\..\Bin\PX.Data.BQL.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Objects">
+      <HintPath>..\..\..\..\Bin\PX.Objects.DLL</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PX.Objects.FS">
+      <HintPath>..\..\..\..\Bin\PX.Objects.FS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BAccount3.cs" />
+    <Compile Include="DAC\1FLXProjCommision.cs" />
+    <Compile Include="DAC\FLXCommisionTran.cs" />
+    <Compile Include="DAC\FLXCommissionTable.cs" />
+    <Compile Include="DAC\FLXProjCommision.cs" />
+    <Compile Include="DAC\FLXProject.cs" />
+    <Compile Include="DAC\FLXProjISOSched.cs" />
+    <Compile Include="DAC\FLXProjPurchDetails.cs" />
+    <Compile Include="DAC\FLXSetup.cs" />
+    <Compile Include="DAC\FLXSupplyDemand.cs" />
+    <Compile Include="DAC\ProjectStatus.cs" />
+    <Compile Include="DAC_Extensions\1POLineExtensions.cs" />
+    <Compile Include="DAC_Extensions\AdditionalInfo.cs" />
+    <Compile Include="DAC_Extensions\ARInvoiceExtensions.cs" />
+    <Compile Include="DAC_Extensions\ARTranExtensions.cs" />
+    <Compile Include="DAC_Extensions\CROpportunityProductsExtensions.cs" />
+    <Compile Include="DAC_Extensions\CSAttributeDetailExtensions.cs" />
+    <Compile Include="DAC_Extensions\CustomerExtensions.cs" />
+    <Compile Include="DAC_Extensions\INKitTranSplitExtensions.cs" />
+    <Compile Include="DAC_Extensions\INQtyType.cs" />
+    <Compile Include="DAC_Extensions\INTranSplitExtensions.cs" />
+    <Compile Include="DAC_Extensions\InventoryAllocDetEnqFilterExtensions.cs" />
+    <Compile Include="DAC_Extensions\POFixedDemandExtensions.cs" />
+    <Compile Include="DAC_Extensions\POLineExtensions.cs" />
+    <Compile Include="DAC_Extensions\POReceiptExtensions.cs" />
+    <Compile Include="DAC_Extensions\POReceiptLineExtensions.cs" />
+    <Compile Include="DAC_Extensions\POReceiptLineSplitExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOLineExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOLineSplitExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOOrderExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOOrderFilterExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOPackageDetailExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOShipLineExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOShipLineSplitExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOShipmentExtensions.cs" />
+    <Compile Include="DAC_Extensions\SOShipmentPlanExtensions.cs" />
+    <Compile Include="Descriptor\10FLXAttribute.cs" />
+    <Compile Include="Descriptor\11FLXAttribute.cs" />
+    <Compile Include="Descriptor\12FLXAttribute.cs" />
+    <Compile Include="Descriptor\13FLXAttribute.cs" />
+    <Compile Include="Descriptor\14FLXAttribute.cs" />
+    <Compile Include="Descriptor\1FLXAttribute.cs" />
+    <Compile Include="Descriptor\2FLXAttribute.cs" />
+    <Compile Include="Descriptor\3FLXAttribute.cs" />
+    <Compile Include="Descriptor\4FLXAttribute.cs" />
+    <Compile Include="Descriptor\5FLXAttribute.cs" />
+    <Compile Include="Descriptor\6FLXAttribute.cs" />
+    <Compile Include="Descriptor\7FLXAttribute.cs" />
+    <Compile Include="Descriptor\8FLXAttribute.cs" />
+    <Compile Include="Descriptor\9FLXAttribute.cs" />
+    <Compile Include="Descriptor\FLXAttribute.cs" />
+    <Compile Include="Descriptor\FLXMessages.cs" />
+    <Compile Include="Descriptor\LSSOLine2POLine.cs" />
+    <Compile Include="Graph\FLXCommissionEntry.cs" />
+    <Compile Include="Graph\FLXCreateShipment.cs" />
+    <Compile Include="Graph\FLXGenBillAPInvoice.cs" />
+    <Compile Include="Graph\FLXGenComisionPlan.cs" />
+    <Compile Include="Graph\FLXProjectEntry.cs" />
+    <Compile Include="Graph\FLXSetupMaint.cs" />
+    <Compile Include="Graph\FLXShipmentTrkMaint.cs" />
+    <Compile Include="Graph\FXSupplyDemandInq.cs" />
+    <Compile Include="Graph\SmartPanelParm.cs" />
+    <Compile Include="Graph_Extension\1POOrderEntry.cs" />
+    <Compile Include="Graph_Extension\1SOOrderEntry.cs" />
+    <Compile Include="Graph_Extension\APInvoiceEntry.cs" />
+    <Compile Include="Graph_Extension\CreateMatrixItems.cs" />
+    <Compile Include="Graph_Extension\INReceiptEntry.cs" />
+    <Compile Include="Graph_Extension\INReleaseProcess.cs" />
+    <Compile Include="Graph_Extension\INTransferEntry.cs" />
+    <Compile Include="Graph_Extension\InventoryAllocDetEnq.cs" />
+    <Compile Include="Graph_Extension\InventoryItemMaint.cs" />
+    <Compile Include="Graph_Extension\OpportunityMaint.cs" />
+    <Compile Include="Graph_Extension\POCreate.cs" />
+    <Compile Include="Graph_Extension\POOrderEntry.cs" />
+    <Compile Include="Graph_Extension\POReceiptEntry.cs" />
+    <Compile Include="Graph_Extension\QuoteMaint.cs" />
+    <Compile Include="Graph_Extension\SOOrderEntry.cs" />
+    <Compile Include="Graph_Extension\SOShipmentEntry.cs" />
+    <Compile Include="Graph_Extension\TemplateInventoryItemMaint.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\FlexxonCustomizations.csprojAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
