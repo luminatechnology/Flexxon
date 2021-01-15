@@ -7,6 +7,7 @@
 using FlexxonCustomizations.Descriptor;
 using PX.Data;
 using PX.Data.BQL;
+using PX.Data.BQL.Fluent;
 using PX.Objects.AP;
 using PX.Objects.AR;
 using PX.Objects.CM;
@@ -22,6 +23,20 @@ namespace FlexxonCustomizations.DAC
   [Serializable]
   public class FLXCommissionTran : IBqlTable
   {
+
+    #region APBillRefNbrSelector
+    [PXString(20, IsUnicode = true, InputMask = "")]
+    [PXSelector(typeof(SelectFrom<FLXCommissionTran>.LeftJoin<APInvoice>.On<FLXCommissionTran.docType.IsEqual<APInvoice.docType>.And<FLXCommissionTran.aPBillRefNBr.IsEqual<APInvoice.refNbr>>>
+                        .AggregateTo<GroupBy<FLXCommissionTran.aPBillRefNBr>>
+                        .SearchFor<FLXCommissionTran.aPBillRefNBr>),
+                        typeof(aPBillRefNBr),
+                        typeof(APInvoice.vendorID),
+                        typeof(APInvoice.vendorID_Vendor_acctName),
+                        typeof(APInvoice.docDate))]
+        public virtual string APBillRefNbrSelector { get; set; }
+    public abstract class aPBillRefNbrSelector : PX.Data.BQL.BqlString.Field<aPBillRefNBr> { }
+    #endregion
+
     [PXBool]
     [PXUIField(DisplayName = "Selected")]
     public virtual bool? Selected { get; set; }
