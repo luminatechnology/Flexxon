@@ -1,0 +1,69 @@
+﻿<Actions ScreenID="CR304000">
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="Open" ActionType="W" After="Last" DisplayName="Open" Form="FormOpen" MassProcessingScreen="CR503120" MenuFolderType="19" WindowMode="S">
+        <StateActionFields>
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="Resolution" ActionName="Open" IsFromScheme="False" Value="[FormOpen.Reason]" StateActionFieldLineNbr="0" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="StageID" ActionName="Open" IsFromScheme="False" Value="[FormOpen.Stage]" StateActionFieldLineNbr="1" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="IsActive" ActionName="Open" IsFromScheme="True" Value="True" StateActionFieldLineNbr="2" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="ClosingDate" ActionName="Open" IsFromScheme="True" StateActionFieldLineNbr="3" />
+        </StateActionFields>
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="Won" ActionType="W" After="Open" DisplayName="Close as Won" Form="FormWon" MassProcessingScreen="CR503120" MenuFolderType="19" WindowMode="S">
+        <StateActionFields>
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="Resolution" ActionName="Won" IsFromScheme="False" Value="[FormWon.Reason]" StateActionFieldLineNbr="0" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="StageID" ActionName="Won" IsFromScheme="False" Value="[FormWon.Stage]" StateActionFieldLineNbr="1" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="IsActive" ActionName="Won" IsFromScheme="True" Value="False" StateActionFieldLineNbr="2" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="ClosingDate" ActionName="Won" IsFromScheme="True" Value="@Today" StateActionFieldLineNbr="3" />
+        </StateActionFields>
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="Lost" ActionType="W" After="Won" DisplayName="Close as Lost" Form="FormLost" MassProcessingScreen="CR503120" MenuFolderType="19" WindowMode="S">
+        <StateActionFields>
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="Resolution" ActionName="Lost" IsFromScheme="False" Value="[FormLost.Reason]" StateActionFieldLineNbr="0" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="StageID" ActionName="Lost" IsFromScheme="False" Value="[FormLost.Stage]" StateActionFieldLineNbr="1" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="IsActive" ActionName="Lost" IsFromScheme="True" Value="False" StateActionFieldLineNbr="2" />
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="ClosingDate" ActionName="Lost" IsFromScheme="True" Value="@Today" StateActionFieldLineNbr="3" />
+        </StateActionFields>
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="submitQuote" ActionType="G" After="Lost" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="editQuote" ActionType="G" After="submitQuote" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="createSalesOrder" ActionType="G" After="editQuote" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="createInvoice" ActionType="G" After="createSalesOrder" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="validateAddresses" ActionType="G" After="createInvoice" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="CreateContact" ActionType="G" After="validateAddresses" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="CreateBothContactAndAccount" ActionType="G" After="CreateContact" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="recalculatePrices" ActionType="G" After="CreateBothContactAndAccount" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="CreateServiceOrder" ActionType="G" After="recalculatePrices" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="OpenAppointmentBoard" ActionType="G" After="CreateServiceOrder" MenuFolderType="19" WindowMode="S">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+</Actions>

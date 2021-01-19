@@ -1,0 +1,6 @@
+﻿<Table TableName="ARTran">
+    <Column TableName="ARTran" ColumnName="UsrCommissionID" ColumnType="string" AllowNull="True" MaxLength="15" DecimalPrecision="2" DecimalLength="15" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="ARTran" ColumnName="UsrComisionCreated" ColumnType="bool" AllowNull="True" MaxLength="25" DecimalPrecision="2" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="ARTran" ColumnName="UsrCommissionAmt" ColumnType="decimal" AllowNull="True" DecimalPrecision="4" DecimalLength="19" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="ARTran" ColumnName="UsrPIUnitPrice" ColumnType="decimal" AllowNull="True" DecimalPrecision="4" DecimalLength="19" IsNewColumn="True" IsUnicode="True" />
+</Table>

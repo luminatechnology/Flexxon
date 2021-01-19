@@ -1,0 +1,88 @@
+﻿<Page path="~/pages/po/po505000.aspx" ControlId="3" pageSource="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">
+    <PXGrid ID="grid" ParentId="phG_grid" TypeFullName="PX.Web.UI.PXGrid" />
+    <PXGridLevel DataMember="FixedDemand" ParentId="phG_grid_Levels#0" TypeFullName="PX.Web.UI.PXGridLevel">
+        <Children Key="Columns">
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="SOLine__UsrEndCustomerID" />
+                    <Prop Key="Width" Value="140" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="SOLine__UsrNonStockItem" />
+                    <Prop Key="Width" Value="70" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="SOLine__UsrProjectNbr" />
+                    <Prop Key="Width" Value="140" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="SOLine__UsrBrand" />
+                    <Prop Key="Width" Value="140" />
+                </PXGridColumn>
+            </AddItem>
+            <PXGridColumn DataField="POSiteID" OriginalIndex="5" />
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="UsrOnHand" />
+                    <Prop Key="Width" Value="100" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="UsrAvailability" />
+                    <Prop Key="Width" Value="100" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="UsrQtyAvailShipping" />
+                    <Prop Key="Width" Value="100" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="UsrQtyAvailPlus" />
+                    <Prop Key="Width" Value="100" />
+                </PXGridColumn>
+            </AddItem>
+            <PXGridColumn DataField="PlanDate" OriginalIndex="11" />
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="SOOrder__OrderDate" />
+                    <Prop Key="Width" Value="90" />
+                </PXGridColumn>
+            </AddItem>
+            <AddItem>
+                <PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+                    <Prop Key="DataField" Value="SOLine__ShipDate" />
+                    <Prop Key="Width" Value="90" />
+                </PXGridColumn>
+            </AddItem>
+            <PXGridColumn DataField="FSRefNbr" OriginalIndex="28" />
+        </Children>
+        <Children Key="RowTemplate">
+            <AddItem>
+                <PXSelector TypeFullName="PX.Web.UI.PXSelector">
+                    <Prop Key="Virtual:ApplyStylesheetSkin" />
+                    <Prop Key="ID" Value="CstPXSelector1" />
+                    <Prop Key="DataField" Value="SOLine__UsrEndCustomerID" />
+                    <Prop Key="AllowEdit" Value="True" />
+                </PXSelector>
+            </AddItem>
+            <AddItem>
+                <PXSelector TypeFullName="PX.Web.UI.PXSelector">
+                    <Prop Key="Virtual:ApplyStylesheetSkin" />
+                    <Prop Key="ID" Value="CstPXSelector3" />
+                    <Prop Key="DataField" Value="SOLine__UsrProjectNbr" />
+                    <Prop Key="AllowEdit" Value="True" />
+                </PXSelector>
+            </AddItem>
+        </Children>
+    </PXGridLevel>
+</Page>

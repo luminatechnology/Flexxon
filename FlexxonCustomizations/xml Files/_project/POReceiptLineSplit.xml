@@ -1,0 +1,4 @@
+﻿<Table TableName="POReceiptLineSplit">
+    <Column TableName="POReceiptLineSplit" ColumnName="UsrDateCode" ColumnType="string" AllowNull="True" MaxLength="6" DecimalPrecision="2" DecimalLength="6" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="POReceiptLineSplit" ColumnName="UsrCOO" ColumnType="string" AllowNull="True" MaxLength="2" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+</Table>

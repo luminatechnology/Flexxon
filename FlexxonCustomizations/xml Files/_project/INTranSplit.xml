@@ -1,0 +1,4 @@
+﻿<Table TableName="INTranSplit">
+    <Column TableName="INTranSplit" ColumnName="UsrCOO" ColumnType="string" AllowNull="True" MaxLength="2" DecimalPrecision="2" DecimalLength="2" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="INTranSplit" ColumnName="UsrDateCode" ColumnType="string" AllowNull="True" MaxLength="6" DecimalPrecision="2" DecimalLength="6" IsNewColumn="True" IsUnicode="True" />
+</Table>
