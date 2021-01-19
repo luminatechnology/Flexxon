@@ -96,7 +96,7 @@ namespace FlexxonCustomizations.Graph
               (object) SelectFrom<BAccountR>.Where<BAccountR.bAccountID.IsEqual<P.AsInt>>.View.Select((PXGraph) instance1, (object) flxCommissionTran.SalesRepID).TopFirst.AcctCD.Trim()
                         });
                 }
-                instance1.Document.Current.DocDesc = str.Substring(0, str.Length - 1);
+                instance1.Document.Current.DocDesc = str.Substring(0, (str.Length > PX.Objects.Common.Constants.TranDescLength ? PX.Objects.Common.Constants.TranDescLength : str.Length) - 1);
                 instance1.Document.UpdateCurrent();
                 instance1.Save.Press();
                 for (int index = 0; index < list.Count; ++index)
