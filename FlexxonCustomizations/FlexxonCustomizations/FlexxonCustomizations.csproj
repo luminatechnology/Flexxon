@@ -125,6 +125,7 @@
     <Compile Include="Graph_Extension\1SOOrderEntry.cs" />
     <Compile Include="Graph_Extension\APInvoiceEntry.cs" />
     <Compile Include="Graph_Extension\CreateMatrixItems.cs" />
+    <Compile Include="Graph_Extension\CRCaseMaint_Extension.cs" />
     <Compile Include="Graph_Extension\INReceiptEntry.cs" />
     <Compile Include="Graph_Extension\INReleaseProcess.cs" />
     <Compile Include="Graph_Extension\INTransferEntry.cs" />
