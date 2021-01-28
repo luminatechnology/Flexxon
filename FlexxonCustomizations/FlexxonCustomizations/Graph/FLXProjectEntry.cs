@@ -13,7 +13,6 @@ using PX.Objects.CR;
 using PX.Objects.CS;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace FlexxonCustomizations.Graph
 {
@@ -41,13 +40,8 @@ namespace FlexxonCustomizations.Graph
         public const string DesParty = "DESIGNINPA";
         public PXAction<FLXProject> MenuActions;
         public PXAction<FLXProject> CreateSubProj;
-        public PXAction<FLXProject> PrintProductApprovalSheetAction;
 
-        public FLXProjectEntry()
-        {
-            this.MenuActions.AddMenuAction((PXAction)this.CreateSubProj);
-            this.MenuActions.AddMenuAction((PXAction)this.PrintProductApprovalSheetAction);
-        }
+        public FLXProjectEntry() => this.MenuActions.AddMenuAction((PXAction)this.CreateSubProj);
 
         [PXButton(MenuAutoOpen = true, SpecialType = PXSpecialButtonType.Report)]
         [PXUIField(DisplayName = "Actions")]
@@ -64,21 +58,6 @@ namespace FlexxonCustomizations.Graph
             }
             return adapter.Get();
         }
-
-        #region Material Return Action
-        [PXButton]
-        [PXUIField(DisplayName = "Print Product Approval Sheet", MapEnableRights = PXCacheRights.Select)]
-        protected void printProductApprovalSheetAction()
-        {
-            var curFLXProjectCache = (FLXProject)this.Caches[typeof(FLXProject)].Current;
-            // create the parameter for report
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["ProjectNbr"] = curFLXProjectCache.ProjectNbr;
-
-            // using Report Required Exception to call the report
-            throw new PXReportRequiredException(parameters, "FX606400", "FX606400");
-        }
-        #endregion
 
         public override void Persist()
         {
