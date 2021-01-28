@@ -1,56 +1,72 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PX.Objects.IN.INReleaseProcess_Extension
-// Assembly: FlexxonCustomizations, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: A59FE566-6025-4730-961E-B73CC13C04A9
-// Assembly location: C:\Program Files\Acumatica ERP\Flexxon\Bin\FlexxonCustomizations.dll
-
-using PX.Common;
+﻿using PX.Common;
 using PX.Data;
 using PX.Data.BQL;
 using PX.Data.BQL.Fluent;
 using PX.Objects.GL;
+using PX.Objects.SO;
 
 namespace PX.Objects.IN
 {
     public class INReleaseProcess_Extension : PXGraphExtension<INReleaseProcess>
     {
+        #region Delegate Function
+        public delegate void ReleaseDocProcDelegate(JournalEntry je, INRegister doc);
         [PXOverride]
-        public void ReleaseDocProc(
-          JournalEntry je,
-          INRegister doc,
-          INReleaseProcess_Extension.ReleaseDocProcDelegate baseMethod)
+        public void ReleaseDocProc(JournalEntry je, INRegister doc, INReleaseProcess_Extension.ReleaseDocProcDelegate baseMethod)
         {
             baseMethod(je, doc);
-            foreach (INTranSplit inTranSplit1 in this.Base.intransplit.Cache.Cached)
+
+            foreach (INTranSplit row in this.Base.intransplit.Cache.Cached)
             {
-                INTranSplit inTranSplit2 = INReleaseProcess_Extension.SelectINTranRcpSplit((PXGraph)this.Base, inTranSplit1.LotSerialNbr, inTranSplit1.InventoryID, inTranSplit1.SubItemID, inTranSplit1.SiteID, inTranSplit1.LocationID);
-                if (inTranSplit2 != null && inTranSplit1.DocType != "RCP")
+                INTranSplit tranSplit = SelectINTranRcpSplit(Base, row.LotSerialNbr, row.InventoryID, row.SubItemID, row.SiteID, row.LocationID);
+
+                if (tranSplit != null && row.DocType != INDocType.Receipt)
                 {
-                    INTranSplitExt extension = inTranSplit2.GetExtension<INTranSplitExt>();
-                    this.Base.intransplit.Cache.SetValue<INTranSplitExt.usrCOO>((object)inTranSplit1, (object)extension.UsrCOO);
-                    this.Base.intransplit.Cache.SetValue<INTranSplitExt.usrDateCode>((object)inTranSplit1, (object)extension.UsrDateCode);
-                    this.Base.Caches[typeof(INTranSplit)].PersistUpdated(this.Base.Caches[typeof(INTranSplit)].Update((object)inTranSplit1));
-                    PXTimeStampScope.PutPersisted(this.Base.Caches[typeof(INTranSplit)], (object)inTranSplit1, (object)PXDatabase.SelectTimeStamp());
+                    INTranSplitExt tranSplitExt = tranSplit.GetExtension<INTranSplitExt>();
+
+                    Base.intransplit.Cache.SetValue<INTranSplitExt.usrCOO>(row, tranSplitExt.UsrCOO);
+                    Base.intransplit.Cache.SetValue<INTranSplitExt.usrDateCode>(row, tranSplitExt.UsrDateCode);
                 }
+                else 
+                {
+                    SOShipLineSplit lineSplit = SelectSOShipLineSplit(Base, row.LotSerialNbr, row.InventoryID, row.SubItemID, row.SiteID, row.LocationID);
+
+                    if (lineSplit == null) { continue; }
+
+                    SOShipLineSplitExt lineSplitExt = lineSplit.GetExtension<SOShipLineSplitExt>();
+
+                    Base.intransplit.Cache.SetValue<INTranSplitExt.usrCOO>(row, lineSplitExt.UsrCOO);
+                    Base.intransplit.Cache.SetValue<INTranSplitExt.usrDateCode>(row, lineSplitExt.UsrDateCode);
+                }
+
+                Base.Caches[typeof(INTranSplit)].PersistUpdated(this.Base.Caches[typeof(INTranSplit)].Update(row));
+
+                PXTimeStampScope.PutPersisted(this.Base.Caches[typeof(INTranSplit)], row, PXDatabase.SelectTimeStamp());
             }
         }
+        #endregion
 
-        public static INTranSplit SelectINTranRcpSplit(
-          PXGraph graph,
-          string lotSerialNbr,
-          int? inentoryID,
-          int? subItemID,
-          int? siteID,
-          int? locationID)
+        #region Static Method
+        public static INTranSplit SelectINTranRcpSplit(PXGraph graph, string lotSerialNbr, int? inentoryID, int? subItemID, int? siteID, int? locationID)
         {
             return SelectFrom<INTranSplit>.Where<INTranSplit.lotSerialNbr.IsEqual<P.AsString>
                                                 .And<INTranSplit.inventoryID.IsEqual<P.AsInt>
                                                      .And<INTranSplit.subItemID.IsEqual<P.AsInt>
                                                           .And<INTranSplit.siteID.IsEqual<P.AsInt>
                                                                .And<INTranSplit.locationID.IsEqual<P.AsInt>
-                                                                    .And<INTranSplit.docType.IsEqual<INDocType.receipt>>>>>>>.View.SelectSingleBound(graph, (object[])null, (object)lotSerialNbr, (object)inentoryID, (object)subItemID, (object)siteID, (object)locationID);
+                                                                    .And<INTranSplit.docType.IsEqual<INDocType.receipt>>>>>>>
+                                          .View.SelectSingleBound(graph, null, lotSerialNbr, inentoryID, subItemID, siteID, locationID);
         }
 
-        public delegate void ReleaseDocProcDelegate(JournalEntry je, INRegister doc);
+        public static SOShipLineSplit SelectSOShipLineSplit(PXGraph graph, string lotSerialNbr, int? inentoryID, int? subItemID, int? siteID, int? locationID)
+        {
+            return SelectFrom<SOShipLineSplit>.Where<SOShipLineSplit.lotSerialNbr.IsEqual<P.AsString>
+                                                     .And<SOShipLineSplit.inventoryID.IsEqual<P.AsInt>
+                                                          .And<SOShipLineSplit.subItemID.IsEqual<P.AsInt>
+                                                               .And<SOShipLineSplit.siteID.IsEqual<P.AsInt>
+                                                                    .And<SOShipLineSplit.locationID.IsEqual<P.AsInt>>>>>>
+                                              .View.SelectSingleBound(graph, null, lotSerialNbr, inentoryID, subItemID, siteID, locationID);
+        }
+        #endregion
     }
 }
