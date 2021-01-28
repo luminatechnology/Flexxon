@@ -9,6 +9,7 @@ namespace PX.Objects.SO
     {
         [PXDBString(2, IsUnicode = true)]
         [PXUIField(DisplayName = "COO")]
+        [PX.Objects.CR.Country()]
         [PXDefault(typeof(Search<INTranSplitExt.usrCOO, Where<INTranSplit.lotSerialNbr, Equal<Current<SOShipLineSplit.lotSerialNbr>>, 
                                                               And<INTranSplit.inventoryID, Equal<Current<SOShipLineSplit.inventoryID>>, 
                                                                   And<INTranSplit.locationID, Equal<Current<SOShipLineSplit.locationID>>, 
