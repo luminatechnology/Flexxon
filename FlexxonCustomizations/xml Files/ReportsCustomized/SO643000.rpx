@@ -57,13 +57,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>ARInvoice.NoteID</ActivitySource>
-    <Bcc></Bcc>
     <Body>='Dear Customer,#010;#010;This is an automatic email to notify you that you have a new Invoice available on your account.  #010;You will find a copy of '+[ARInvoice.PrintDocType]+' # '+[ARInvoice.RefNbr]+' attached to this email.  #010;#010;If you have any questions, please don’t hesitate to contact us at Email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'#010;</Body>
-    <Cc></Cc>
-    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' '+[ARInvoice.PrintDocType]+' # '+[ARInvoice.RefNbr]</Subject>
-    <TemplateID></TemplateID>
     <To>=IsNull([BillingContact.EMail],'')</To>
   </MailSettings>
   <PageSettings>
@@ -6176,7 +6172,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                     <VerticalAlign>Top</VerticalAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
-                  <Value>=IIf([ARTran.InventoryID_description]&lt;&gt;Null,[ARTran.InventoryID_description],[ARTran.TranDesc])</Value>
+                  <Value>=IIf ([ARTran.SOOrderNbr] &lt;&gt; Null, [NonStockItem.Descr], [ARTran.TranDesc])#010;/*IIf([ARTran.InventoryID_description]&lt;&gt;Null,[ARTran.InventoryID_description],[ARTran.TranDesc])*/</Value>
                 </TextBox>
                 <TextBox Name="textBox87">
                   <Location>2px, 0px</Location>

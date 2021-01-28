@@ -80,9 +80,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
     <Bcc>prashant@gsl.in;sapna.lohia@gsl.in</Bcc>
     <Body>='Dear Sir, #010;#010;Warm Greeting from GINESYS! #010;#010;We would like to thank you to giving us an opportunity to serve you with the best of our software &amp; services.#010;#010;Please find attached is the ' + IIf(@ProformaInvoice, 'Proforma Invoice', [SOOrderType.Descr]) + 'for your reference, as per discussion with you.#010;#010;' + IIf(@ProformaInvoice, 'Kindly process the same,so that we can process license formalites.',#010;'Kindly Send us the seal &amp; signed copy of the same along with the payment so that we can take the further action. ') +#010;'#010;If you have any questions, please don’t hesitate to contact us at Email.   #010;#010;Thank you for choosing Ginni Systems Ltd.#010;#010;Ginni Systems Ltd.#010;Accounts Team#010;Nirvana Country, #010;Unitech Business Zone,#010;Tower-C,9th Floor, Unit No- 901,#010;Sector – 50,Gurgaon,Haryana#010;(W) +91-124-4754500 (Extn: 106 &amp; 107), (D)-124-4754507#010;URL :- http://www.ginesys.in#010;_____________________________'</Body>
     <Cc>license@gsl.in</Cc>
-    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=IIf([BillingContact.FullName]&lt;&gt;null,  [BillingContact.FullName], '') + ' ' + IIf(@ProformaInvoice, 'Proforma Invoice', [SOOrderType.Descr]) + ' ' + [SOOrder.OrderNbr]+ ' for ' + IIf([SOOrder.CustomerRefNbr]&lt;&gt;null, [SOOrder.CustomerRefNbr], '') </Subject>
+    <TemplateID></TemplateID>
     <To>=[ShippingContact.Email]</To>
   </MailSettings>
   <PageSettings>
@@ -5797,7 +5797,6 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
                 <TextBox Name="textBox57">
                   <CanGrow>True</CanGrow>
-                  <Format>=[SOLine.CuryLineAmt.Format]</Format>
                   <Location>304px, 0px</Location>
                   <Size>148px, 22px</Size>
                   <Style>
@@ -5810,7 +5809,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                     <VerticalAlign>Top</VerticalAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
-                  <Value>=[SOLine.TranDesc]</Value>
+                  <Value>=[SOLine.UsrNonStockItem_InventoryItem_descr]#010;/*[SOLine.TranDesc]*/</Value>
                 </TextBox>
                 <TextBox Name="textBox79">
                   <Location>0px, 0px</Location>

@@ -3928,7 +3928,6 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Items>
             <TextBox Name="textBox14">
               <CanGrow>True</CanGrow>
-              <Format>=[SOLine.CuryLineAmt.Format]</Format>
               <Location>304px, 0px</Location>
               <Size>148px, 22px</Size>
               <Style>
@@ -3941,7 +3940,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
               <StyleName>Normal</StyleName>
-              <Value>=[SOLine.TranDesc]</Value>
+              <Value>=[SOLine.UsrNonStockItem_InventoryItem_descr]#010;/*[SOLine.TranDesc]*/</Value>
             </TextBox>
             <TextBox Name="textBox15">
               <Location>0px, 0px</Location>
