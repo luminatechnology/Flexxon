@@ -24,13 +24,34 @@ namespace PX.Objects.SO
     public class SOShipmentEntry_Extension : PXGraphExtension<SOShipmentEntry>
     {
         private bool skipAdjustFreeItemLines = false;
-        public PXSelectJoin<SOShipmentPlan, InnerJoin<SOLineSplit, On<SOLineSplit.planID, Equal<SOShipmentPlan.planID>>, InnerJoin<SOLine, On<SOLine.orderType, Equal<SOLineSplit.orderType>, And<SOLine.orderNbr, Equal<SOLineSplit.orderNbr>, And<SOLine.lineNbr, Equal<SOLineSplit.lineNbr>>>>, InnerJoin<PX.Objects.IN.InventoryItem, On<PX.Objects.IN.InventoryItem.inventoryID, Equal<SOShipmentPlan.inventoryID>>, LeftJoin<INLotSerClass, On<PX.Objects.IN.InventoryItem.FK.LotSerClass>, LeftJoin<INSite, On<SOLine.FK.Site>, LeftJoin<SOShipLine, On<SOShipLine.origOrderType, Equal<SOLineSplit.orderType>, And<SOShipLine.origOrderNbr, Equal<SOLineSplit.orderNbr>, And<SOShipLine.origLineNbr, Equal<SOLineSplit.lineNbr>, And<SOShipLine.origSplitLineNbr, Equal<SOLineSplit.splitLineNbr>, And<SOShipLine.confirmed, Equal<boolFalse>, And<SOShipLine.shipmentNbr, NotEqual<Current<SOShipment.shipmentNbr>>>>>>>>>>>>>>, Where<SOShipmentPlan.siteID, Equal<Optional<SOOrderFilter.siteID>>, And<SOShipmentPlan.orderType, Equal<Required<SOOrder.orderType>>, And<SOShipmentPlan.orderNbr, Equal<Required<SOOrder.orderNbr>>, And<SOLine.operation, Equal<Required<SOLine.operation>>, And<SOShipLine.origOrderNbr, PX.Data.IsNull, And<Where<SOShipmentPlan.requireAllocation, Equal<False>, Or<SOShipmentPlan.inclQtySOShipping, Equal<True>, Or<SOShipmentPlan.inclQtySOShipped, Equal<True>, Or<SOLineSplit.lineType, Equal<SOLineType.nonInventory>>>>>>>>>>>> ShipmentScheduleSelect2;
+        
+        public PXSelectJoin<SOShipmentPlan, InnerJoin<SOLineSplit, On<SOLineSplit.planID, Equal<SOShipmentPlan.planID>>, 
+                                            InnerJoin<SOLine, On<SOLine.orderType, Equal<SOLineSplit.orderType>, 
+                                                                 And<SOLine.orderNbr, Equal<SOLineSplit.orderNbr>, 
+                                                                     And<SOLine.lineNbr, Equal<SOLineSplit.lineNbr>>>>, 
+                                            InnerJoin<InventoryItem, On<InventoryItem.inventoryID, Equal<SOShipmentPlan.inventoryID>>, 
+                                            LeftJoin<INLotSerClass, On<InventoryItem.FK.LotSerClass>, 
+                                            LeftJoin<INSite, On<SOLine.FK.Site>, 
+                                            LeftJoin<SOShipLine, On<SOShipLine.origOrderType, Equal<SOLineSplit.orderType>, 
+                                                     And<SOShipLine.origOrderNbr, Equal<SOLineSplit.orderNbr>, 
+                                                         And<SOShipLine.origLineNbr, Equal<SOLineSplit.lineNbr>, 
+                                                             And<SOShipLine.origSplitLineNbr, Equal<SOLineSplit.splitLineNbr>, 
+                                                                 And<SOShipLine.confirmed, Equal<boolFalse>, 
+                                                                     And<SOShipLine.shipmentNbr, NotEqual<Current<SOShipment.shipmentNbr>>>>>>>>>>>>>>, 
+                                            Where<SOShipmentPlan.siteID, Equal<Optional<SOOrderFilter.siteID>>, 
+                                                  And<SOShipmentPlan.orderType, Equal<Required<SOOrder.orderType>>, 
+                                                      And<SOShipmentPlan.orderNbr, Equal<Required<SOOrder.orderNbr>>, 
+                                                          And<SOLine.operation, Equal<Required<SOLine.operation>>, 
+                                                              And<SOShipLine.origOrderNbr, PX.Data.IsNull, 
+                                                                  And<Where<SOShipmentPlan.requireAllocation, Equal<False>, 
+                                                                            Or<SOShipmentPlan.inclQtySOShipping, Equal<True>, 
+                                                                                Or<SOShipmentPlan.inclQtySOShipped, Equal<True>, 
+                                                                                   Or<SOLineSplit.lineType, Equal<SOLineType.nonInventory>>>>>>>>>>>> ShipmentScheduleSelect2;
 
+        #region Delegate Functions
+        public delegate void DelConfirmShipment(SOOrderEntry docgraph, SOShipment shiporder);
         [PXOverride]
-        public void ConfirmShipment(
-          SOOrderEntry docgraph,
-          SOShipment shiporder,
-          SOShipmentEntry_Extension.DelConfirmShipment baseMethod)
+        public void ConfirmShipment(SOOrderEntry docgraph, SOShipment shiporder, SOShipmentEntry_Extension.DelConfirmShipment baseMethod)
         {
             if (shiporder.Operation != "R")
             {
@@ -53,14 +74,10 @@ namespace PX.Objects.SO
             baseMethod(docgraph, shiporder);
         }
 
+        public delegate void DelInvoiceShipment(SOInvoiceEntry docgraph, SOShipment shiporder, DateTime invoiceDate, InvoiceList list, PXQuickProcess.ActionFlow quickProcessFlow);
         [PXOverride]
-        public virtual void InvoiceShipment(
-          SOInvoiceEntry docgraph,
-          SOShipment shiporder,
-          DateTime invoiceDate,
-          InvoiceList list,
-          PXQuickProcess.ActionFlow quickProcessFlow,
-          SOShipmentEntry_Extension.DelInvoiceShipment baseMethod)
+        public virtual void InvoiceShipment(SOInvoiceEntry docgraph, SOShipment shiporder, DateTime invoiceDate, InvoiceList list, PXQuickProcess.ActionFlow quickProcessFlow,
+                                            SOShipmentEntry_Extension.DelInvoiceShipment baseMethod)
         {
             System.Collections.Generic.List<SOOrder> orderLists = SelectFrom<SOOrder>.InnerJoin<SOShipLine>.On<SOOrder.orderType.IsEqual<SOShipLine.origOrderType>
                                                                                                                .And<SOOrder.orderNbr.IsEqual<SOShipLine.origOrderNbr>>>
@@ -82,11 +99,21 @@ namespace PX.Objects.SO
             }
             baseMethod(docgraph, shiporder, invoiceDate, list, quickProcessFlow);
         }
+        #endregion
 
+        #region Cache Attached
         [PXMergeAttributes(Method = MergeMethod.Merge)]
         [PXUIField(Visible = false)]
-        protected void _(Events.CacheAttached<SOShipLineSplit.expireDate> e)
+        protected void _(Events.CacheAttached<SOShipLineSplit.expireDate> e) { }
+        #endregion
+
+        #region Event Handlers
+        protected void _(Events.RowSelected<SOShipLineSplit> e, PXRowSelected baseHandler)
         {
+            baseHandler?.Invoke(e.Cache, e.Args);
+
+            PXUIFieldAttribute.SetEnabled<SOShipLineSplitExt.usrCOO>(e.Cache, null, Base.Document.Current.Operation == SOOperation.Receipt);
+            PXUIFieldAttribute.SetEnabled<SOShipLineSplitExt.usrDateCode>(e.Cache, null, Base.Document.Current.Operation == SOOperation.Receipt);
         }
 
         protected void _(Events.FieldSelecting<SOShipmentExt.usrNote> e)
@@ -133,8 +160,7 @@ namespace PX.Objects.SO
             Decimal? local = (nullable3.HasValue & nullable4.HasValue ? new Decimal?(nullable3.GetValueOrDefault() - nullable4.GetValueOrDefault()) : new Decimal?());
             fieldDefaulting.NewValue = (object)local;
         }
-
-        private DiscountEngine<SOShipLine, SOShipmentDiscountDetail> _discountEngine => DiscountEngineProvider.GetEngineFor<SOShipLine, SOShipmentDiscountDetail>();
+        #endregion
 
         public void CreateShipment2(
           SOOrder order,
@@ -1087,14 +1113,7 @@ namespace PX.Objects.SO
 
         public static Decimal? GetCurrencyRate(string curyID, DateTime? docDate) => (Decimal?)((CurrencyRate2)PXSelectBase<CurrencyRate2, PXSelect<CurrencyRate2, Where<CurrencyRate2.toCuryID, Equal<Required<CuryRateFilter.toCurrency>>, And<CurrencyRate2.fromCuryID, Equal<Required<CurrencyRate2.fromCuryID>>, And<CurrencyRate2.curyEffDate, LessEqual<Required<CuryRateFilter.effDate>>>>>, OrderBy<Desc<CurrencyRate2.curyEffDate>>>.Config>.Select((PXGraph)PXGraph.CreateInstance<SOShipmentEntry>(), (object)curyID, (object)"SGD", (object)docDate))?.CuryRate;
 
-        public delegate void DelConfirmShipment(SOOrderEntry docgraph, SOShipment shiporder);
-
-        public delegate void DelInvoiceShipment(
-          SOInvoiceEntry docgraph,
-          SOShipment shiporder,
-          DateTime invoiceDate,
-          InvoiceList list,
-          PXQuickProcess.ActionFlow quickProcessFlow);
+        private DiscountEngine<SOShipLine, SOShipmentDiscountDetail> _discountEngine => DiscountEngineProvider.GetEngineFor<SOShipLine, SOShipmentDiscountDetail>();
 
         private class LineShipment : IEnumerable<SOShipLine>, IEnumerable, ICollection<SOShipLine>
         {
