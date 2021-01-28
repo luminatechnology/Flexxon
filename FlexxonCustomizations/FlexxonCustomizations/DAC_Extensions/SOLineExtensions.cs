@@ -24,25 +24,32 @@ namespace PX.Objects.SO
 
         [PXDBInt]
         [PXUIField(DisplayName = "End Customer")]
-        [PXDefault]
+        [PXDefault()]
         [EndCustomerSelector(typeof(SOLineExt.usrNonStockItem), Filterable = true)]
         [PXFormula(typeof(Default<SOLineExt.usrNonStockItem>))]
         public virtual int? UsrEndCustomerID { get; set; }
 
         [PXDBString(10, IsUnicode = true)]
         [PXUIField(DisplayName = "Cust. Line Nbr.")]
-        [PXDefault]
+        [PXDefault()]
         public virtual string UsrCustLineNbr { get; set; }
 
         [PXDBString(15, IsUnicode = true)]
         [PXUIField(DisplayName = "Brand")]
-        [PXDefault(typeof(Search2<CSAnswers.value, InnerJoin<PX.Objects.IN.InventoryItem, On<PX.Objects.IN.InventoryItem.noteID, Equal<CSAnswers.refNoteID>, And<CSAnswers.attributeID, Equal<FLXProjectEntry.BrandAtt>>>>, Where<PX.Objects.IN.InventoryItem.inventoryID, Equal<Current<SOLine.inventoryID>>>>), PersistingCheck = PXPersistingCheck.Nothing)]
+        [PXDefault(typeof(Search2<CSAnswers.value, InnerJoin<InventoryItem, On<InventoryItem.noteID, Equal<CSAnswers.refNoteID>, 
+                                                                               And<CSAnswers.attributeID, Equal<FLXProjectEntry.BrandAtt>>>>,
+                                                   Where<InventoryItem.inventoryID, Equal<Current<SOLine.inventoryID>>>>), 
+                   PersistingCheck = PXPersistingCheck.Nothing)]
         [PXFormula(typeof(Default<SOLine.inventoryID>))]
         public virtual string UsrBrand { get; set; }
 
         [PXDBString(15, IsUnicode = true)]
         [PXUIField(DisplayName = "Project Nbr.")]
-        [ProjectNbrSelector(typeof(Search<FLXProject.projectNbr, Where<FLXProject.customerID, Equal<Current<SOLine.customerID>>, And<FLXProject.endCustomerID, Equal<Current<SOLineExt.usrEndCustomerID>>, And<FLXProject.nonStockItem, Equal<Current<SOLineExt.usrNonStockItem>>, And<FLXProject.status, NotEqual<ProjectStatus.hold>>>>>>), ValidateValue = false)]
+        [ProjectNbrSelector(typeof(Search<FLXProject.projectNbr, Where<FLXProject.customerID, Equal<Current<SOLine.customerID>>, 
+                                                                       And<FLXProject.endCustomerID, Equal<Current<SOLineExt.usrEndCustomerID>>, 
+                                                                           And<FLXProject.nonStockItem, Equal<Current<SOLineExt.usrNonStockItem>>, 
+                                                                               And<FLXProject.status, NotEqual<ProjectStatus.hold>>>>>>), 
+                            ValidateValue = false)]
         [PXFormula(typeof(Default<SOLineExt.usrEndCustomerID>))]
         public virtual string UsrProjectNbr { get; set; }
 
