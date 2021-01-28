@@ -1,0 +1,4 @@
+﻿<Table TableName="SOShipLineSplit">
+    <Column TableName="SOShipLineSplit" ColumnName="UsrCOO" ColumnType="string" AllowNull="True" MaxLength="2" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="SOShipLineSplit" ColumnName="UsrDateCode" ColumnType="string" AllowNull="True" MaxLength="6" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+</Table>
