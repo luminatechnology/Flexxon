@@ -23,6 +23,7 @@ namespace PX.Objects.SO
         public PXFilter<SOLineSplitFilter> LineSplitFilter;
         public PXAction<SOOrder> splitSOLine;
 
+        #region Action
         [PXLookupButton(CommitChanges = true)]
         [PXUIField(DisplayName = "Split SO Line", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select)]
         protected virtual IEnumerable SplitSOLine(PXAdapter adapter)
@@ -31,19 +32,23 @@ namespace PX.Objects.SO
                 this.CopySOLine();
             return adapter.Get();
         }
+        #endregion
 
+        #region Cache Attached
         [PXMergeAttributes(Method = MergeMethod.Append)]
         [PXFormula(typeof(Default<SOLineExt.usrProjectNbr>))]
-        protected void _(Events.CacheAttached<SOLine.inventoryID> e)
-        {
-        }
+        protected void _(Events.CacheAttached<SOLine.inventoryID> e) { }
 
         [PXMergeAttributes(Method = MergeMethod.Replace)]
-        [SOAllocationLotSerialNbr2(typeof(SOLineSplit.inventoryID), typeof(SOLineSplit.subItemID), typeof(SOLineSplit.siteID), typeof(SOLineSplit.locationID), FieldClass = "LotSerial")]
-        protected void _(Events.CacheAttached<SOLineSplit.lotSerialNbr> e)
-        {
-        }
+        [SOAllocationLotSerialNbr2(typeof(SOLineSplit.inventoryID), 
+                                   typeof(SOLineSplit.subItemID), 
+                                   typeof(SOLineSplit.siteID), 
+                                   typeof(SOLineSplit.locationID), 
+                                   FieldClass = "LotSerial")]
+        protected void _(Events.CacheAttached<SOLineSplit.lotSerialNbr> e) { }
+        #endregion
 
+        #region Event Handlers
         protected void _(Events.RowSelected<SOLine> e, PXRowSelected invokeBaseHandler)
         {
             if (invokeBaseHandler != null)
@@ -76,29 +81,31 @@ namespace PX.Objects.SO
             {
                 SOLineExt extension1 = ((SOLine)SelectFrom<SOLine>.Where<SOLine.orderType.IsEqual<P.AsString>
                                                                          .And<SOLine.orderNbr.IsEqual<P.AsString>
-                                                                              .And<SOLine.lineNbr.IsEqual<P.AsInt>>>>.View.Select((PXGraph)this.Base, (object)invoiceSplits.OrderTypeSOLine, (object)invoiceSplits.OrderNbrSOLine, (object)invoiceSplits.LineNbrSOLine)).GetExtension<SOLineExt>();
+                                                                              .And<SOLine.lineNbr.IsEqual<P.AsInt>>>>
+                                                                  .View.Select(Base, invoiceSplits.OrderTypeSOLine, invoiceSplits.OrderNbrSOLine, invoiceSplits.LineNbrSOLine)).GetExtension<SOLineExt>();
                 SOLineExt extension2 = e.Row.GetExtension<SOLineExt>();
-                extension2.UsrNonStockItem = extension1.UsrNonStockItem;
+
+                extension2.UsrNonStockItem  = extension1.UsrNonStockItem;
                 extension2.UsrEndCustomerID = extension1.UsrEndCustomerID;
-                extension2.UsrProjectNbr = extension1.UsrProjectNbr;
-                extension2.UsrCustLineNbr = extension1.UsrCustLineNbr;
+                extension2.UsrProjectNbr    = extension1.UsrProjectNbr;
+                extension2.UsrCustLineNbr   = extension1.UsrCustLineNbr;
             }
             foreach (SOLine soLine in this.Base.Transactions.Cache.Updated)
             {
-                if (soLine.Operation == "R" && soLine.InvoiceNbr != null)
+                if (soLine.Operation == SOOperation.Receipt)// && soLine.InvoiceNbr != null)
                 {
                     SOLineExt extension1 = soLine.GetExtension<SOLineExt>();
                     SOLineExt extension2 = e.Row.GetExtension<SOLineExt>();
-                    extension2.UsrNonStockItem = extension1.UsrNonStockItem;
+                     
+                    extension2.UsrNonStockItem  = extension1.UsrNonStockItem;
                     extension2.UsrEndCustomerID = extension1.UsrEndCustomerID;
-                    extension2.UsrProjectNbr = extension1.UsrProjectNbr;
-                    extension2.UsrCustLineNbr = extension1.UsrCustLineNbr;
+                    extension2.UsrProjectNbr    = extension1.UsrProjectNbr;
+                    extension2.UsrCustLineNbr   = extension1.UsrCustLineNbr;
                 }
             }
         }
 
-        protected void _(
-          Events.FieldVerifying<SOLineSplitFilter.splitQty> e)
+        protected void _(Events.FieldVerifying<SOLineSplitFilter.splitQty> e)
         {
             Decimal newValue = (Decimal)e.NewValue;
             Decimal? orderQty = this.Base.Transactions.Current.OrderQty;
@@ -137,7 +144,9 @@ namespace PX.Objects.SO
                 return;
             this.Base.Transactions.Cache.SetValueExt<SOLine.inventoryID>((object)(SOLine)e.Row, e.NewValue);
         }
+        #endregion
 
+        #region Method  
         public virtual void CopySOLine()
         {
             SOLineSplitFilter current1 = this.LineSplitFilter.Current;
@@ -171,5 +180,6 @@ namespace PX.Objects.SO
                                                                                               .And<SOLineSplit.orderNbr.IsEqual<P.AsString>
                                                                                                    .And<SOLineSplit.lineNbr.IsEqual<P.AsInt>
                                                                                                         .And<SOLineSplit.pONbr.IsNotNull>>>>.View.SelectSingleBound((PXGraph)this.Base, (object[])null, (object)origLine.OrderType, (object)origLine.OrderNbr, (object)origLine.LineNbr).Count > 0;
+        #endregion
     }
 }
