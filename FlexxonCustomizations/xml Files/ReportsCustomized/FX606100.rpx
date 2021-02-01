@@ -45,51 +45,19 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
   </EmbeddedImages>
   <Filters>
     <FilterExp>
+      <DataField>FLXCommissionTran.APBillCreated</DataField>
+      <Value>True</Value>
+    </FilterExp>
+    <FilterExp>
       <Condition>IsNull</Condition>
-      <DataField>@OrgBAccountID</DataField>
+      <DataField>@APBillRefNbr</DataField>
       <OpenBraces>1</OpenBraces>
       <Operator>Or</Operator>
     </FilterExp>
     <FilterExp>
       <CloseBraces>1</CloseBraces>
-      <Condition>BelongsTo</Condition>
-      <DataField>FLXCommissionTran.BranchID</DataField>
-      <Value>@OrgBAccountID</Value>
-    </FilterExp>
-    <FilterExp>
-      <Condition>IsNull</Condition>
-      <DataField>@SalesRepID</DataField>
-      <OpenBraces>1</OpenBraces>
-      <Operator>Or</Operator>
-    </FilterExp>
-    <FilterExp>
-      <CloseBraces>1</CloseBraces>
-      <DataField>FLXCommissionTran.SalesRepID</DataField>
-      <Value>@SalesRepID</Value>
-    </FilterExp>
-    <FilterExp>
-      <Condition>IsNull</Condition>
-      <DataField>@DateFrom</DataField>
-      <OpenBraces>2</OpenBraces>
-      <Operator>Or</Operator>
-    </FilterExp>
-    <FilterExp>
-      <CloseBraces>1</CloseBraces>
-      <Condition>GreaterOrEqual</Condition>
-      <DataField>FLXCommissionTran.DocDate</DataField>
-      <Value>@DateFrom</Value>
-    </FilterExp>
-    <FilterExp>
-      <Condition>IsNull</Condition>
-      <DataField>@DateTo</DataField>
-      <OpenBraces>1</OpenBraces>
-      <Operator>Or</Operator>
-    </FilterExp>
-    <FilterExp>
-      <CloseBraces>2</CloseBraces>
-      <Condition>LessOrEqual</Condition>
-      <DataField>FLXCommissionTran.DocDate</DataField>
-      <Value>@DateTo</Value>
+      <DataField>FLXCommissionTran.APBillRefNbr</DataField>
+      <Value>@APBillRefNbr</Value>
     </FilterExp>
   </Filters>
   <PageSettings>
@@ -103,6 +71,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       <Nullable>True</Nullable>
       <Prompt>Compamy/Branch</Prompt>
       <ViewName>=Report.GetFieldSchema('OrganizationBranchReportParameters.OrgBAccountID')</ViewName>
+      <Visible>False</Visible>
     </ReportParameter>
     <ReportParameter>
       <ColumnSpan>2</ColumnSpan>
@@ -111,22 +80,15 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       <Nullable>True</Nullable>
       <Prompt>Sales Rep ID</Prompt>
       <ViewName>=Report.GetFieldSchema('FLXCommissionTran.SalesRepID')</ViewName>
+      <Visible>False</Visible>
     </ReportParameter>
     <ReportParameter>
       <ColumnSpan>2</ColumnSpan>
-      <DefaultValue>=DateAdd(Report.GetDefExt('RowAccessInfo.BusinessDate'), 'd', -(Day(Report.GetDefExt('RowAccessInfo.BusinessDate')) - 1))</DefaultValue>
-      <Name>DateFrom</Name>
+      <DefaultValue>=Report.GetDefExt('FLXCommissionTran.APBillRefNbrSelector')</DefaultValue>
+      <Name>APBillRefNbr</Name>
       <Nullable>True</Nullable>
-      <Prompt>Date From</Prompt>
-      <Type>DateTime</Type>
-    </ReportParameter>
-    <ReportParameter>
-      <ColumnSpan>2</ColumnSpan>
-      <DefaultValue>=Report.GetDefExt('RowAccessInfo.BusinessDate')</DefaultValue>
-      <Name>DateTo</Name>
-      <Nullable>True</Nullable>
-      <Prompt>Date To</Prompt>
-      <Type>DateTime</Type>
+      <Prompt>AP Bill Ref Nbr</Prompt>
+      <ViewName>=Report.GetFieldSchema('FLXCommissionTran.APBillRefNbrSelector')</ViewName>
     </ReportParameter>
   </Parameters>
   <SchemaUrl>http://localhost/AcumaticaFlexxon/</SchemaUrl>
@@ -144,6 +106,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         <ReportField Name="APBillRefNbr"></ReportField>
         <ReportField Name="APBillRefNbr_APRegister_docDesc"></ReportField>
         <ReportField Name="APBillRefNbr_description"></ReportField>
+        <ReportField Name="APBillRefNbrSelector"></ReportField>
         <ReportField Name="APDate">
           <DataType>DateTime</DataType>
         </ReportField>
@@ -632,7 +595,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <VerticalAlign>Middle</VerticalAlign>
           </Style>
           <StyleName>Normal</StyleName>
-          <Value>=[@SalesRepID]</Value>
+          <Value>=[FLXCommissionTran.SalesRepID]</Value>
         </TextBox>
         <TextBox Name="textBox34">
           <Location>416px, 0px</Location>
