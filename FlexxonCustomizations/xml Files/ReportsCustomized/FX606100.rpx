@@ -84,7 +84,6 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
     </ReportParameter>
     <ReportParameter>
       <ColumnSpan>2</ColumnSpan>
-      <DefaultValue>=Report.GetDefExt('FLXCommissionTran.APBillRefNbrSelector')</DefaultValue>
       <Name>APBillRefNbr</Name>
       <Nullable>True</Nullable>
       <Prompt>AP Bill Ref Nbr</Prompt>

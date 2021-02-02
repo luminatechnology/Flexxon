@@ -27,7 +27,8 @@ namespace FlexxonCustomizations.DAC
     #region APBillRefNbrSelector
     [PXString(20, IsUnicode = true, InputMask = "")]
     [PXSelector(typeof(SelectFrom<FLXCommissionTran>.LeftJoin<APInvoice>.On<FLXCommissionTran.docType.IsEqual<APInvoice.docType>.And<FLXCommissionTran.aPBillRefNBr.IsEqual<APInvoice.refNbr>>>
-                        .AggregateTo<GroupBy<FLXCommissionTran.aPBillRefNBr>>
+                        .Where<FLXCommissionTran.aPBillRefNBr.IsNotNull>
+                        .AggregateTo<GroupBy<FLXCommissionTran.aPBillRefNBr>>.OrderBy<Desc<FLXCommissionTran.aPBillRefNBr>>
                         .SearchFor<FLXCommissionTran.aPBillRefNBr>),
                         typeof(aPBillRefNBr),
                         typeof(APInvoice.vendorID),
