@@ -2105,7 +2105,7 @@
             </Line>
             <Line Name="line2">
               <Direction>Vertical</Direction>
-              <Location>109px, 23px</Location>
+              <Location>115px, 23px</Location>
               <Size>1px, 43px</Size>
             </Line>
             <Line Name="line4">
@@ -2115,7 +2115,7 @@
             <TextBox Name="textBox1">
               <CanSplit>True</CanSplit>
               <Location>4px, 48px</Location>
-              <Size>100px, 16px</Size>
+              <Size>108px, 16px</Size>
               <Style>
                 <Font>
                   <Size>8px</Size>
@@ -2128,7 +2128,7 @@
             <TextBox Name="textBox13">
               <CanGrow>True</CanGrow>
               <CanSplit>True</CanSplit>
-              <Location>114px, 48px</Location>
+              <Location>120px, 48px</Location>
               <Size>100px, 16px</Size>
               <Style>
                 <Font>
@@ -2150,7 +2150,7 @@
               <Value>Cust. Part No:</Value>
             </TextBox>
             <TextBox Name="textBox3">
-              <Location>114px, 26px</Location>
+              <Location>120px, 26px</Location>
               <Size>80px, 12px</Size>
               <Style>
                 <TextAlign>Left</TextAlign>

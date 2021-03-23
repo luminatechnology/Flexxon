@@ -57,9 +57,13 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>ARInvoice.NoteID</ActivitySource>
+    <Bcc></Bcc>
     <Body>='Dear Customer,#010;#010;This is an automatic email to notify you that you have a new Invoice available on your account.  #010;You will find a copy of '+[ARInvoice.PrintDocType]+' # '+[ARInvoice.RefNbr]+' attached to this email.  #010;#010;If you have any questions, please don’t hesitate to contact us at Email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'#010;</Body>
+    <Cc></Cc>
+    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' '+[ARInvoice.PrintDocType]+' # '+[ARInvoice.RefNbr]</Subject>
+    <TemplateID></TemplateID>
     <To>=IsNull([BillingContact.EMail],'')</To>
   </MailSettings>
   <PageSettings>
@@ -4895,8 +4899,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Items>
             <Panel Name="panel1">
               <GridSize>8px, 8px</GridSize>
-              <Location>18px, 4px</Location>
-              <Size>756px, 98px</Size>
+              <Location>8px, 4px</Location>
+              <Size>774px, 98px</Size>
               <Style>
                 <BorderColor>
                   <Bottom>Black</Bottom>
@@ -5069,7 +5073,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </Panel>
             <Panel Name="panel10">
               <GridSize>8px, 8px</GridSize>
-              <Location>18px, 108px</Location>
+              <Location>8px, 108px</Location>
               <Size>756px, 14px</Size>
               <Style>
                 <BackColor>LightBlue</BackColor>
@@ -5479,8 +5483,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <VisibleExpr>=InStr( $CurInvNumb, [ARInvoice.RefNbr]) &lt; 0 </VisibleExpr>
           <Items>
             <Panel Name="panel11">
-              <Location>16px, 8px</Location>
-              <Size>756px, 24px</Size>
+              <Location>8px, 8px</Location>
+              <Size>776px, 24px</Size>
               <Style>
                 <BorderColor>
                   <Bottom>Transparent</Bottom>
@@ -5585,8 +5589,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
               </Items>
             </Panel>
             <Panel Name="panel8">
-              <Location>16px, 32px</Location>
-              <Size>756px, 51px</Size>
+              <Location>8px, 32px</Location>
+              <Size>776px, 51px</Size>
               <Style>
                 <BorderColor>
                   <Bottom>Black</Bottom>
@@ -5636,8 +5640,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <VisibleExpr>=InStr( $CurInvNumb, [ARInvoice.RefNbr]) &lt; 0 </VisibleExpr>
           <Items>
             <Panel Name="panel5">
-              <Location>16px, 0px</Location>
-              <Size>756px, 16px</Size>
+              <Location>8px, 0px</Location>
+              <Size>776px, 16px</Size>
               <Style>
                 <BackColor>LightBlue</BackColor>
                 <BorderColor>
@@ -5667,7 +5671,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
               <Items>
                 <TextBox Name="textBox40">
                   <Location>72px, 0px</Location>
-                  <Size>76px, 14px</Size>
+                  <Size>96px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
                     <VerticalAlign>Middle</VerticalAlign>
@@ -5676,7 +5680,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Customer PO</Value>
                 </TextBox>
                 <TextBox Name="textBox41">
-                  <Location>268px, 0px</Location>
+                  <Location>288px, 0px</Location>
                   <Size>110px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -5686,7 +5690,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Cust. Part Number</Value>
                 </TextBox>
                 <TextBox Name="textBox45">
-                  <Location>378px, 0px</Location>
+                  <Location>400px, 0px</Location>
                   <Size>150px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -5696,7 +5700,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Description</Value>
                 </TextBox>
                 <TextBox Name="textBox48">
-                  <Location>148px, 0px</Location>
+                  <Location>168px, 0px</Location>
                   <Size>120px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -5723,7 +5727,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>No.</Value>
                 </TextBox>
                 <TextBox Name="textBox50">
-                  <Location>528px, 0px</Location>
+                  <Location>550px, 0px</Location>
                   <Size>48px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -5733,7 +5737,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Qty</Value>
                 </TextBox>
                 <TextBox Name="textBox53">
-                  <Location>576px, 0px</Location>
+                  <Location>598px, 0px</Location>
                   <Size>64px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -5763,7 +5767,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Cu.No.</Value>
                 </TextBox>
                 <TextBox Name="textBox57">
-                  <Location>640px, 0px</Location>
+                  <Location>662px, 0px</Location>
                   <Size>64px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -5773,7 +5777,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Amount</Value>
                 </TextBox>
                 <TextBox Name="textBox91">
-                  <Location>704px, 0px</Location>
+                  <Location>726px, 0px</Location>
                   <Size>50px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
@@ -6048,8 +6052,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           </Variables>
           <Items>
             <Panel Name="panel7">
-              <Location>18px, 2px</Location>
-              <Size>756px, 22px</Size>
+              <Location>8px, 2px</Location>
+              <Size>776px, 22px</Size>
               <Style>
                 <BackColor>Transparent</BackColor>
                 <BorderColor>
@@ -6081,7 +6085,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <CanGrow>True</CanGrow>
                   <CanShrink>True</CanShrink>
                   <Format>N5</Format>
-                  <Location>576px, 0px</Location>
+                  <Location>598px, 0px</Location>
                   <Size>62px, 22px</Size>
                   <Style>
                     <Color>Black</Color>
@@ -6094,7 +6098,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 <TextBox Name="textBox101">
                   <CanGrow>True</CanGrow>
                   <CanShrink>True</CanShrink>
-                  <Location>148px, 0px</Location>
+                  <Location>168px, 0px</Location>
                   <Size>120px, 22px</Size>
                   <Style>
                     <Color>Black</Color>
@@ -6125,7 +6129,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <CanGrow>True</CanGrow>
                   <CanShrink>True</CanShrink>
                   <Format>N0</Format>
-                  <Location>528px, 0px</Location>
+                  <Location>550px, 0px</Location>
                   <Size>48px, 22px</Size>
                   <Style>
                     <Color>Black</Color>
@@ -6137,9 +6141,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
                 <TextBox Name="textBox104">
                   <CanGrow>True</CanGrow>
-                  <CanShrink>True</CanShrink>
                   <Location>72px, 0px</Location>
-                  <Size>76px, 22px</Size>
+                  <Size>96px, 22px</Size>
                   <Style>
                     <Color>Black</Color>
                     <TextAlign>Center</TextAlign>
@@ -6151,7 +6154,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 <TextBox Name="textBox105">
                   <CanGrow>True</CanGrow>
                   <CanShrink>True</CanShrink>
-                  <Location>704px, 0px</Location>
+                  <Location>726px, 0px</Location>
                   <Size>48px, 22px</Size>
                   <Style>
                     <Color>Black</Color>
@@ -6164,7 +6167,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 <TextBox Name="textBox82">
                   <CanGrow>True</CanGrow>
                   <CanShrink>True</CanShrink>
-                  <Location>378px, 0px</Location>
+                  <Location>400px, 0px</Location>
                   <Size>150px, 22px</Size>
                   <Style>
                     <Color>Black</Color>
@@ -6194,7 +6197,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 <TextBox Name="textBox98">
                   <CanGrow>True</CanGrow>
                   <CanShrink>True</CanShrink>
-                  <Location>268px, 0px</Location>
+                  <Location>288px, 0px</Location>
                   <Size>110px, 22px</Size>
                   <Style>
                     <Color>Black</Color>
@@ -6207,7 +6210,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 <TextBox Name="textBox99">
                   <CanGrow>True</CanGrow>
                   <CanShrink>True</CanShrink>
-                  <Location>640px, 0px</Location>
+                  <Location>662px, 0px</Location>
                   <Size>62px, 22px</Size>
                   <Style>
                     <Color>Black</Color>

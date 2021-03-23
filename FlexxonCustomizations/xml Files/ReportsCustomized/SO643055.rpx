@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report Name="report1">
+  <CommonSettings>
+    <ViewPdf>True</ViewPdf>
+  </CommonSettings>
   <EmbeddedImages>
     <EmbeddedImage>
       <ImageData>iVBORw0KGgoAAAANSUhEUgAAA+4AAADHCAYAAAHwqDlLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAarJJREFUeNpi/P//P8MoGHmAZag63MtgMl551V+/8UmDUvsGIA5El7jNxkpTd2+7kDsowo9pBCZ2WBEXAMSTRmqOZyS3qEfLcbpAfAmLss9AzIcl0DHcgccqaSC+C8TsWOQeA7EcCTkem/1lQNxNYY7HF4iMJJplBsQniTGLktKDhYo5CBvghcozkmEuMxD/IaDmFxXc2QVNQCuo7Hd0NYxUMA8k/xWIeQa6qP9PZXXI4A8lDgPl3BuI3EvI/uVAbEcjv5MSqcQAbjIzEtUiPoMEtfE0DlRqmHUQiFVo7D5c+rhINOffQEb8dGLbEUC8aCAaMMC64j8w5xObO64A1d4B0sY0TpTY9H8d6q365dCIPkhmw4bkxikRAfz/JxMjIXe8AUa6LlTPGSD2wKHuLAFzpkIbm8ep5D9VPHICgynio6C0Aw0i/TTUTGSsTEyuesTCgi/nfwbKiaLp2Q7EcVjUGhFIhDnQhqIVkYkSHzgAxHfwmNMxUvrxphTWo//vsrIwYmkE8uHQsxDa1aOk5KEk8e8hIK84kgZw/qNhknLSP0ZGlJwPZePT0wnEsAELNhxq1Am4+fdgDEgWGkQMPep2irqWd4AR/p94PaDiWxyIZ+KQv0VAP6jaOzrYIn44DdkuJFZhgI4Qg7+WEClmhwHxEzLd5ToYA2s4RXwCA2QUDi8I0hECNfH/MzMx/AexSai/b+JqHBLQ3zAa8ZR33dAxOiiHFs3YwPdAbSH0Ov2/r6YgI5ndRRjgGYq5ZLBE/DwqtkdAfelgNLG3wNzNBczqGHU6KzPjf342JkYKW+Qgc9Fnd+zxtCH+DbeIZyQQYHdwiCcS0dD6jaVVj8u8ddCAB3fjgTldBJ/5zmoC/4W5Ubp65HTPfqG57QAetcwjLcer0tGu
@@ -71,12 +74,10 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>SOShipment.NoteID</ActivitySource>
-    <Bcc></Bcc>
     <Body>='Dear Customer,#010;#010;This is an automatic email to notify you that Order # '+[SOOrder.OrderNbr]+' has been shipped with Shipment # '+[SOShipment.ShipmentNbr]+'. You can find a copy of the shipment confirmation attached to this email.#010;#010;Track your shipment at [Tracking Link]#010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
-    <Cc></Cc>
-    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' Shipment # '+[SOShipment.ShipmentNbr]+' has been shipped.'</Subject>
+    <TemplateID></TemplateID>
     <To>=IsNull([Contact.EMail],'')</To>
   </MailSettings>
   <PageSettings>
@@ -4327,7 +4328,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
     </PageHeader>
     <Detail Name="detailSection1">
       <GridSize>2px, 2px</GridSize>
-      <Height>0.16667in</Height>
+      <Height>0.22in</Height>
+      <KeepTogether>False</KeepTogether>
+      <PrintEmpty>False</PrintEmpty>
       <Variables>
         <ReportVariable>
           <Name>LineNbr</Name>
@@ -4339,7 +4342,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         <Panel Name="panel2">
           <GridSize>8px, 8px</GridSize>
           <Location>18px, 0px</Location>
-          <Size>762px, 16px</Size>
+          <Size>762px, 20px</Size>
           <Style>
             <BackColor>Transparent</BackColor>
             <BorderColor>
@@ -4371,7 +4374,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
               <CanGrow>True</CanGrow>
               <CanShrink>True</CanShrink>
               <Location>656px, 0px</Location>
-              <Size>100px, 16px</Size>
+              <Size>100px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4388,8 +4391,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
               <CanGrow>True</CanGrow>
               <CanShrink>True</CanShrink>
               <Format>=[SOLine.CuryLineAmt.Format]</Format>
-              <Location>166px, 0px</Location>
-              <Size>184px, 15px</Size>
+              <Location>150px, 0px</Location>
+              <Size>184px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4407,7 +4410,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
               <CanShrink>True</CanShrink>
               <Format>N0</Format>
               <Location>551px, 0px</Location>
-              <Size>55px, 15px</Size>
+              <Size>55px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4423,8 +4426,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <TextBox Name="textBox51">
               <CanGrow>True</CanGrow>
               <CanShrink>True</CanShrink>
-              <Location>350px, 0px</Location>
-              <Size>80px, 15px</Size>
+              <Location>334px, 0px</Location>
+              <Size>74px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4441,7 +4444,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
               <CanGrow>True</CanGrow>
               <CanShrink>True</CanShrink>
               <Location>606px, 0px</Location>
-              <Size>50px, 16px</Size>
+              <Size>50px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4457,8 +4460,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <TextBox Name="textBox56">
               <CanGrow>True</CanGrow>
               <CanShrink>True</CanShrink>
-              <Location>36px, 0px</Location>
-              <Size>130px, 15px</Size>
+              <Location>20px, 0px</Location>
+              <Size>130px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4474,7 +4477,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <TextBox Name="textBox57">
               <CanGrow>True</CanGrow>
               <Location>516px, 0px</Location>
-              <Size>35px, 15px</Size>
+              <Size>35px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4490,8 +4493,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <TextBox Name="textBox8">
               <CanGrow>True</CanGrow>
               <CanShrink>True</CanShrink>
-              <Location>6px, 0px</Location>
-              <Size>28px, 15px</Size>
+              <Location>0px, 0px</Location>
+              <Size>20px, 24px</Size>
               <Style>
                 <BorderColor>
                   <Right>Black</Right>
@@ -4513,8 +4516,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <TextBox Name="textBox9">
               <CanGrow>True</CanGrow>
               <CanShrink>True</CanShrink>
-              <Location>430px, 0px</Location>
-              <Size>86px, 15px</Size>
+              <Location>408px, 0px</Location>
+              <Size>108px, 24px</Size>
               <Style>
                 <Color>Black</Color>
                 <Font>
@@ -4532,65 +4535,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       </Items>
     </Detail>
     <PageFooter Name="pageFooterSection1">
-      <Height>0.25in</Height>
-      <Items>
-        <Line Name="line3">
-          <LineWidth>2px</LineWidth>
-          <Location>18px, 0px</Location>
-          <Size>756px, 4px</Size>
-        </Line>
-        <TextBox Name="textBox1">
-          <Location>658px, 8px</Location>
-          <Size>22px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>8px</Size>
-            </Font>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>Page:</Value>
-        </TextBox>
-        <TextBox Name="textBox48">
-          <Location>232px, 8px</Location>
-          <Size>320px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-            <TextAlign>Center</TextAlign>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <StyleName>Heading 1</StyleName>
-          <Value>This is a Computerised Generated Document, Signature is not required.</Value>
-        </TextBox>
-        <TextBox Name="textBox53">
-          <Location>688px, 8px</Location>
-          <Size>20px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>8px</Size>
-            </Font>
-            <TextAlign>Right</TextAlign>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>='of ' + [PageCount]</Value>
-        </TextBox>
-        <TextBox Name="textBox54">
-          <Location>680px, 8px</Location>
-          <Size>8px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>8px</Size>
-            </Font>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>=[PageIndex]</Value>
-        </TextBox>
-      </Items>
+      <Height>0in</Height>
+      <PrintEmpty>False</PrintEmpty>
     </PageFooter>
   </Sections>
   <Items />
@@ -5174,8 +5120,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>COO</Value>
                 </TextBox>
                 <TextBox Name="textBox13">
-                  <Location>350px, 0px</Location>
-                  <Size>80px, 12px</Size>
+                  <Location>334px, 0px</Location>
+                  <Size>74px, 12px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -5189,8 +5135,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Customer PO</Value>
                 </TextBox>
                 <TextBox Name="textBox14">
-                  <Location>430px, 0px</Location>
-                  <Size>86px, 12px</Size>
+                  <Location>408px, 0px</Location>
+                  <Size>108px, 12px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -5204,7 +5150,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Cust. Part Number</Value>
                 </TextBox>
                 <TextBox Name="textBox15">
-                  <Location>166px, 0px</Location>
+                  <Location>150px, 0px</Location>
                   <Size>184px, 12px</Size>
                   <Style>
                     <Font>
@@ -5219,7 +5165,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Description</Value>
                 </TextBox>
                 <TextBox Name="textBox16">
-                  <Location>36px, 0px</Location>
+                  <Location>20px, 0px</Location>
                   <Size>130px, 12px</Size>
                   <Style>
                     <Font>
@@ -5249,8 +5195,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Lot No.</Value>
                 </TextBox>
                 <TextBox Name="textBox20">
-                  <Location>6px, 0px</Location>
-                  <Size>28px, 12px</Size>
+                  <Location>0px, 0px</Location>
+                  <Size>20px, 12px</Size>
                   <Style>
                     <BorderColor>
                       <Right>Black</Right>
@@ -5308,45 +5254,24 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       <Footers>
         <Footer Name="groupFooterSection1">
           <GridSize>2px, 2px</GridSize>
-          <Height>1.95833in</Height>
+          <Height>2in</Height>
           <PrintAtBottom>True</PrintAtBottom>
+          <PrintEmpty>False</PrintEmpty>
           <PrintOnEveryPage>True</PrintOnEveryPage>
           <ProcessOrder>Always</ProcessOrder>
-          <ResetPageNumber>True</ResetPageNumber>
           <Items>
-            <Panel Name="panel3">
+            <Line Name="line2">
+              <LineWidth>2px</LineWidth>
+              <Location>18px, 170px</Location>
+              <Size>756px, 4px</Size>
+            </Line>
+            <Panel Name="panel10">
               <GridSize>8px, 8px</GridSize>
-              <Location>18px, 64px</Location>
-              <ProcessOrder>Always</ProcessOrder>
+              <Location>18px, 42px</Location>
               <Size>520px, 108px</Size>
-              <Style>
-                <BorderColor>
-                  <Bottom>Black</Bottom>
-                  <Default>Black</Default>
-                  <Left>Black</Left>
-                  <Right>Black</Right>
-                  <Top>Black</Top>
-                </BorderColor>
-                <BorderStyle>
-                  <Bottom>Solid</Bottom>
-                  <Default>Solid</Default>
-                  <Left>Solid</Left>
-                  <Right>Solid</Right>
-                  <Top>Solid</Top>
-                </BorderStyle>
-                <BorderWidth>
-                  <Bottom>1px</Bottom>
-                  <Default>1px</Default>
-                  <Left>1px</Left>
-                  <Right>1px</Right>
-                  <Top>1px</Top>
-                </BorderWidth>
-                <Color>Black</Color>
-              </Style>
               <StyleName>BoxedPanel</StyleName>
-              <VisibleExpr>=([PageIndex]=[PageCount])</VisibleExpr>
               <Items>
-                <TextBox Name="textBox5">
+                <TextBox Name="textBox23">
                   <Location>6px, 24px</Location>
                   <Size>504px, 66px</Size>
                   <Style>
@@ -5360,9 +5285,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
               </Items>
             </Panel>
-            <Panel Name="panel4">
+            <Panel Name="panel6">
               <GridSize>8px, 8px</GridSize>
-              <Location>554px, 64px</Location>
+              <Location>554px, 42px</Location>
               <Size>220px, 108px</Size>
               <Style>
                 <BorderColor>
@@ -5388,12 +5313,12 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </BorderWidth>
               </Style>
               <Items>
-                <Line Name="line2">
+                <Line Name="line4">
                   <LineWidth>2px</LineWidth>
                   <Location>8px, 60px</Location>
                   <Size>202px, 4px</Size>
                 </Line>
-                <TextBox Name="textBox24">
+                <TextBox Name="textBox3">
                   <Location>8px, 70px</Location>
                   <Size>202px, 24px</Size>
                   <Style>
@@ -5410,6 +5335,58 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
               </Items>
             </Panel>
+            <TextBox Name="textBox24">
+              <Location>688px, 178px</Location>
+              <Size>20px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                </Font>
+                <TextAlign>Right</TextAlign>
+              </Style>
+              <StyleName>Report Params</StyleName>
+              <Value>='of ' + [PageCount]</Value>
+            </TextBox>
+            <TextBox Name="textBox29">
+              <Location>232px, 178px</Location>
+              <Size>320px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+              <StyleName>Heading 1</StyleName>
+              <Value>This is a Computerised Generated Document, Signature is not required.</Value>
+            </TextBox>
+            <TextBox Name="textBox30">
+              <Location>658px, 178px</Location>
+              <Size>22px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                </Font>
+              </Style>
+              <StyleName>Report Params</StyleName>
+              <Value>Page:</Value>
+            </TextBox>
+            <TextBox Name="textBox5">
+              <Location>680px, 178px</Location>
+              <ProcessOrder>WhilePrint</ProcessOrder>
+              <Size>8px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                </Font>
+              </Style>
+              <StyleName>Report Params</StyleName>
+              <Value>=[PageIndex]</Value>
+            </TextBox>
           </Items>
         </Footer>
       </Footers>

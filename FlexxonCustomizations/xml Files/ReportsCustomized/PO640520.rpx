@@ -3577,6 +3577,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
     <Detail Name="detailSection1">
       <GridSize>4px, 4px</GridSize>
       <Height>0.29167in</Height>
+      <KeepTogether>False</KeepTogether>
       <Variables>
         <ReportVariable>
           <Name>LineNbr</Name>
@@ -3603,8 +3604,9 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <Value>=[POLine.CuryExtCost]</Value>
             </TextBox>
             <TextBox Name="textBox15">
+              <CanGrow>True</CanGrow>
               <Location>0px, 3px</Location>
-              <Size>20px, 8px</Size>
+              <Size>18px, 18px</Size>
               <Style>
                 <TextAlign>Center</TextAlign>
                 <VerticalAlign>Top</VerticalAlign>
