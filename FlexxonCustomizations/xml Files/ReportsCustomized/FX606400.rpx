@@ -1310,7 +1310,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </Padding>
             <VerticalAlign>Middle</VerticalAlign>
           </Style>
-          <Value>=[Customer.AcctName]</Value>
+          <Value>=[FLXProject.Cust2Factory]</Value>
         </TextBox>
         <TextBox Name="textBox9">
           <Location>0px, 48px</Location>
@@ -1371,7 +1371,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </Padding>
             <VerticalAlign>Middle</VerticalAlign>
           </Style>
-          <Value>=Today()</Value>
+          <Value>=[FLXProject.MPDate]</Value>
         </TextBox>
         <TextBox Name="textBox17">
           <Location>0px, 120px</Location>
