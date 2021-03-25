@@ -2,6 +2,17 @@
 <Report Name="report1">
   <EmbeddedImages>
     <EmbeddedImage>
+      <ImageData>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</ImageData>
+      <MimeType>image/png</MimeType>
+      <Name>fiona</Name>
+    </EmbeddedImage>
+    <EmbeddedImage>
       <ImageData>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
@@ -74,6 +85,16 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         <RelationRow>
           <ChildField>BAccountID</ChildField>
           <ParentField>EndCustomerID</ParentField>
+        </RelationRow>
+      </Links>
+      <ParentName>FLXProject</ParentName>
+    </ReportRelation>
+    <ReportRelation>
+      <ChildName>FLXProjPurchDetails</ChildName>
+      <Links>
+        <RelationRow>
+          <ChildField>ProjectNbr</ChildField>
+          <ParentField>ProjectNbr</ParentField>
         </RelationRow>
       </Links>
       <ParentName>FLXProject</ParentName>
@@ -895,6 +916,50 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       </Fields>
       <FullName>PX.Objects.AR.Customer</FullName>
     </ReportTable>
+    <ReportTable Name="FLXProjPurchDetails">
+      <Fields>
+        <ReportField Name="CreatedByID"></ReportField>
+        <ReportField Name="CreatedByID_Creator_displayName"></ReportField>
+        <ReportField Name="CreatedByID_Creator_Username"></ReportField>
+        <ReportField Name="CreatedByID_description"></ReportField>
+        <ReportField Name="CreatedByScreenID"></ReportField>
+        <ReportField Name="CreatedDateTime">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="CreatedDateTime_Day"></ReportField>
+        <ReportField Name="CreatedDateTime_Hour"></ReportField>
+        <ReportField Name="CreatedDateTime_Month"></ReportField>
+        <ReportField Name="CreatedDateTime_Quarter"></ReportField>
+        <ReportField Name="InterRemark"></ReportField>
+        <ReportField Name="LastModifiedByID"></ReportField>
+        <ReportField Name="LastModifiedByID_description"></ReportField>
+        <ReportField Name="LastModifiedByID_Modifier_displayName"></ReportField>
+        <ReportField Name="LastModifiedByID_Modifier_Username"></ReportField>
+        <ReportField Name="LastModifiedByScreenID"></ReportField>
+        <ReportField Name="LastModifiedDateTime">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="LastModifiedDateTime_Day"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Hour"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Month"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Quarter"></ReportField>
+        <ReportField Name="NoteActivity"></ReportField>
+        <ReportField Name="NoteFiles"></ReportField>
+        <ReportField Name="NoteID">
+          <DataType>Object</DataType>
+        </ReportField>
+        <ReportField Name="NoteImages"></ReportField>
+        <ReportField Name="NoteText"></ReportField>
+        <ReportField Name="ProjectNbr"></ReportField>
+        <ReportField Name="PurchDescr"></ReportField>
+        <ReportField Name="PurchID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="PurchRemark"></ReportField>
+        <ReportField Name="Tstamp"></ReportField>
+      </Fields>
+      <FullName>FlexxonCustomizations.DAC.FLXProjPurchDetails</FullName>
+    </ReportTable>
   </Tables>
   <Sections>
     <PageHeader Name="pageHeaderSection1">
@@ -931,11 +996,11 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <TextAlign>Left</TextAlign>
             <VerticalAlign>Top</VerticalAlign>
           </Style>
-          <Value>='Flexxon Pte. Ltd. approves the PO for ' + [FLXProject.NonStockItem] + ', and directly Phison Electronics Corporation provide the products, which follow the solution below:'</Value>
+          <Value>='Flexxon Pte. Ltd. approves the PO for ' + [FLXProject.NonStockItem] + ', and directly ' + [FLXProject.VendorID] + ' provide the products, which follow the solution below:'</Value>
         </TextBox>
         <TextBox Name="textBox36">
           <Location>256px, 16px</Location>
-          <Size>208px, 72px</Size>
+          <Size>208px, 64px</Size>
           <Style>
             <Font>
               <Size>11px</Size>
@@ -1023,11 +1088,11 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </Padding>
             <VerticalAlign>Middle</VerticalAlign>
           </Style>
-          <Value>=[FLXProject.NonStockItem]</Value>
+          <Value>=[FLXProject.FactoryPN]</Value>
         </TextBox>
         <TextBox Name="textBox13">
           <Location>0px, 96px</Location>
-          <Size>120px, 24px</Size>
+          <Size>120px, 120px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1045,13 +1110,12 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <Padding>
               <Left>5px</Left>
             </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
           </Style>
-          <Value>Form Factor</Value>
+          <Value>Specification</Value>
         </TextBox>
         <TextBox Name="textBox14">
           <Location>120px, 96px</Location>
-          <Size>576px, 24px</Size>
+          <Size>576px, 120px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1064,314 +1128,12 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <Padding>
               <Left>5px</Left>
             </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
           </Style>
-          <Value>=[InventoryItem.FORMFACTOR_Attributes]</Value>
-        </TextBox>
-        <TextBox Name="textBox15">
-          <Location>0px, 120px</Location>
-          <Size>120px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Left>Solid</Left>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Left>1px</Left>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Font>
-              <Style>Bold</Style>
-            </Font>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>Grade</Value>
-        </TextBox>
-        <TextBox Name="textBox16">
-          <Location>120px, 120px</Location>
-          <Size>576px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>=[InventoryItem.GRADE_Attributes]</Value>
-        </TextBox>
-        <TextBox Name="textBox17">
-          <Location>0px, 144px</Location>
-          <Size>120px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Left>Solid</Left>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Left>1px</Left>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Font>
-              <Style>Bold</Style>
-            </Font>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>Controller</Value>
-        </TextBox>
-        <TextBox Name="textBox18">
-          <Location>120px, 144px</Location>
-          <Size>576px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>=[InventoryItem.CONTROLLER_Attributes]</Value>
-        </TextBox>
-        <TextBox Name="textBox19">
-          <Location>0px, 168px</Location>
-          <Size>120px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Left>Solid</Left>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Left>1px</Left>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Font>
-              <Style>Bold</Style>
-            </Font>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>Flash Type</Value>
-        </TextBox>
-        <TextBox Name="textBox20">
-          <Location>120px, 168px</Location>
-          <Size>576px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>=[InventoryItem.FLASHTYPE_Attributes]</Value>
-        </TextBox>
-        <TextBox Name="textBox21">
-          <Location>0px, 192px</Location>
-          <Size>120px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Left>Solid</Left>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Left>1px</Left>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Font>
-              <Style>Bold</Style>
-            </Font>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>Flash Structure</Value>
-        </TextBox>
-        <TextBox Name="textBox22">
-          <Location>120px, 192px</Location>
-          <Size>576px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>=[InventoryItem.FLASHCONFI_Attributes]</Value>
-        </TextBox>
-        <TextBox Name="textBox23">
-          <Location>0px, 216px</Location>
-          <Size>120px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Left>Solid</Left>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Left>1px</Left>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Font>
-              <Style>Bold</Style>
-            </Font>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>Firm Wave</Value>
-        </TextBox>
-        <TextBox Name="textBox24">
-          <Location>120px, 216px</Location>
-          <Size>576px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>=[InventoryItem.FIRMWARE_Attributes]</Value>
-        </TextBox>
-        <TextBox Name="textBox25">
-          <Location>0px, 240px</Location>
-          <Size>120px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Left>Solid</Left>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Left>1px</Left>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Font>
-              <Style>Bold</Style>
-            </Font>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>Capacity</Value>
-        </TextBox>
-        <TextBox Name="textBox26">
-          <Location>120px, 240px</Location>
-          <Size>576px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>=[InventoryItem.CAPACITY_Attributes]</Value>
-        </TextBox>
-        <TextBox Name="textBox27">
-          <Location>0px, 264px</Location>
-          <Size>120px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Left>Solid</Left>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Left>1px</Left>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Font>
-              <Style>Bold</Style>
-            </Font>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>Model Name</Value>
-        </TextBox>
-        <TextBox Name="textBox28">
-          <Location>120px, 264px</Location>
-          <Size>576px, 24px</Size>
-          <Style>
-            <BorderStyle>
-              <Bottom>Solid</Bottom>
-              <Right>Solid</Right>
-            </BorderStyle>
-            <BorderWidth>
-              <Bottom>1px</Bottom>
-              <Right>1px</Right>
-            </BorderWidth>
-            <Padding>
-              <Left>5px</Left>
-            </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <Value>--</Value>
+          <Value>=[FLXProjPurchDetails.PurchDescr]</Value>
         </TextBox>
         <TextBox Name="textBox29">
-          <Location>0px, 288px</Location>
-          <Size>120px, 88px</Size>
+          <Location>0px, 216px</Location>
+          <Size>120px, 144px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1394,8 +1156,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>Remark</Value>
         </TextBox>
         <TextBox Name="textBox30">
-          <Location>120px, 288px</Location>
-          <Size>576px, 88px</Size>
+          <Location>120px, 216px</Location>
+          <Size>576px, 144px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1410,11 +1172,11 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
               <Top>5px</Top>
             </Padding>
           </Style>
-          <Value>--</Value>
+          <Value>=[FLXProjPurchDetails.PurchRemark]</Value>
         </TextBox>
         <TextBox Name="textBox31">
-          <Location>0px, 376px</Location>
-          <Size>120px, 88px</Size>
+          <Location>0px, 360px</Location>
+          <Size>120px, 104px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1437,8 +1199,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>Label Content</Value>
         </TextBox>
         <TextBox Name="textBox32">
-          <Location>120px, 376px</Location>
-          <Size>576px, 88px</Size>
+          <Location>120px, 360px</Location>
+          <Size>576px, 104px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1572,12 +1334,50 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       </Items>
     </Detail>
     <PageFooter Name="pageFooterSection1">
-      <Height>4.02116cm</Height>
+      <Height>4.2328cm</Height>
       <Items>
         <Line Name="line1">
           <Location>0px, 80px</Location>
           <Size>224px, 8px</Size>
         </Line>
+        <PictureBox Name="pictureBox2">
+          <Location>0px, 32px</Location>
+          <MimeType>image/png</MimeType>
+          <QRCodeSettings />
+          <Size>128px, 48px</Size>
+          <Source>Embedded</Source>
+          <Value>fiona</Value>
+        </PictureBox>
+        <TextBox Name="textBox15">
+          <Location>0px, 136px</Location>
+          <Size>56px, 16px</Size>
+          <Style>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <Value>Date:#010;</Value>
+        </TextBox>
+        <TextBox Name="textBox16">
+          <Format>dd-MMM-yyyy</Format>
+          <Location>56px, 136px</Location>
+          <Size>128px, 16px</Size>
+          <Style>
+            <Padding>
+              <Left>2px</Left>
+            </Padding>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <Value>=Today()</Value>
+        </TextBox>
+        <TextBox Name="textBox17">
+          <Location>0px, 120px</Location>
+          <Size>224px, 0.16667in</Size>
+          <Value>Job Title:   Product Director</Value>
+        </TextBox>
+        <TextBox Name="textBox18">
+          <Location>0px, 104px</Location>
+          <Size>176px, 0.16667in</Size>
+          <Value>Name:       Fiona Zhou</Value>
+        </TextBox>
         <TextBox Name="textBox3">
           <Location>0px, 16px</Location>
           <Size>120px, 16px</Size>
@@ -1590,8 +1390,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         </TextBox>
         <TextBox Name="textBox4">
           <Location>0px, 88px</Location>
-          <Size>160px, 64px</Size>
-          <Value>Signature#010;Name:       Fiona Zhou#010;Job Title:  Product Director#010;Date:       4-Jan-2017</Value>
+          <Size>176px, 16px</Size>
+          <Value>Signature#010;</Value>
         </TextBox>
       </Items>
     </PageFooter>
