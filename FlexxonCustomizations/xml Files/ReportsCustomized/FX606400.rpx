@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report Name="report1">
+  <CommonSettings>
+    <ViewPdf>True</ViewPdf>
+  </CommonSettings>
   <EmbeddedImages>
     <EmbeddedImage>
       <ImageData>iVBORw0KGgoAAAANSUhEUgAAAKEAAAA+CAIAAADMA+x3AAAACXBIWXMAAA7EAAAOxAGVKw4bAAARn0lEQVR42u2ceXAVxRbGo6WWopa4gc8NBJUIiogKRAmLAlEDEjCCKIYdg4lhCaUYVLZCBIvFDQQjRIFoiQsqKlCAylKAD2URN0RUNpEQEFkee96v7leeaueGkBtyk9zU9B+puTM9M93nO8t3TvckKs9v5b1F+SLwMfabj7HffIz95mPsNx9jv/kY+83H2G8+xj7GfvMx9puPsd8iDuODBw8ePnz4yJEjR48ePRZoHOgnf7lkJzk+cOCATtLsRq6W2Nw0GDs+Emg28uJ9kU2Zg0OHDtmLOKkOEYPxzp07MzMzhw8f3qNHj86dO6elpWVkZIwcOXLKlCmTJ0/OysqaNm3a1KlTJ02axM/Ro0fTs0+fPomJiRMmTND8NecSw9jFINwY8/d/gYZCC2Yax7oaMRhv27YtLi6ub9++Q4YMSU9P529qamrCPy0mJubWW2+tV69edKDRs0qVKpUrV65du/bs2bPBeN++faWCsXQr3Bjz8L179/J3//79plKRh/Hu3bv5u2fPHnf0aC6zQnOZISfpICCXLFlSrVq1OnXqLFy4kDM7duwoYTt2ATDDCivGigjMEW2OVF99MNA0E3NQFoNpXOUvJpuTk9OkSZMOHTqsX7+eq4i45AGWZN1g+d577y1evPjvv/82ZqAp8NOObS4W0d2W7yukPTyfYyJUUlISr9PTwqFS4cX42PEbk0R2YIlN5+bmxsfHJycnY+IYd2nNzUO4Nm/eTOyoUKFCzZo1IQrz58/fuHEjPgm9ZJxSUNFDI01STWvBUJlPZprcO3DgwKpVq/L8Xbt2FawckZE7eeaAmBSK1q5de++99w4dOhS9RoIl75yPhzEjmTlzJmSiTZs2wFCxYsVKlSrVqlWrS5cus2bN2rRpEw7W9bc0TcpacFiVZnALf+fMmQPzuP3223nm
@@ -996,7 +999,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             <TextAlign>Left</TextAlign>
             <VerticalAlign>Top</VerticalAlign>
           </Style>
-          <Value>='Flexxon Pte. Ltd. approves the PO for ' + [FLXProject.NonStockItem] + ', and directly ' + [FLXProject.VendorID] + ' provide the products, which follow the solution below:'</Value>
+          <Value>='Flexxon Pte. Ltd. approves the PO for ' + [FLXProject.NonStockItem] + ', and directly ' + [FLXProject.VendorID_BAccountR_acctName] + ' provide the products, which follow the solution below:'</Value>
         </TextBox>
         <TextBox Name="textBox36">
           <Location>256px, 16px</Location>
@@ -1026,7 +1029,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       </Items>
     </PageHeader>
     <Detail Name="detailSection1">
-      <Height>12.27513cm</Height>
+      <Height>15.2381cm</Height>
       <Items>
         <TextBox Name="textBox10">
           <Location>120px, 48px</Location>
@@ -1109,6 +1112,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </Font>
             <Padding>
               <Left>5px</Left>
+              <Top>5px</Top>
             </Padding>
           </Style>
           <Value>Specification</Value>
@@ -1127,13 +1131,14 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </BorderWidth>
             <Padding>
               <Left>5px</Left>
+              <Top>5px</Top>
             </Padding>
           </Style>
           <Value>=[FLXProjPurchDetails.PurchDescr]</Value>
         </TextBox>
         <TextBox Name="textBox29">
           <Location>0px, 216px</Location>
-          <Size>120px, 144px</Size>
+          <Size>120px, 200px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1157,7 +1162,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         </TextBox>
         <TextBox Name="textBox30">
           <Location>120px, 216px</Location>
-          <Size>576px, 144px</Size>
+          <Size>576px, 200px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1175,8 +1180,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>=[FLXProjPurchDetails.PurchRemark]</Value>
         </TextBox>
         <TextBox Name="textBox31">
-          <Location>0px, 360px</Location>
-          <Size>120px, 104px</Size>
+          <Location>0px, 416px</Location>
+          <Size>120px, 160px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1199,8 +1204,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>Label Content</Value>
         </TextBox>
         <TextBox Name="textBox32">
-          <Location>120px, 360px</Location>
-          <Size>576px, 104px</Size>
+          <Location>120px, 416px</Location>
+          <Size>576px, 160px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
