@@ -3570,12 +3570,10 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
   <Sections>
     <PageHeader Name="pageHeaderSection1">
       <Expanded>False</Expanded>
-      <GridSize>8px, 8px</GridSize>
       <Height>0px</Height>
       <Visible>False</Visible>
     </PageHeader>
     <Detail Name="detailSection1">
-      <GridSize>4px, 4px</GridSize>
       <Height>0.29167in</Height>
       <KeepTogether>False</KeepTogether>
       <Variables>
@@ -3587,7 +3585,6 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
       </Variables>
       <Items>
         <Panel Name="panel8">
-          <GridSize>8px, 8px</GridSize>
           <Location>18px, 0px</Location>
           <Size>758px, 28px</Size>
           <Items>
@@ -3679,8 +3676,6 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
             </TextBox>
             <TextBox Name="textBox9">
               <CanGrow>True</CanGrow>
-              <CanShrink>True</CanShrink>
-              <CanSplit>True</CanSplit>
               <Location>560px, 3px</Location>
               <Size>192px, 22px</Size>
               <Style>
@@ -3695,7 +3690,6 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
       </Items>
     </Detail>
     <PageFooter Name="pageFooterSection1">
-      <GridSize>8px, 8px</GridSize>
       <Height>0px</Height>
       <PrintOnFirstPage>False</PrintOnFirstPage>
       <ResetPageNumber>True</ResetPageNumber>
