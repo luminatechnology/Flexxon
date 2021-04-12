@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report Name="report1">
+  <PageSettings>
+    <Landscape>True</Landscape>
+  </PageSettings>
   <SchemaUrl>http://px2/latest/Api/Interface.asmx?WSDL</SchemaUrl>
   <StyleSheet>
     <StyleRule>
       <Name>Report Name</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>10pt</Size>
           <Style>Bold</Style>
         </Font>
@@ -16,7 +19,7 @@
       <Name>Report Params</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>8pt</Size>
         </Font>
       </Style>
@@ -25,7 +28,7 @@
       <Name>Heading 1</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>8pt</Size>
           <Style>Bold</Style>
         </Font>
@@ -35,7 +38,7 @@
       <Name>Heading 2</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>20px</Size>
           <Style>Bold</Style>
         </Font>
@@ -45,7 +48,7 @@
       <Name>Heading 3</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>19pt</Size>
           <Style>Bold</Style>
         </Font>
@@ -55,7 +58,7 @@
       <Name>Heading 4</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>32px</Size>
           <Style>Bold</Style>
         </Font>
@@ -65,7 +68,7 @@
       <Name>Normal</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>8pt</Size>
         </Font>
       </Style>
@@ -74,7 +77,7 @@
       <Name>Item Normal</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>14px</Size>
         </Font>
       </Style>
@@ -83,7 +86,7 @@
       <Name>Item Normal Big</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>16px</Size>
         </Font>
       </Style>
@@ -92,7 +95,7 @@
       <Name>Normal Small</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>10px</Size>
         </Font>
       </Style>
@@ -129,16 +132,16 @@
       <Name>Top-Bottom Line</Name>
       <Style>
         <BorderColor>
-          <Top>Black</Top>
           <Bottom>Black</Bottom>
+          <Top>Black</Top>
         </BorderColor>
         <BorderStyle>
-          <Top>Solid</Top>
           <Bottom>Solid</Bottom>
+          <Top>Solid</Top>
         </BorderStyle>
         <BorderWidth>
-          <Top>1px</Top>
           <Bottom>1px</Bottom>
+          <Top>1px</Top>
         </BorderWidth>
       </Style>
     </StyleRule>
@@ -159,22 +162,22 @@
     <StyleRule>
       <Name>Document Name</Name>
       <Style>
-        <TextAlign>Center</TextAlign>
-        <VerticalAlign>Middle</VerticalAlign>
-        <Color>White</Color>
         <BackColor>Navy</BackColor>
+        <Color>White</Color>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>19pt</Size>
           <Style>Bold</Style>
         </Font>
+        <TextAlign>Center</TextAlign>
+        <VerticalAlign>Middle</VerticalAlign>
       </Style>
     </StyleRule>
     <StyleRule>
       <Name>SenderCompany</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>9pt</Size>
         </Font>
       </Style>
@@ -183,7 +186,7 @@
       <Name>RecepientCompany</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>9pt</Size>
         </Font>
       </Style>
@@ -192,20 +195,20 @@
       <Name>Heading Vertical Align Middle</Name>
       <Style>
         <Color>Red</Color>
-        <TextAlign>Center</TextAlign>
-        <VerticalAlign>Middle</VerticalAlign>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>32pt</Size>
           <Style>Bold</Style>
         </Font>
+        <TextAlign>Center</TextAlign>
+        <VerticalAlign>Middle</VerticalAlign>
       </Style>
     </StyleRule>
     <StyleRule>
       <Name>SenderCompanyName</Name>
       <Style>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>12pt</Size>
           <Style>Bold</Style>
         </Font>
@@ -214,10 +217,10 @@
     <StyleRule>
       <Name>Heading1BCColored</Name>
       <Style>
-        <Color>White</Color>
         <BackColor>Navy</BackColor>
+        <Color>White</Color>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>8pt</Size>
           <Style>Bold</Style>
         </Font>
@@ -240,7 +243,6 @@
     <StyleRule>
       <Name>Heading1BCColoredRightBorder</Name>
       <Style>
-        <Color>White</Color>
         <BackColor>Navy</BackColor>
         <BorderColor>
           <Right>Navy</Right>
@@ -251,8 +253,9 @@
         <BorderWidth>
           <Right>1px</Right>
         </BorderWidth>
+        <Color>White</Color>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>8pt</Size>
           <Style>Bold</Style>
         </Font>
@@ -261,19 +264,16 @@
     <StyleRule>
       <Name>Heading1BCColoredR</Name>
       <Style>
-        <Color>White</Color>
         <BackColor>Navy</BackColor>
+        <Color>White</Color>
         <Font>
-          <Name>Microsoft YaHei UI</Name>
+          <Name>Microsoft JhengHei UI</Name>
           <Size>8pt</Size>
           <Style>Bold</Style>
         </Font>
       </Style>
     </StyleRule>
   </StyleSheet>
-  <PageSettings>
-    <Landscape>True</Landscape>
-  </PageSettings>
   <Sections>
     <PageHeader Name="pageHeaderSection1">
       <Height>5px</Height>
