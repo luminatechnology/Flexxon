@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report Name="report1">
-  <CommonSettings>
-    <ViewPdf>True</ViewPdf>
-  </CommonSettings>
   <EmbeddedImages>
     <EmbeddedImage>
       <ImageData>iVBORw0KGgoAAAANSUhEUgAAA+4AAADHCAYAAAHwqDlLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAarJJREFUeNpi/P//P8MoGHmAZag63MtgMl551V+/8UmDUvsGIA5El7jNxkpTd2+7kDsowo9pBCZ2WBEXAMSTRmqOZyS3qEfLcbpAfAmLss9AzIcl0DHcgccqaSC+C8TsWOQeA7EcCTkem/1lQNxNYY7HF4iMJJplBsQniTGLktKDhYo5CBvghcozkmEuMxD/IaDmFxXc2QVNQCuo7Hd0NYxUMA8k/xWIeQa6qP9PZXXI4A8lDgPl3BuI3EvI/uVAbEcjv5MSqcQAbjIzEtUiPoMEtfE0DlRqmHUQiFVo7D5c+rhINOffQEb8dGLbEUC8aCAaMMC64j8w5xObO64A1d4B0sY0TpTY9H8d6q365dCIPkhmw4bkxikRAfz/JxMjIXe8AUa6LlTPGSD2wKHuLAFzpkIbm8ep5D9VPHICgynio6C0Aw0i/TTUTGSsTEyuesTCgi/nfwbKiaLp2Q7EcVjUGhFIhDnQhqIVkYkSHzgAxHfwmNMxUvrxphTWo//vsrIwYmkE8uHQsxDa1aOk5KEk8e8hIK84kgZw/qNhknLSP0ZGlJwPZePT0wnEsAELNhxq1Am4+fdgDEgWGkQMPep2irqWd4AR/p94PaDiWxyIZ+KQv0VAP6jaOzrYIn44DdkuJFZhgI4Qg7+WEClmhwHxEzLd5ToYA2s4RXwCA2QUDi8I0hECNfH/MzMx/AexSai/b+JqHBLQ3zAa8ZR33dAxOiiHFs3YwPdAbSH0Ov2/r6YgI5ndRRjgGYq5ZLBE/DwqtkdAfelgNLG3wNzNBczqGHU6KzPjf342JkYKW+Qgc9Fnd+zxtCH+DbeIZyQQYHdwiCcS0dD6jaVVj8u8ddCAB3fjgTldBJ/5zmoC/4W5Ubp65HTPfqG57QAetcwjLcer0tGu
@@ -74,10 +71,12 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>SOShipment.NoteID</ActivitySource>
+    <Bcc></Bcc>
     <Body>='Dear Customer,#010;#010;This is an automatic email to notify you that Order # '+[SOOrder.OrderNbr]+' has been shipped with Shipment # '+[SOShipment.ShipmentNbr]+'. You can find a copy of the shipment confirmation attached to this email.#010;#010;Track your shipment at [Tracking Link]#010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
+    <Cc></Cc>
+    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' Shipment # '+[SOShipment.ShipmentNbr]+' has been shipped.'</Subject>
-    <TemplateID></TemplateID>
     <To>=IsNull([Contact.EMail],'')</To>
   </MailSettings>
   <PageSettings>
@@ -4620,7 +4619,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Size>286px, 32px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4633,7 +4632,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Size>368px, 70px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4661,7 +4660,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Size>290px, 24px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4713,7 +4712,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Size>290px, 14px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4726,7 +4725,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Size>264px, 14px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>

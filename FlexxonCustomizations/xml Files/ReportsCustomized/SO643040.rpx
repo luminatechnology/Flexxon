@@ -118,10 +118,12 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>SOShipment.NoteID</ActivitySource>
+    <Bcc></Bcc>
     <Body>='Dear Customer,#010;#010;This is an automatic email to notify you that Order # '+[SOShipment.ShipmentNbr]+' has been shipped with Shipment # '+[SOShipment.ShipmentNbr]+'. You can find a copy of the shipment confirmation attached to this email.#010;#010;Track your shipment at [Tracking Link]#010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
+    <Cc></Cc>
+    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' Shipment # '+[SOShipment.ShipmentNbr]+' has been shipped.'</Subject>
-    <TemplateID></TemplateID>
     <To>=IsNull([BillingContact.EMail],'')</To>
   </MailSettings>
   <PageSettings>
@@ -4590,7 +4592,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 40px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
@@ -4632,7 +4634,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 12px</Size>
                   <Style>
                     <Font>
-                      <Name>arial unicode ms</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
@@ -4683,7 +4685,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 12px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
@@ -4695,7 +4697,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 16px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
@@ -4707,7 +4709,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 14px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
@@ -4758,7 +4760,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 40px</Size>
                   <Style>
                     <Font>
-                      <Name>Arial</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
@@ -4770,7 +4772,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 16px</Size>
                   <Style>
                     <Font>
-                      <Name>arial unicode ms</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
@@ -4782,7 +4784,7 @@ P4VJVzHisVZPXHY6LaomHKidUo9VPs85WJc/rdmWYXqvf3drgBzXZTt3VUeP9tUvL4yv+nAWwdOiEnnZ
                   <Size>288px, 14px</Size>
                   <Style>
                     <Font>
-                      <Name>arial unicode ms</Name>
+                      <Name>Microsoft YaHei UI</Name>
                       <Size>9px</Size>
                     </Font>
                   </Style>
