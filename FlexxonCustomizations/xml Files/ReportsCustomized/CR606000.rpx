@@ -318,10 +318,10 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       </Items>
     </PageHeader>
     <Detail Name="detailSection1">
-      <Height>19.25926cm</Height>
+      <Height>19.68254cm</Height>
       <Items>
         <Panel Name="panel1">
-          <Location>128px, 64px</Location>
+          <Location>128px, 128px</Location>
           <Size>568px, 144px</Size>
           <Style>
             <BorderStyle>
@@ -631,7 +631,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           </Items>
         </Panel>
         <Panel Name="panel16">
-          <Location>128px, 664px</Location>
+          <Location>128px, 680px</Location>
           <Size>568px, 64px</Size>
           <Style>
             <BorderStyle>
@@ -655,7 +655,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           </Items>
         </Panel>
         <Panel Name="panel2">
-          <Location>128px, 256px</Location>
+          <Location>128px, 320px</Location>
           <Size>568px, 96px</Size>
           <Style>
             <BorderStyle>
@@ -965,7 +965,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           </Items>
         </Panel>
         <TextBox Name="textBox10">
-          <Location>0px, 64px</Location>
+          <Location>0px, 128px</Location>
           <Size>128px, 144px</Size>
           <Style>
             <BorderStyle>
@@ -989,7 +989,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>Type of Change</Value>
         </TextBox>
         <TextBox Name="textBox11">
-          <Location>0px, 208px</Location>
+          <Location>0px, 272px</Location>
           <Size>128px, 48px</Size>
           <Style>
             <BorderStyle>
@@ -1013,7 +1013,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>Reason Of Change</Value>
         </TextBox>
         <TextBox Name="textBox12">
-          <Location>128px, 208px</Location>
+          <Location>128px, 272px</Location>
           <Size>568px, 48px</Size>
           <Style>
             <BorderStyle>
@@ -1032,7 +1032,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>=[CRCase.Subject]</Value>
         </TextBox>
         <TextBox Name="textBox13">
-          <Location>0px, 256px</Location>
+          <Location>0px, 320px</Location>
           <Size>128px, 96px</Size>
           <Style>
             <BorderStyle>
@@ -1056,7 +1056,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>Changes Made</Value>
         </TextBox>
         <TextBox Name="textBox14">
-          <Location>0px, 352px</Location>
+          <Location>0px, 416px</Location>
           <Size>696px, 32px</Size>
           <Style>
             <BorderStyle>
@@ -1078,8 +1078,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>Description of Change</Value>
         </TextBox>
         <TextBox Name="textBox15">
-          <Location>0px, 384px</Location>
-          <Size>696px, 280px</Size>
+          <Location>0px, 448px</Location>
+          <Size>696px, 232px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1099,7 +1099,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Value>=[CRCase.DescriptionAsPlainText]</Value>
         </TextBox>
         <TextBox Name="textBox16">
-          <Location>0px, 664px</Location>
+          <Location>0px, 680px</Location>
           <Size>128px, 64px</Size>
           <Style>
             <BorderStyle>
@@ -1263,7 +1263,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         </TextBox>
         <TextBox Name="textBox8">
           <Location>0px, 32px</Location>
-          <Size>128px, 32px</Size>
+          <Size>128px, 96px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1287,7 +1287,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         </TextBox>
         <TextBox Name="textBox9">
           <Location>128px, 32px</Location>
-          <Size>568px, 32px</Size>
+          <Size>568px, 96px</Size>
           <Style>
             <BorderStyle>
               <Bottom>Solid</Bottom>
@@ -1299,8 +1299,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </BorderWidth>
             <Padding>
               <Left>5px</Left>
+              <Top>5px</Top>
             </Padding>
-            <VerticalAlign>Middle</VerticalAlign>
           </Style>
           <Value>=[CRCase.AttributePRODUCTAFF]</Value>
         </TextBox>
