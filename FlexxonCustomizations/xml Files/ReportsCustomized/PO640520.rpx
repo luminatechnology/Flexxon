@@ -276,13 +276,9 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>POOrder.NoteID</ActivitySource>
-    <Bcc></Bcc>
     <Body>='Dear Customer, This is an automatic email to notify you that you have a new Purchase Order available on your account.  You will find a copy of Purchase Order #'+[POOrder.OrderNbr]+' attached to this email.  #010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
-    <Cc></Cc>
-    <Format></Format>
     <ParentSource>Vendor.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' Purchase Order #'+[POOrder.OrderNbr]+' is now available'</Subject>
-    <TemplateID></TemplateID>
     <To>=[RemitContact.EMail]</To>
   </MailSettings>
   <PageSettings>
@@ -3570,10 +3566,12 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
   <Sections>
     <PageHeader Name="pageHeaderSection1">
       <Expanded>False</Expanded>
+      <GridSize>8px, 8px</GridSize>
       <Height>0px</Height>
       <Visible>False</Visible>
     </PageHeader>
     <Detail Name="detailSection1">
+      <GridSize>8px, 8px</GridSize>
       <Height>0.29167in</Height>
       <KeepTogether>False</KeepTogether>
       <Variables>
@@ -3586,7 +3584,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
       <Items>
         <Panel Name="panel8">
           <Location>18px, 0px</Location>
-          <Size>758px, 28px</Size>
+          <Size>766px, 28px</Size>
           <Items>
             <TextBox Name="textBox14">
               <CanGrow>True</CanGrow>
@@ -3677,7 +3675,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
             <TextBox Name="textBox9">
               <CanGrow>True</CanGrow>
               <Location>560px, 3px</Location>
-              <Size>192px, 22px</Size>
+              <Size>208px, 22px</Size>
               <Style>
                 <TextAlign>Left</TextAlign>
                 <VerticalAlign>Top</VerticalAlign>
@@ -3690,6 +3688,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
       </Items>
     </Detail>
     <PageFooter Name="pageFooterSection1">
+      <GridSize>8px, 8px</GridSize>
       <Height>0px</Height>
       <PrintOnFirstPage>False</PrintOnFirstPage>
       <ResetPageNumber>True</ResetPageNumber>
@@ -3731,7 +3730,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
           <Items>
             <Panel Name="panel4">
               <Location>18px, 224px</Location>
-              <Size>756px, 24px</Size>
+              <Size>766px, 24px</Size>
               <StyleName>Normal</StyleName>
               <Items>
                 <TextBox Name="textBox10">
@@ -3778,7 +3777,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
             </Panel>
             <Panel Name="panel5">
               <Location>18px, 200px</Location>
-              <Size>756px, 20px</Size>
+              <Size>766px, 20px</Size>
               <Style>
                 <BackColor>LightBlue</BackColor>
                 <BorderColor>
@@ -3862,7 +3861,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
             </Panel>
             <Panel Name="panel6">
               <Location>16px, 96px</Location>
-              <Size>756px, 98px</Size>
+              <Size>768px, 98px</Size>
               <Style>
                 <BorderColor>
                   <Bottom>Black</Bottom>
@@ -4134,7 +4133,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
             </Panel>
             <Panel Name="panel9">
               <Location>18px, 248px</Location>
-              <Size>756px, 44px</Size>
+              <Size>766px, 44px</Size>
               <Style>
                 <BorderColor>
                   <Bottom>Black</Bottom>
@@ -4189,7 +4188,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <Value>=[Branch.BranchOrOrganizationLogoNameReport]</Value>
             </PictureBox>
             <TextBox Name="textBox1">
-              <Location>682px, 32px</Location>
+              <Location>696px, 32px</Location>
               <Size>90px, 12px</Size>
               <Style>
                 <TextAlign>Right</TextAlign>
@@ -4207,7 +4206,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <Value>=IIf([CompanyAddress.AddressLine1]&lt;&gt; null, [CompanyAddress.AddressLine1] + ' ' , '')#010;+IIf([CompanyAddress.AddressLine2]&lt;&gt;null,[CompanyAddress.AddressLine2]+ ' ' ,'')#010;+IIf([CompanyAddress.AddressLine3]&lt;&gt; null,[CompanyAddress.AddressLine3]+ ' ' , '')#010;+IIf([CompanyAddress.City]&lt;&gt;null, [CompanyAddress.City]+ ' ','')#010;+IIf([CompanyAddress.State]&lt;&gt;null,[CompanyAddress.State]+ ' ','')#010;+IIf([CompanyAddress.CountryID_description] &lt;&gt; null,[CompanyAddress.CountryID_description],' ')#010;+IIf([CompanyAddress.PostalCode]&lt;&gt;null,' ' +[CompanyAddress.PostalCode],'')#010;+'{br}'#010;+IIf([CompanyContact.Phone1] &lt;&gt;null,'Tel: ' + [CompanyContact.Phone1]+ ' ','')#010;+IIf([CompanyContact.Fax] &lt;&gt;null,'Fax: ' + [CompanyContact.Fax]+ '{br}','')#010;+IIf([CompanyContact.EMail]&lt;&gt;null,'Email: '+[CompanyContact.EMail]+'{br}','')#010;+IIf([BAccount.TaxRegistrationID]  &lt;&gt;null,'Tax Registration ID:'+[BAccount.TaxRegistrationID] ,'')</Value>
             </TextBox>
             <TextBox Name="textBox2">
-              <Location>586px, 0px</Location>
+              <Location>600px, 0px</Location>
               <Size>188px, 22px</Size>
               <Style>
                 <BackColor>LightBlue</BackColor>
@@ -4219,7 +4218,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <Value>Purchase Order</Value>
             </TextBox>
             <TextBox Name="textBox23">
-              <Location>754px, 56px</Location>
+              <Location>768px, 56px</Location>
               <Size>18px, 12px</Size>
               <Style>
                 <TextAlign>Right</TextAlign>
@@ -4228,7 +4227,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <Value>='of ' + [PageCount]</Value>
             </TextBox>
             <TextBox Name="textBox3">
-              <Location>682px, 44px</Location>
+              <Location>696px, 44px</Location>
               <Size>90px, 12px</Size>
               <Style>
                 <TextAlign>Right</TextAlign>
@@ -4237,13 +4236,13 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <Value>=[POOrder.OrderDate]</Value>
             </TextBox>
             <TextBox Name="textBox30">
-              <Location>586px, 44px</Location>
+              <Location>600px, 44px</Location>
               <Size>76px, 12px</Size>
               <StyleName>Heading 1</StyleName>
               <Value>Date:</Value>
             </TextBox>
             <TextBox Name="textBox31">
-              <Location>586px, 56px</Location>
+              <Location>600px, 56px</Location>
               <Size>76px, 12px</Size>
               <StyleName>Heading 1</StyleName>
               <Value>Page No.:</Value>
@@ -4261,13 +4260,13 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <Value>=[Branch.AcctName]</Value>
             </TextBox>
             <TextBox Name="textBox59">
-              <Location>586px, 32px</Location>
+              <Location>600px, 32px</Location>
               <Size>76px, 12px</Size>
               <StyleName>Heading 1</StyleName>
               <Value>PO No.:</Value>
             </TextBox>
             <TextBox Name="textBox66">
-              <Location>736px, 56px</Location>
+              <Location>750px, 56px</Location>
               <ProcessOrder>Always</ProcessOrder>
               <Size>18px, 12px</Size>
               <Style>
@@ -4289,7 +4288,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
           <Items>
             <Panel Name="panel1">
               <Location>18px, 0px</Location>
-              <Size>756px, 24px</Size>
+              <Size>766px, 24px</Size>
               <Style>
                 <BackColor>LightBlue</BackColor>
               </Style>
@@ -4434,7 +4433,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <CanShrink>True</CanShrink>
               <CanSplit>True</CanSplit>
               <Location>16px, 16px</Location>
-              <Size>760px, 616px</Size>
+              <Size>768px, 616px</Size>
               <Style>
                 <Font>
                   <Size>6pt</Size>
@@ -4460,7 +4459,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
               <CanShrink>True</CanShrink>
               <CanSplit>True</CanSplit>
               <Location>8px, 0px</Location>
-              <Size>768px, 136px</Size>
+              <Size>776px, 136px</Size>
               <Style>
                 <Font>
                   <Size>6pt</Size>
@@ -4497,7 +4496,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
             <Line Name="line6">
               <LineStyle>Dashed</LineStyle>
               <Location>16px, 16px</Location>
-              <Size>756px, 2px</Size>
+              <Size>766px, 2px</Size>
             </Line>
             <Line Name="line7">
               <Location>480px, 88px</Location>
@@ -4505,7 +4504,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
             </Line>
             <Line Name="line8">
               <Location>18px, 128px</Location>
-              <Size>756px, 4px</Size>
+              <Size>766px, 4px</Size>
             </Line>
             <Line Name="line9">
               <Location>24px, 96px</Location>
