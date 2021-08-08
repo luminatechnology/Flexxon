@@ -1,12 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: PX.Objects.SO.SOOrderEntry_Extension
-// Assembly: FlexxonCustomizations, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: A59FE566-6025-4730-961E-B73CC13C04A9
-// Assembly location: C:\Program Files\Acumatica ERP\Flexxon\Bin\FlexxonCustomizations.dll
-
-using FlexxonCustomizations.DAC;
-using FlexxonCustomizations.Descriptor;
-using PX.Common;
+﻿using PX.Common;
 using PX.Data;
 using PX.Data.BQL;
 using PX.Data.BQL.Fluent;
@@ -15,21 +7,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FlexxonCustomizations.DAC;
+using FlexxonCustomizations.Descriptor;
 
 namespace PX.Objects.SO
 {
     public class SOOrderEntry_Extension : PXGraphExtension<SOOrderEntry>
     {
         public PXFilter<SOLineSplitFilter> LineSplitFilter;
-        public PXAction<SOOrder> splitSOLine;
 
         #region Action
+        public PXAction<SOOrder> splitSOLine;
         [PXLookupButton(CommitChanges = true)]
         [PXUIField(DisplayName = "Split SO Line", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select)]
         protected virtual IEnumerable SplitSOLine(PXAdapter adapter)
         {
             if (this.LineSplitFilter.AskExt() == WebDialogResult.OK)
+            {
                 this.CopySOLine();
+            }
+
             return adapter.Get();
         }
         #endregion
@@ -105,6 +102,59 @@ namespace PX.Objects.SO
             }
         }
 
+        //protected void _(Events.FieldDefaulting<SOLine.inventoryID> e)
+        //{
+        //    var row = e.Row as SOLine;
+
+        //    if (row == null) { return; }
+                
+        //    SOLineExt extension = row.GetExtension<SOLineExt>();
+
+        //    if (!string.IsNullOrEmpty(extension.UsrProjectNbr))
+        //    {
+        //        e.NewValue = SelectFrom<FLXProject>.Where<FLXProject.projectNbr.IsEqual<P.AsString>>.View.Select(Base, extension.UsrProjectNbr).TopFirst.StockItem;
+        //    }
+        //}
+
+        protected void _(Events.FieldUpdated<SOLine.inventoryID> e, PXFieldUpdated baseHandler)
+        {
+            baseHandler?.Invoke(e.Cache, e.Args);
+
+            e.Cache.SetValueExt<SOLine.tranDesc>(e.Row, InventoryItem.PK.Find(Base, ((SOLine)e.Row).GetExtension<SOLineExt>().UsrNonStockItem)?.Descr);
+        }
+
+        protected void _(Events.FieldDefaulting<SOLineExt.usrProjectNbr> e)
+        {
+            var row = e.Row as SOLine;
+
+            if (row == null) { return; }
+
+            SOLineExt extension = row.GetExtension<SOLineExt>();
+
+            List<FLXProject> list = SelectFrom<FLXProject>.Where<FLXProject.status.IsNotEqual<ProjectStatus.hold>
+                                                                .And<FLXProject.customerID.IsEqual<P.AsInt>
+                                                                     .And<FLXProject.endCustomerID.IsEqual<P.AsInt>
+                                                                          .And<FLXProject.nonStockItem.IsEqual<P.AsInt>>>>>
+                                                           .View.Select(Base, row.CustomerID, extension.UsrEndCustomerID, extension.UsrNonStockItem).RowCast<FLXProject>().ToList<FLXProject>();
+           
+            e.NewValue = list.Count == 1 ? list[0].ProjectNbr : null;
+
+            if (e.NewValue != null)
+            {
+                row.InventoryID = SelectFrom<FLXProject>.Where<FLXProject.projectNbr.IsEqual<P.AsString>>.View.Select(Base, e.NewValue).TopFirst?.StockItem;
+            }
+        }
+
+        protected void _(Events.FieldUpdated<SOLineExt.usrNonStockItem> e)
+        {
+            if (!SelectFrom<INItemClass>.InnerJoin<InventoryItem>.On<INItemClass.itemClassID.IsEqual<InventoryItem.itemClassID>>
+                                        .Where<InventoryItem.inventoryID.IsEqual<P.AsInt>>.View
+                                        .Select((PXGraph)this.Base, e.NewValue).TopFirst.ItemClassCD.Trim().Equals("MPN"))
+            {
+                e.Cache.SetValueExt<SOLine.inventoryID>(e.Row, e.NewValue);
+            }
+        }
+
         protected void _(Events.FieldVerifying<SOLineSplitFilter.splitQty> e)
         {
             Decimal newValue = (Decimal)e.NewValue;
@@ -114,39 +164,9 @@ namespace PX.Objects.SO
                 return;
             this.LineSplitFilter.Cache.RaiseExceptionHandling<SOLineSplitFilter.splitQty>(e.Row, e.NewValue, (Exception)new PXSetPropertyException("Split Qty Cannot Exceeded Order Qty"));
         }
-
-        protected void _(Events.FieldDefaulting<SOLine.inventoryID> e)
-        {
-            if (!(e.Row is SOLine row))
-                return;
-            SOLineExt extension = row.GetExtension<SOLineExt>();
-            if (string.IsNullOrEmpty(extension.UsrProjectNbr))
-                return;
-            e.NewValue = (object)SelectFrom<FLXProject>.Where<FLXProject.projectNbr.IsEqual<P.AsString>>.View.Select((PXGraph)this.Base, (object)extension.UsrProjectNbr).TopFirst.StockItem;
-        }
-
-        protected void _(Events.FieldDefaulting<SOLineExt.usrProjectNbr> e)
-        {
-            if (!(e.Row is SOLine row))
-                return;
-            SOLineExt extension = row.GetExtension<SOLineExt>();
-            List<FLXProject> list = SelectFrom<FLXProject>.Where<FLXProject.status.IsNotEqual<ProjectStatus.hold>
-                                                                .And<FLXProject.customerID.IsEqual<P.AsInt>
-                                                                     .And<FLXProject.endCustomerID.IsEqual<P.AsInt>
-                                                                          .And<FLXProject.nonStockItem.IsEqual<P.AsInt>>>>>.View.Select((PXGraph)this.Base, (object)row.CustomerID, (object)extension.UsrEndCustomerID, (object)extension.UsrNonStockItem).RowCast<FLXProject>().ToList<FLXProject>();
-            e.NewValue = list.Count == 1 ? (object)list[0].ProjectNbr : (object)(string)null;
-        }
-
-        protected void _(Events.FieldUpdated<SOLineExt.usrNonStockItem> e)
-        {
-            if (SelectFrom<INItemClass>.InnerJoin<PX.Objects.IN.InventoryItem>.On<INItemClass.itemClassID.IsEqual<PX.Objects.IN.InventoryItem.itemClassID>>
-                                       .Where<PX.Objects.IN.InventoryItem.inventoryID.IsEqual<P.AsInt>>.View.Select((PXGraph)this.Base, e.NewValue).TopFirst.ItemClassCD.Trim().Equals("MPN"))
-                return;
-            this.Base.Transactions.Cache.SetValueExt<SOLine.inventoryID>((object)(SOLine)e.Row, e.NewValue);
-        }
         #endregion
 
-        #region Method  
+        #region Methods
         public virtual void CopySOLine()
         {
             SOLineSplitFilter current1 = this.LineSplitFilter.Current;
@@ -179,7 +199,8 @@ namespace PX.Objects.SO
         public virtual bool SOSplitHasPONbr(SOLine origLine) => SelectFrom<SOLineSplit>.Where<SOLineSplit.orderType.IsEqual<P.AsString>
                                                                                               .And<SOLineSplit.orderNbr.IsEqual<P.AsString>
                                                                                                    .And<SOLineSplit.lineNbr.IsEqual<P.AsInt>
-                                                                                                        .And<SOLineSplit.pONbr.IsNotNull>>>>.View.SelectSingleBound((PXGraph)this.Base, (object[])null, (object)origLine.OrderType, (object)origLine.OrderNbr, (object)origLine.LineNbr).Count > 0;
+                                                                                                        .And<SOLineSplit.pONbr.IsNotNull>>>>.View
+                                                                                       .SelectSingleBound(Base, null, origLine.OrderType, origLine.OrderNbr, origLine.LineNbr).Count > 0;
         #endregion
     }
 }
