@@ -102,25 +102,25 @@ namespace PX.Objects.SO
             }
         }
 
-        //protected void _(Events.FieldDefaulting<SOLine.inventoryID> e)
-        //{
-        //    var row = e.Row as SOLine;
-
-        //    if (row == null) { return; }
-                
-        //    SOLineExt extension = row.GetExtension<SOLineExt>();
-
-        //    if (!string.IsNullOrEmpty(extension.UsrProjectNbr))
-        //    {
-        //        e.NewValue = SelectFrom<FLXProject>.Where<FLXProject.projectNbr.IsEqual<P.AsString>>.View.Select(Base, extension.UsrProjectNbr).TopFirst.StockItem;
-        //    }
-        //}
-
         protected void _(Events.FieldUpdated<SOLine.inventoryID> e, PXFieldUpdated baseHandler)
         {
             baseHandler?.Invoke(e.Cache, e.Args);
 
             e.Cache.SetValueExt<SOLine.tranDesc>(e.Row, InventoryItem.PK.Find(Base, ((SOLine)e.Row).GetExtension<SOLineExt>().UsrNonStockItem)?.Descr);
+        }
+
+        protected void _(Events.FieldDefaulting<SOLine.inventoryID> e)
+        {
+            var row = e.Row as SOLine;
+
+            if (row == null) { return; }
+
+            SOLineExt extension = row.GetExtension<SOLineExt>();
+
+            if (!string.IsNullOrEmpty(extension.UsrProjectNbr))
+            {
+                e.NewValue = SelectFrom<FLXProject>.Where<FLXProject.projectNbr.IsEqual<P.AsString>>.View.Select(Base, extension.UsrProjectNbr).TopFirst.StockItem;
+            }
         }
 
         protected void _(Events.FieldDefaulting<SOLineExt.usrProjectNbr> e)
@@ -138,11 +138,6 @@ namespace PX.Objects.SO
                                                            .View.Select(Base, row.CustomerID, extension.UsrEndCustomerID, extension.UsrNonStockItem).RowCast<FLXProject>().ToList<FLXProject>();
            
             e.NewValue = list.Count == 1 ? list[0].ProjectNbr : null;
-
-            if (e.NewValue != null)
-            {
-                row.InventoryID = SelectFrom<FLXProject>.Where<FLXProject.projectNbr.IsEqual<P.AsString>>.View.Select(Base, e.NewValue).TopFirst?.StockItem;
-            }
         }
 
         protected void _(Events.FieldUpdated<SOLineExt.usrNonStockItem> e)
