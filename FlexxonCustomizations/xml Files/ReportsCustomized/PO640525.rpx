@@ -276,13 +276,9 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>POOrder.NoteID</ActivitySource>
-    <Bcc></Bcc>
     <Body>='Dear Customer, This is an automatic email to notify you that you have a new Purchase Order available on your account.  You will find a copy of Purchase Order #'+[POOrder.OrderNbr]+' attached to this email.  #010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
-    <Cc></Cc>
-    <Format></Format>
     <ParentSource>Vendor.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' Purchase Order #'+[POOrder.OrderNbr]+' is now available'</Subject>
-    <TemplateID></TemplateID>
     <To>=[RemitContact.EMail]</To>
   </MailSettings>
   <PageSettings>
@@ -4616,6 +4612,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                   <Size>308px, 32px</Size>
                   <Style>
                     <TextAlign>Left</TextAlign>
+                    <VerticalAlign>Top</VerticalAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
                   <Value>=IIf([ShippingAddress.AddressLine1]&lt;&gt; null, [ShippingAddress.AddressLine1] , '')#010;+IIf([ShippingAddress.AddressLine2]&lt;&gt;null,[ShippingAddress.AddressLine2] ,'')#010;+IIf([ShippingAddress.AddressLine3]&lt;&gt; null,[ShippingAddress.AddressLine3]+'{br}', '')#010;+IIf([ShippingAddress.City]&lt;&gt;null, [ShippingAddress.City] + ' ','')#010;+IIf([ShippingAddress.PostalCode]&lt;&gt;null,[ShippingAddress.PostalCode] + ' ','')#010;+IIf([ShippingAddress.State]&lt;&gt;null,[ShippingAddress.State] + ' ','')#010;+IIf([ShippingAddress.CountryID_Country_description]&lt;&gt;null,[ShippingAddress.CountryID_Country_description],'')#010;</Value>
