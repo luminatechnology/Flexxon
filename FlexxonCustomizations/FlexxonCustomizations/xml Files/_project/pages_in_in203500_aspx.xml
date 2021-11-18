@@ -1,0 +1,32 @@
+﻿<Page path="~/pages/in/in203500.aspx" pageSource="tVdNc+I4ED2TqvkPLm/luJgkO1O1WZhaYvJBDSQUMMncUgJ3QBshe2Q5gTnsb99uyQbbQMr52BxSstRqve5+/SSah387AzYDp8fkLMFBy/V/c50+izUoWrjgAuf+9TYzsXcRqkUHNOOivjDTrtNOdHj+BFLfcQVJ1HK1SsD9dODg3y0TPGAahvAzgVi33AcmYnAdPwxS993r48bJ50ajzuJoWZ/GrtOVc1Bcxy2XjrzPDFKPY65p23epaRCYCFzn8OungybGY6GOVxE4t1zphIkB0/MKQRgHCOHUD6XGWJxup+VOcXxEYM3UQLApXIUiAEWL0bwzch2VSIZhjUA9oZuvFmMzWp4OfnSYZqMwUVMwzoJ4bR1ba4QY8wlFM6aMOXc8IKxHjcah6wwUXzC1uuXw3HKvgAW0gQK7ZgvcMfhRv5n8A1Md17vX9T7Tii/rl4pF87juK8CU27muhkWc4TLYfCbEhE0f/XCxYDKIc2s57KOSmWOP3XbtkAHX/hxJBHFafMd7g9fvETFlj8N1qlIC5Q9oentianqlQlCRvVyV9xX9eH/RL16sOTGLSmY8PeDHVs03YDJSjPSKAvv1O5cBLE8drH+JC7SnD4sJqDUV8uGPYREJTN3OnPfYKkz0MBFQRjLSTGk/FMlCpgwsO/BKHnYeMAKBNAzVrkAvOIgAnacAiTHdDp7Mf2HA/a1S2zagvEBQ3tMWInw+D7jOzMCMj/aAzlC9FTLmpa2R5ZMEIVSEXN5DwjiEBwXx/MUEvxfrMHx+NdbynndgbXolAqamWS9UbbqT/U13+WLTXSoeGC9Wl9ZxbQvujuZ75JLGXfkzwesLJ1ZyOghjrnmYtYVzBXw2Rzcnf0TLYmt+OqhR5i5BgsIE2G7CVA9hajTNdYYQMS71esV6LG04A9QKSE0zmxvZfsC7iQBhq2rYju++aEBZqTV78ASCFLBW26THTBZ0pB0EJkYm8vnyjAtv46PZnpLVGVOOHcVjWK4hplNrcb7YiHOt2cc73rYtnnVN11i6bOY6SCRd3JLyhvDS167a2v8fVdeCyBpU+CbRlJ30CfO/FRdd38h0PTMPikHel5eJEdi2FOtZmMiyeX5pP3lS43cQJyvBDqpgskh7TBtjsGR9h5da+Ow655IhQ4IsRX0us6Y6+tz4UMaM8NmkB0wibCMeYZREflqvEm18FhEdSs+wdDZ7ljg2YMc+dxBmBvxLo1GUA/PZgZjPpH22pXLmOt9glSXOuEFpNM7xmEx6RcjW2enh+EZ2gN4y61YzVgWBsPhKhiaRxdaZqWBPAio9Rv4qNUoW/5/Hh9X6jBi1s5HaUQRE1je3kSVrjrg7mYvZp3cmOu4hKa8nyt1B6K26WH+1Znp8+pk7wC7kL2J7OVKn0kMd6z+H6eNZiKwg0WwLJAZOIiMo914Vj11JP6xCtfI7FXcg/6ZVvY/0I4X9gXDRmy9YHHerwqUddHpFc/w92Qc9D4OK9r1Q44vhdZA6D0KPuH0WVdowZksfeTrDMuX34M+SPHVyWmWoabnr5VX31fpXKwpgijInflLYzj9LtMaLeksAsvbN1nPqb6eMm4mWxZ9oJS/2SYBq98DVIlW1DmcinA0hTgSu3XwrAjYQNwK+0eytx+J/">
+    <PXGrid ID="grdCreate" ParentId="phG_popupCreate_grdCreate" TypeFullName="PX.Web.UI.PXGrid">
+        <Children Key="ActionBar.CustomItems">
+            <AddItem>
+                <PXToolBarButton TypeFullName="PX.Web.UI.PXToolBarButton">
+                    <Prop Key="AutoCallBack.Command" Value="InsertFromExcel" />
+                    <Prop Key="AutoCallBack.Target" Value="ds" />
+                    <Prop Key="Text" Value="Insert" />
+                </PXToolBarButton>
+            </AddItem>
+        </Children>
+    </PXGrid>
+    <Content ID="cont2" ParentId="phF" TypeFullName="System.Web.UI.WebControls.Content">
+        <Children Key="Controls">
+            <AddItem>
+                <PXUploadDialog TypeFullName="PX.Web.UI.PXUploadDialog">
+                    <Prop Key="Virtual:ApplyStylesheetSkin" />
+                    <Prop Key="Virtual:StylePosition" Value="static" />
+                    <Prop Key="ID" Value="pnlNewRev" />
+                    <Prop Key="RenderCheckIn" Value="false" />
+                    <Prop Key="AutoSaveFile" Value="false" />
+                    <Prop Key="Height" Value="120px" />
+                    <Prop Key="Width" Value="560px" />
+                    <Prop Key="Caption" Value="Matrix File Upload" />
+                    <Prop Key="Key" Value="MatrixItems4Creation" />
+                    <Prop Key="SessionKey" Value="ImportMatrixFile" />
+                </PXUploadDialog>
+            </AddItem>
+            <PXFormView ID="form" OriginalIndex="0" />
+        </Children>
+    </Content>
+</Page>

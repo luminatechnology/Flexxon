@@ -811,29 +811,25 @@ namespace PX.Objects.SO
             }
             if (list != null)
             {
-                if (this.Base.OrderList.Cache.Inserted.Count() > 0L || this.Base.OrderList.SelectWindowed(0, 1) != null)
+                if (this.Base.OrderList.Cache.Inserted.Count() > 0 || this.Base.OrderList.SelectWindowed(0, 1) != null)
                 {
-                    PXAutomation.CompleteSimple(this.Base.soorder.View);
                     this.Base.Save.Press();
-                    PXAutomation.RemovePersisted<SOOrder>((PXGraph)this.Base, order);
+
                     SOOrder copy;
+
                     if ((copy = this.Base.soorder.Locate(order)) != null)
                     {
                         bool? selected = order.Selected;
                         PXCache<SOOrder>.RestoreCopy(order, copy);
                         order.Selected = selected;
                     }
+
                     if (list.Find((object)this.Base.Document.Current) == null)
                         list.Add(this.Base.Document.Current);
                 }
-                else
-                    PXAutomation.StorePersisted((PXGraph)this.Base, typeof(SOOrder), new System.Collections.Generic.List<object>()
-          {
-            (object) order
-          });
             }
-            ItemLotSerialAccumulatorAttribute.ForceAvailQtyValidation((PXGraph)this.Base, false);
-            SiteLotSerialAccumulatorAttribute.ForceAvailQtyValidation((PXGraph)this.Base, false);
+            ItemLotSerialAccumulatorAttribute.ForceAvailQtyValidation(Base, false);
+            SiteLotSerialAccumulatorAttribute.ForceAvailQtyValidation(Base, false);
         }
 
         private bool CreateShipmentFromSchedules2(
@@ -942,7 +938,7 @@ namespace PX.Objects.SO
                 newline.DiscountID = soline.DiscountID;
                 newline.DiscountSequenceID = soline.DiscountSequenceID;
                 newline.AlternateID = soline.AlternateID;
-                this.Base.UpdateOrigValues(ref newline, soline, (INItemPlan)null, plan.PlanQty);
+                Base.UpdateOrigValues(newline, soline, plan.PlanQty);
                 INLotSerClass inLotSerClass = (INLotSerClass)res;
                 Decimal? nullable1;
                 bool? nullable2;

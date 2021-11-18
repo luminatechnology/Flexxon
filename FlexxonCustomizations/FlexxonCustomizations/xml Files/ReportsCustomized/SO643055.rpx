@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report Name="report1">
+  <CommonSettings>
+    <ViewPdf>True</ViewPdf>
+  </CommonSettings>
   <EmbeddedImages>
     <EmbeddedImage>
       <ImageData>iVBORw0KGgoAAAANSUhEUgAAA+4AAADHCAYAAAHwqDlLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAarJJREFUeNpi/P//P8MoGHmAZag63MtgMl551V+/8UmDUvsGIA5El7jNxkpTd2+7kDsowo9pBCZ2WBEXAMSTRmqOZyS3qEfLcbpAfAmLss9AzIcl0DHcgccqaSC+C8TsWOQeA7EcCTkem/1lQNxNYY7HF4iMJJplBsQniTGLktKDhYo5CBvghcozkmEuMxD/IaDmFxXc2QVNQCuo7Hd0NYxUMA8k/xWIeQa6qP9PZXXI4A8lDgPl3BuI3EvI/uVAbEcjv5MSqcQAbjIzEtUiPoMEtfE0DlRqmHUQiFVo7D5c+rhINOffQEb8dGLbEUC8aCAaMMC64j8w5xObO64A1d4B0sY0TpTY9H8d6q365dCIPkhmw4bkxikRAfz/JxMjIXe8AUa6LlTPGSD2wKHuLAFzpkIbm8ep5D9VPHICgynio6C0Aw0i/TTUTGSsTEyuesTCgi/nfwbKiaLp2Q7EcVjUGhFIhDnQhqIVkYkSHzgAxHfwmNMxUvrxphTWo//vsrIwYmkE8uHQsxDa1aOk5KEk8e8hIK84kgZw/qNhknLSP0ZGlJwPZePT0wnEsAELNhxq1Am4+fdgDEgWGkQMPep2irqWd4AR/p94PaDiWxyIZ+KQv0VAP6jaOzrYIn44DdkuJFZhgI4Qg7+WEClmhwHxEzLd5ToYA2s4RXwCA2QUDi8I0hECNfH/MzMx/AexSai/b+JqHBLQ3zAa8ZR33dAxOiiHFs3YwPdAbSH0Ov2/r6YgI5ndRRjgGYq5ZLBE/DwqtkdAfelgNLG3wNzNBczqGHU6KzPjf342JkYKW+Qgc9Fnd+zxtCH+DbeIZyQQYHdwiCcS0dD6jaVVj8u8ddCAB3fjgTldBJ/5zmoC/4W5Ubp65HTPfqG57QAetcwjLcer0tGu
@@ -43,7 +46,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       <Name>flexxontransparent</Name>
     </EmbeddedImage>
   </EmbeddedImages>
-  <ExportFileName>=Format( 'Sales Order{0} {1}', [SOOrder.OrderType],[SOOrder.OrderNbr])</ExportFileName>
+  <ExportFileName>=Format( 'Shipment {0}', [SOShipment.ShipmentNbr])</ExportFileName>
   <Filters>
     <FilterExp>
       <DataField>SOShipment.ShipmentNbr</DataField>
@@ -71,12 +74,10 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>SOShipment.NoteID</ActivitySource>
-    <Bcc></Bcc>
     <Body>='Dear Customer,#010;#010;This is an automatic email to notify you that Order # '+[SOOrder.OrderNbr]+' has been shipped with Shipment # '+[SOShipment.ShipmentNbr]+'. You can find a copy of the shipment confirmation attached to this email.#010;#010;Track your shipment at [Tracking Link]#010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
-    <Cc></Cc>
-    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' Shipment # '+[SOShipment.ShipmentNbr]+' has been shipped.'</Subject>
+    <TemplateID></TemplateID>
     <To>=IsNull([Contact.EMail],'')</To>
   </MailSettings>
   <PageSettings>
@@ -97,8 +98,18 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       <ViewName>=Report.GetFieldSchema('SOShipment.ShipmentNbr')</ViewName>
     </ReportParameter>
     <ReportParameter>
+      <Name>Year</Name>
+      <ViewName>=Year([SOOrder.OrderDate])</ViewName>
+      <Visible>False</Visible>
+    </ReportParameter>
+    <ReportParameter>
+      <Name>Week</Name>
+      <ViewName>=DayOfWeek([SOShipment.ShipDate])</ViewName>
+      <Visible>False</Visible>
+    </ReportParameter>
+    <ReportParameter>
       <DefaultValue>12</DefaultValue>
-      <Name>Month</Name>
+      <Name>month</Name>
       <Nullable>True</Nullable>
       <Prompt>No. of Month</Prompt>
       <Type>Integer</Type>
@@ -269,6 +280,17 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       <ParentName>SOShipLine</ParentName>
     </ReportRelation>
     <ReportRelation>
+      <ChildAlias>NonStockItem</ChildAlias>
+      <ChildName>InventoryItem</ChildName>
+      <Links>
+        <RelationRow>
+          <ChildField>InventoryID</ChildField>
+          <ParentField>UsrNonStockItem</ParentField>
+        </RelationRow>
+      </Links>
+      <ParentName>SOLine</ParentName>
+    </ReportRelation>
+    <ReportRelation>
       <ChildName>SOShipLineSplit</ChildName>
       <Links>
         <RelationRow>
@@ -281,17 +303,6 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         </RelationRow>
       </Links>
       <ParentName>SOShipLine</ParentName>
-    </ReportRelation>
-    <ReportRelation>
-      <ChildAlias>NonStockItem</ChildAlias>
-      <ChildName>InventoryItem</ChildName>
-      <Links>
-        <RelationRow>
-          <ChildField>InventoryID</ChildField>
-          <ParentField>UsrNonStockItem</ParentField>
-        </RelationRow>
-      </Links>
-      <ParentName>SOLine</ParentName>
     </ReportRelation>
   </Relations>
   <SchemaUrl>http://localhost/Flexxon</SchemaUrl>
@@ -306,9 +317,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
   <Style>
     <Font>
       <Name>Arial</Name>
-      <Size>9px</Size>
     </Font>
   </Style>
+  <StyleName>Report Name</StyleName>
   <StylesTemplate>TemplateForm.rpx</StylesTemplate>
   <Tables>
     <ReportTable Name="BAccount">
@@ -1850,7 +1861,20 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         <ReportField Name="UsrOrigQty">
           <DataType>Decimal</DataType>
         </ReportField>
+        <ReportField Name="UsrPIAmt">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="UsrPIPct">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="UsrPIQty">
+          <DataType>Decimal</DataType>
+        </ReportField>
         <ReportField Name="UsrProjectNbr"></ReportField>
+        <ReportField Name="UsrProjOwnerID"></ReportField>
+        <ReportField Name="UsrProjOwnerID_description"></ReportField>
+        <ReportField Name="UsrProjOwnerID_EPEmployee_acctName"></ReportField>
+        <ReportField Name="UsrProjStatus"></ReportField>
         <ReportField Name="UsrRemainQty">
           <DataType>Decimal</DataType>
         </ReportField>
@@ -2350,6 +2374,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <DataType>Boolean</DataType>
         </ReportField>
         <ReportField Name="UsrNote"></ReportField>
+        <ReportField Name="UsrTotalPackageCount">
+          <DataType>Int32</DataType>
+        </ReportField>
         <ReportField Name="UsrTrackNbr"></ReportField>
         <ReportField Name="WorkgroupID"></ReportField>
         <ReportField Name="WorkgroupID_description"></ReportField>
@@ -2698,7 +2725,6 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         </ReportField>
         <ReportField Name="CustomerID"></ReportField>
         <ReportField Name="CustomerID_BAccountR_acctName"></ReportField>
-        <ReportField Name="CustomerID_Customer_acctName"></ReportField>
         <ReportField Name="CustomerID_description"></ReportField>
         <ReportField Name="CustomerID_Segment1"></ReportField>
         <ReportField Name="CustomerLocationID"></ReportField>
@@ -3153,6 +3179,203 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       </Fields>
       <FullName>PX.Objects.GL.Branch</FullName>
     </ReportTable>
+    <ReportTable Name="INSite">
+      <Fields>
+        <ReportField Name="Active">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="AddressID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="AvgDefaultCost"></ReportField>
+        <ReportField Name="BranchID"></ReportField>
+        <ReportField Name="BranchID_Branch_acctName"></ReportField>
+        <ReportField Name="BranchID_description"></ReportField>
+        <ReportField Name="BranchID_Segment1"></ReportField>
+        <ReportField Name="BuildingID"></ReportField>
+        <ReportField Name="BuildingID_description"></ReportField>
+        <ReportField Name="BuildingID_INSiteBuilding_descr"></ReportField>
+        <ReportField Name="COGSAcctID"></ReportField>
+        <ReportField Name="COGSAcctID_Account_description"></ReportField>
+        <ReportField Name="COGSAcctID_description"></ReportField>
+        <ReportField Name="COGSAcctID_Segment1"></ReportField>
+        <ReportField Name="COGSSubID"></ReportField>
+        <ReportField Name="COGSSubID_description"></ReportField>
+        <ReportField Name="COGSSubID_Segment1"></ReportField>
+        <ReportField Name="COGSSubID_Segment2"></ReportField>
+        <ReportField Name="COGSSubID_Sub_description"></ReportField>
+        <ReportField Name="ContactID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="CreatedByID"></ReportField>
+        <ReportField Name="CreatedByID_Creator_displayName"></ReportField>
+        <ReportField Name="CreatedByID_Creator_Username"></ReportField>
+        <ReportField Name="CreatedByID_description"></ReportField>
+        <ReportField Name="CreatedByScreenID"></ReportField>
+        <ReportField Name="CreatedDateTime">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="CreatedDateTime_Day"></ReportField>
+        <ReportField Name="CreatedDateTime_Hour"></ReportField>
+        <ReportField Name="CreatedDateTime_Month"></ReportField>
+        <ReportField Name="CreatedDateTime_Quarter"></ReportField>
+        <ReportField Name="Descr"></ReportField>
+        <ReportField Name="DiscAcctID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="DiscSubID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="DropShipLocationID"></ReportField>
+        <ReportField Name="DropShipLocationID_description"></ReportField>
+        <ReportField Name="DropShipLocationID_INLocation_descr"></ReportField>
+        <ReportField Name="DropShipLocationID_Segment1"></ReportField>
+        <ReportField Name="FIFODefaultCost"></ReportField>
+        <ReportField Name="FreightAcctID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="FreightSubID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="GroupMask">
+          <DataType>Object</DataType>
+        </ReportField>
+        <ReportField Name="Included">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="InvtAcctID"></ReportField>
+        <ReportField Name="InvtAcctID_Account_description"></ReportField>
+        <ReportField Name="InvtAcctID_description"></ReportField>
+        <ReportField Name="InvtAcctID_Segment1"></ReportField>
+        <ReportField Name="InvtSubID"></ReportField>
+        <ReportField Name="InvtSubID_description"></ReportField>
+        <ReportField Name="InvtSubID_Segment1"></ReportField>
+        <ReportField Name="InvtSubID_Segment2"></ReportField>
+        <ReportField Name="InvtSubID_Sub_description"></ReportField>
+        <ReportField Name="LastModifiedByID"></ReportField>
+        <ReportField Name="LastModifiedByID_description"></ReportField>
+        <ReportField Name="LastModifiedByID_Modifier_displayName"></ReportField>
+        <ReportField Name="LastModifiedByID_Modifier_Username"></ReportField>
+        <ReportField Name="LastModifiedByScreenID"></ReportField>
+        <ReportField Name="LastModifiedDateTime">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="LastModifiedDateTime_Day"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Hour"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Month"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Quarter"></ReportField>
+        <ReportField Name="LCVarianceAcctID"></ReportField>
+        <ReportField Name="LCVarianceAcctID_Account_description"></ReportField>
+        <ReportField Name="LCVarianceAcctID_description"></ReportField>
+        <ReportField Name="LCVarianceAcctID_Segment1"></ReportField>
+        <ReportField Name="LCVarianceSubID"></ReportField>
+        <ReportField Name="LCVarianceSubID_description"></ReportField>
+        <ReportField Name="LCVarianceSubID_Segment1"></ReportField>
+        <ReportField Name="LCVarianceSubID_Segment2"></ReportField>
+        <ReportField Name="LCVarianceSubID_Sub_description"></ReportField>
+        <ReportField Name="LocationValid"></ReportField>
+        <ReportField Name="MiscAcctID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="MiscSubID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="NoteActivity"></ReportField>
+        <ReportField Name="NoteFiles"></ReportField>
+        <ReportField Name="NoteID">
+          <DataType>Object</DataType>
+        </ReportField>
+        <ReportField Name="NoteImages"></ReportField>
+        <ReportField Name="NoteText"></ReportField>
+        <ReportField Name="OverrideInvtAccSub">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="POAccrualAcctID"></ReportField>
+        <ReportField Name="POAccrualAcctID_Account_description"></ReportField>
+        <ReportField Name="POAccrualAcctID_description"></ReportField>
+        <ReportField Name="POAccrualAcctID_Segment1"></ReportField>
+        <ReportField Name="POAccrualSubID"></ReportField>
+        <ReportField Name="POAccrualSubID_description"></ReportField>
+        <ReportField Name="POAccrualSubID_Segment1"></ReportField>
+        <ReportField Name="POAccrualSubID_Segment2"></ReportField>
+        <ReportField Name="POAccrualSubID_Sub_description"></ReportField>
+        <ReportField Name="PPVAcctID"></ReportField>
+        <ReportField Name="PPVAcctID_Account_description"></ReportField>
+        <ReportField Name="PPVAcctID_description"></ReportField>
+        <ReportField Name="PPVAcctID_Segment1"></ReportField>
+        <ReportField Name="PPVSubID"></ReportField>
+        <ReportField Name="PPVSubID_description"></ReportField>
+        <ReportField Name="PPVSubID_Segment1"></ReportField>
+        <ReportField Name="PPVSubID_Segment2"></ReportField>
+        <ReportField Name="PPVSubID_Sub_description"></ReportField>
+        <ReportField Name="ReasonCodeSubID"></ReportField>
+        <ReportField Name="ReasonCodeSubID_description"></ReportField>
+        <ReportField Name="ReasonCodeSubID_Segment1"></ReportField>
+        <ReportField Name="ReasonCodeSubID_Segment2"></ReportField>
+        <ReportField Name="ReasonCodeSubID_Sub_description"></ReportField>
+        <ReportField Name="ReceiptLocationID"></ReportField>
+        <ReportField Name="ReceiptLocationID_description"></ReportField>
+        <ReportField Name="ReceiptLocationID_INLocation_descr"></ReportField>
+        <ReportField Name="ReceiptLocationID_Segment1"></ReportField>
+        <ReportField Name="ReceiptLocationIDOverride">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="ReplenishmentClassID"></ReportField>
+        <ReportField Name="ReplenishmentClassID_description"></ReportField>
+        <ReportField Name="ReplenishmentClassID_INReplenishmentClass_descr"></ReportField>
+        <ReportField Name="ReturnLocationID"></ReportField>
+        <ReportField Name="ReturnLocationID_description"></ReportField>
+        <ReportField Name="ReturnLocationID_INLocation_descr"></ReportField>
+        <ReportField Name="ReturnLocationID_Segment1"></ReportField>
+        <ReportField Name="SalesAcctID"></ReportField>
+        <ReportField Name="SalesAcctID_Account_description"></ReportField>
+        <ReportField Name="SalesAcctID_description"></ReportField>
+        <ReportField Name="SalesAcctID_Segment1"></ReportField>
+        <ReportField Name="SalesSubID"></ReportField>
+        <ReportField Name="SalesSubID_description"></ReportField>
+        <ReportField Name="SalesSubID_Segment1"></ReportField>
+        <ReportField Name="SalesSubID_Segment2"></ReportField>
+        <ReportField Name="SalesSubID_Sub_description"></ReportField>
+        <ReportField Name="Secured">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="ShipLocationID"></ReportField>
+        <ReportField Name="ShipLocationID_description"></ReportField>
+        <ReportField Name="ShipLocationID_INLocation_descr"></ReportField>
+        <ReportField Name="ShipLocationID_Segment1"></ReportField>
+        <ReportField Name="ShipLocationIDOverride">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="SiteCD"></ReportField>
+        <ReportField Name="SiteCD_Segment1"></ReportField>
+        <ReportField Name="SiteID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="StdCstRevAcctID"></ReportField>
+        <ReportField Name="StdCstRevAcctID_Account_description"></ReportField>
+        <ReportField Name="StdCstRevAcctID_description"></ReportField>
+        <ReportField Name="StdCstRevAcctID_Segment1"></ReportField>
+        <ReportField Name="StdCstRevSubID"></ReportField>
+        <ReportField Name="StdCstRevSubID_description"></ReportField>
+        <ReportField Name="StdCstRevSubID_Segment1"></ReportField>
+        <ReportField Name="StdCstRevSubID_Segment2"></ReportField>
+        <ReportField Name="StdCstRevSubID_Sub_description"></ReportField>
+        <ReportField Name="StdCstVarAcctID"></ReportField>
+        <ReportField Name="StdCstVarAcctID_Account_description"></ReportField>
+        <ReportField Name="StdCstVarAcctID_description"></ReportField>
+        <ReportField Name="StdCstVarAcctID_Segment1"></ReportField>
+        <ReportField Name="StdCstVarSubID"></ReportField>
+        <ReportField Name="StdCstVarSubID_description"></ReportField>
+        <ReportField Name="StdCstVarSubID_Segment1"></ReportField>
+        <ReportField Name="StdCstVarSubID_Segment2"></ReportField>
+        <ReportField Name="StdCstVarSubID_Sub_description"></ReportField>
+        <ReportField Name="tstamp"></ReportField>
+        <ReportField Name="UseItemDefaultLocationForPicking">
+          <DataType>Boolean</DataType>
+        </ReportField>
+      </Fields>
+      <FullName>PX.Objects.IN.INSite</FullName>
+    </ReportTable>
     <ReportTable Name="InventoryItem">
       <Fields>
         <ReportField Name="ABCCodeID"></ReportField>
@@ -3561,6 +3784,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <DataType>Boolean</DataType>
         </ReportField>
         <ReportField Name="WeightUOM"></ReportField>
+        <ReportField Name="ZBRAND_Attributes"></ReportField>
         <ReportField Name="ZCHARACTER_Attributes"></ReportField>
         <ReportField Name="ZDIMENSION_Attributes"></ReportField>
         <ReportField Name="ZFEATURES_Attributes"></ReportField>
@@ -3574,334 +3798,6 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         <ReportField Name="ZVERSIONS_Attributes"></ReportField>
       </Fields>
       <FullName>PX.Objects.IN.InventoryItem</FullName>
-    </ReportTable>
-    <ReportTable Name="SOOrderShipment">
-      <Fields>
-        <ReportField Name="BillShipmentSeparately">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="Confirmed">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="CreateARDoc">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="CreatedByID"></ReportField>
-        <ReportField Name="CreatedByID_Creator_displayName"></ReportField>
-        <ReportField Name="CreatedByID_Creator_Username"></ReportField>
-        <ReportField Name="CreatedByID_description"></ReportField>
-        <ReportField Name="CreatedByScreenID"></ReportField>
-        <ReportField Name="CreatedDateTime">
-          <DataType>DateTime</DataType>
-        </ReportField>
-        <ReportField Name="CreatedDateTime_Day"></ReportField>
-        <ReportField Name="CreatedDateTime_Hour"></ReportField>
-        <ReportField Name="CreatedDateTime_Month"></ReportField>
-        <ReportField Name="CreatedDateTime_Quarter"></ReportField>
-        <ReportField Name="CreateINDoc">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="CustomerID"></ReportField>
-        <ReportField Name="CustomerID_BAccountR_acctName"></ReportField>
-        <ReportField Name="CustomerID_Customer_acctName"></ReportField>
-        <ReportField Name="CustomerID_description"></ReportField>
-        <ReportField Name="CustomerID_Segment1"></ReportField>
-        <ReportField Name="CustomerLocationID"></ReportField>
-        <ReportField Name="CustomerLocationID_description"></ReportField>
-        <ReportField Name="CustomerLocationID_Location_descr"></ReportField>
-        <ReportField Name="CustomerLocationID_Segment1"></ReportField>
-        <ReportField Name="DisplayShippingRefNoteID"></ReportField>
-        <ReportField Name="HasDetailDeleted">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="HasUnhandledErrors">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="Hold">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="InvoiceNbr"></ReportField>
-        <ReportField Name="InvoiceReleased">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="InvoiceType"></ReportField>
-        <ReportField Name="InvtDocType"></ReportField>
-        <ReportField Name="InvtNoteID">
-          <DataType>Object</DataType>
-        </ReportField>
-        <ReportField Name="InvtRefNbr"></ReportField>
-        <ReportField Name="LastModifiedByID"></ReportField>
-        <ReportField Name="LastModifiedByID_description"></ReportField>
-        <ReportField Name="LastModifiedByID_Modifier_displayName"></ReportField>
-        <ReportField Name="LastModifiedByID_Modifier_Username"></ReportField>
-        <ReportField Name="LastModifiedByScreenID"></ReportField>
-        <ReportField Name="LastModifiedDateTime">
-          <DataType>DateTime</DataType>
-        </ReportField>
-        <ReportField Name="LastModifiedDateTime_Day"></ReportField>
-        <ReportField Name="LastModifiedDateTime_Hour"></ReportField>
-        <ReportField Name="LastModifiedDateTime_Month"></ReportField>
-        <ReportField Name="LastModifiedDateTime_Quarter"></ReportField>
-        <ReportField Name="LineCntr">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="LineTotal">
-          <DataType>Decimal</DataType>
-        </ReportField>
-        <ReportField Name="NoteActivity"></ReportField>
-        <ReportField Name="NoteFiles"></ReportField>
-        <ReportField Name="NoteImages"></ReportField>
-        <ReportField Name="NoteText"></ReportField>
-        <ReportField Name="Operation"></ReportField>
-        <ReportField Name="OrderFreightAllocated">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="OrderNbr"></ReportField>
-        <ReportField Name="OrderNoteID">
-          <DataType>Object</DataType>
-        </ReportField>
-        <ReportField Name="OrderType"></ReportField>
-        <ReportField Name="ProjectID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="Selected">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="ShipAddressID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="ShipComplete"></ReportField>
-        <ReportField Name="ShipContactID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="ShipDate">
-          <DataType>DateTime</DataType>
-        </ReportField>
-        <ReportField Name="ShipDate_Day"></ReportField>
-        <ReportField Name="ShipDate_Hour"></ReportField>
-        <ReportField Name="ShipDate_Month"></ReportField>
-        <ReportField Name="ShipDate_Quarter"></ReportField>
-        <ReportField Name="ShipmentNbr"></ReportField>
-        <ReportField Name="ShipmentNoteID">
-          <DataType>Object</DataType>
-        </ReportField>
-        <ReportField Name="ShipmentQty">
-          <DataType>Decimal</DataType>
-        </ReportField>
-        <ReportField Name="ShipmentType"></ReportField>
-        <ReportField Name="ShipmentVolume">
-          <DataType>Decimal</DataType>
-        </ReportField>
-        <ReportField Name="ShipmentWeight">
-          <DataType>Decimal</DataType>
-        </ReportField>
-        <ReportField Name="ShippingRefNoteID">
-          <DataType>Object</DataType>
-        </ReportField>
-        <ReportField Name="SiteID"></ReportField>
-        <ReportField Name="SiteID_description"></ReportField>
-        <ReportField Name="SiteID_INSite_descr"></ReportField>
-        <ReportField Name="SiteID_Segment1"></ReportField>
-        <ReportField Name="tstamp"></ReportField>
-      </Fields>
-      <FullName>PX.Objects.SO.SOOrderShipment</FullName>
-    </ReportTable>
-    <ReportTable Name="INSite">
-      <Fields>
-        <ReportField Name="Active">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="AddressID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="AvgDefaultCost"></ReportField>
-        <ReportField Name="BranchID"></ReportField>
-        <ReportField Name="BranchID_Branch_acctName"></ReportField>
-        <ReportField Name="BranchID_description"></ReportField>
-        <ReportField Name="BranchID_Segment1"></ReportField>
-        <ReportField Name="BuildingID"></ReportField>
-        <ReportField Name="BuildingID_description"></ReportField>
-        <ReportField Name="BuildingID_INSiteBuilding_descr"></ReportField>
-        <ReportField Name="COGSAcctID"></ReportField>
-        <ReportField Name="COGSAcctID_Account_description"></ReportField>
-        <ReportField Name="COGSAcctID_description"></ReportField>
-        <ReportField Name="COGSAcctID_Segment1"></ReportField>
-        <ReportField Name="COGSSubID"></ReportField>
-        <ReportField Name="COGSSubID_description"></ReportField>
-        <ReportField Name="COGSSubID_Segment1"></ReportField>
-        <ReportField Name="COGSSubID_Segment2"></ReportField>
-        <ReportField Name="COGSSubID_Sub_description"></ReportField>
-        <ReportField Name="ContactID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="CreatedByID"></ReportField>
-        <ReportField Name="CreatedByID_Creator_displayName"></ReportField>
-        <ReportField Name="CreatedByID_Creator_Username"></ReportField>
-        <ReportField Name="CreatedByID_description"></ReportField>
-        <ReportField Name="CreatedByScreenID"></ReportField>
-        <ReportField Name="CreatedDateTime">
-          <DataType>DateTime</DataType>
-        </ReportField>
-        <ReportField Name="CreatedDateTime_Day"></ReportField>
-        <ReportField Name="CreatedDateTime_Hour"></ReportField>
-        <ReportField Name="CreatedDateTime_Month"></ReportField>
-        <ReportField Name="CreatedDateTime_Quarter"></ReportField>
-        <ReportField Name="Descr"></ReportField>
-        <ReportField Name="DiscAcctID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="DiscSubID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="DropShipLocationID"></ReportField>
-        <ReportField Name="DropShipLocationID_description"></ReportField>
-        <ReportField Name="DropShipLocationID_INLocation_descr"></ReportField>
-        <ReportField Name="DropShipLocationID_Segment1"></ReportField>
-        <ReportField Name="FIFODefaultCost"></ReportField>
-        <ReportField Name="FreightAcctID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="FreightSubID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="GroupMask">
-          <DataType>Object</DataType>
-        </ReportField>
-        <ReportField Name="Included">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="InvtAcctID"></ReportField>
-        <ReportField Name="InvtAcctID_Account_description"></ReportField>
-        <ReportField Name="InvtAcctID_description"></ReportField>
-        <ReportField Name="InvtAcctID_Segment1"></ReportField>
-        <ReportField Name="InvtSubID"></ReportField>
-        <ReportField Name="InvtSubID_description"></ReportField>
-        <ReportField Name="InvtSubID_Segment1"></ReportField>
-        <ReportField Name="InvtSubID_Segment2"></ReportField>
-        <ReportField Name="InvtSubID_Sub_description"></ReportField>
-        <ReportField Name="LastModifiedByID"></ReportField>
-        <ReportField Name="LastModifiedByID_description"></ReportField>
-        <ReportField Name="LastModifiedByID_Modifier_displayName"></ReportField>
-        <ReportField Name="LastModifiedByID_Modifier_Username"></ReportField>
-        <ReportField Name="LastModifiedByScreenID"></ReportField>
-        <ReportField Name="LastModifiedDateTime">
-          <DataType>DateTime</DataType>
-        </ReportField>
-        <ReportField Name="LastModifiedDateTime_Day"></ReportField>
-        <ReportField Name="LastModifiedDateTime_Hour"></ReportField>
-        <ReportField Name="LastModifiedDateTime_Month"></ReportField>
-        <ReportField Name="LastModifiedDateTime_Quarter"></ReportField>
-        <ReportField Name="LCVarianceAcctID"></ReportField>
-        <ReportField Name="LCVarianceAcctID_Account_description"></ReportField>
-        <ReportField Name="LCVarianceAcctID_description"></ReportField>
-        <ReportField Name="LCVarianceAcctID_Segment1"></ReportField>
-        <ReportField Name="LCVarianceSubID"></ReportField>
-        <ReportField Name="LCVarianceSubID_description"></ReportField>
-        <ReportField Name="LCVarianceSubID_Segment1"></ReportField>
-        <ReportField Name="LCVarianceSubID_Segment2"></ReportField>
-        <ReportField Name="LCVarianceSubID_Sub_description"></ReportField>
-        <ReportField Name="LocationValid"></ReportField>
-        <ReportField Name="MiscAcctID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="MiscSubID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="NoteActivity"></ReportField>
-        <ReportField Name="NoteFiles"></ReportField>
-        <ReportField Name="NoteID">
-          <DataType>Object</DataType>
-        </ReportField>
-        <ReportField Name="NoteImages"></ReportField>
-        <ReportField Name="NoteText"></ReportField>
-        <ReportField Name="OverrideInvtAccSub">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="POAccrualAcctID"></ReportField>
-        <ReportField Name="POAccrualAcctID_Account_description"></ReportField>
-        <ReportField Name="POAccrualAcctID_description"></ReportField>
-        <ReportField Name="POAccrualAcctID_Segment1"></ReportField>
-        <ReportField Name="POAccrualSubID"></ReportField>
-        <ReportField Name="POAccrualSubID_description"></ReportField>
-        <ReportField Name="POAccrualSubID_Segment1"></ReportField>
-        <ReportField Name="POAccrualSubID_Segment2"></ReportField>
-        <ReportField Name="POAccrualSubID_Sub_description"></ReportField>
-        <ReportField Name="PPVAcctID"></ReportField>
-        <ReportField Name="PPVAcctID_Account_description"></ReportField>
-        <ReportField Name="PPVAcctID_description"></ReportField>
-        <ReportField Name="PPVAcctID_Segment1"></ReportField>
-        <ReportField Name="PPVSubID"></ReportField>
-        <ReportField Name="PPVSubID_description"></ReportField>
-        <ReportField Name="PPVSubID_Segment1"></ReportField>
-        <ReportField Name="PPVSubID_Segment2"></ReportField>
-        <ReportField Name="PPVSubID_Sub_description"></ReportField>
-        <ReportField Name="ReasonCodeSubID"></ReportField>
-        <ReportField Name="ReasonCodeSubID_description"></ReportField>
-        <ReportField Name="ReasonCodeSubID_Segment1"></ReportField>
-        <ReportField Name="ReasonCodeSubID_Segment2"></ReportField>
-        <ReportField Name="ReasonCodeSubID_Sub_description"></ReportField>
-        <ReportField Name="ReceiptLocationID"></ReportField>
-        <ReportField Name="ReceiptLocationID_description"></ReportField>
-        <ReportField Name="ReceiptLocationID_INLocation_descr"></ReportField>
-        <ReportField Name="ReceiptLocationID_Segment1"></ReportField>
-        <ReportField Name="ReceiptLocationIDOverride">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="ReplenishmentClassID"></ReportField>
-        <ReportField Name="ReplenishmentClassID_description"></ReportField>
-        <ReportField Name="ReplenishmentClassID_INReplenishmentClass_descr"></ReportField>
-        <ReportField Name="ReturnLocationID"></ReportField>
-        <ReportField Name="ReturnLocationID_description"></ReportField>
-        <ReportField Name="ReturnLocationID_INLocation_descr"></ReportField>
-        <ReportField Name="ReturnLocationID_Segment1"></ReportField>
-        <ReportField Name="SalesAcctID"></ReportField>
-        <ReportField Name="SalesAcctID_Account_description"></ReportField>
-        <ReportField Name="SalesAcctID_description"></ReportField>
-        <ReportField Name="SalesAcctID_Segment1"></ReportField>
-        <ReportField Name="SalesSubID"></ReportField>
-        <ReportField Name="SalesSubID_description"></ReportField>
-        <ReportField Name="SalesSubID_Segment1"></ReportField>
-        <ReportField Name="SalesSubID_Segment2"></ReportField>
-        <ReportField Name="SalesSubID_Sub_description"></ReportField>
-        <ReportField Name="Secured">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="ShipLocationID"></ReportField>
-        <ReportField Name="ShipLocationID_description"></ReportField>
-        <ReportField Name="ShipLocationID_INLocation_descr"></ReportField>
-        <ReportField Name="ShipLocationID_Segment1"></ReportField>
-        <ReportField Name="ShipLocationIDOverride">
-          <DataType>Boolean</DataType>
-        </ReportField>
-        <ReportField Name="SiteCD"></ReportField>
-        <ReportField Name="SiteCD_Segment1"></ReportField>
-        <ReportField Name="SiteID">
-          <DataType>Int32</DataType>
-        </ReportField>
-        <ReportField Name="StdCstRevAcctID"></ReportField>
-        <ReportField Name="StdCstRevAcctID_Account_description"></ReportField>
-        <ReportField Name="StdCstRevAcctID_description"></ReportField>
-        <ReportField Name="StdCstRevAcctID_Segment1"></ReportField>
-        <ReportField Name="StdCstRevSubID"></ReportField>
-        <ReportField Name="StdCstRevSubID_description"></ReportField>
-        <ReportField Name="StdCstRevSubID_Segment1"></ReportField>
-        <ReportField Name="StdCstRevSubID_Segment2"></ReportField>
-        <ReportField Name="StdCstRevSubID_Sub_description"></ReportField>
-        <ReportField Name="StdCstVarAcctID"></ReportField>
-        <ReportField Name="StdCstVarAcctID_Account_description"></ReportField>
-        <ReportField Name="StdCstVarAcctID_description"></ReportField>
-        <ReportField Name="StdCstVarAcctID_Segment1"></ReportField>
-        <ReportField Name="StdCstVarSubID"></ReportField>
-        <ReportField Name="StdCstVarSubID_description"></ReportField>
-        <ReportField Name="StdCstVarSubID_Segment1"></ReportField>
-        <ReportField Name="StdCstVarSubID_Segment2"></ReportField>
-        <ReportField Name="StdCstVarSubID_Sub_description"></ReportField>
-        <ReportField Name="tstamp"></ReportField>
-        <ReportField Name="UseItemDefaultLocationForPicking">
-          <DataType>Boolean</DataType>
-        </ReportField>
-      </Fields>
-      <FullName>PX.Objects.IN.INSite</FullName>
     </ReportTable>
     <ReportTable Name="SOShipLineSplit">
       <Fields>
@@ -4039,6 +3935,173 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
       </Fields>
       <FullName>PX.Objects.SO.SOShipLineSplit</FullName>
     </ReportTable>
+    <ReportTable Name="INTranSplit">
+      <Fields>
+        <ReportField Name="AdditionalCost">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="AssignedNbr"></ReportField>
+        <ReportField Name="BaseQty">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="CostSiteID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="CostSubItemID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="CreatedByID"></ReportField>
+        <ReportField Name="CreatedByID_Creator_displayName"></ReportField>
+        <ReportField Name="CreatedByID_Creator_Username"></ReportField>
+        <ReportField Name="CreatedByID_description"></ReportField>
+        <ReportField Name="CreatedByScreenID"></ReportField>
+        <ReportField Name="CreatedDateTime">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="CreatedDateTime_Day"></ReportField>
+        <ReportField Name="CreatedDateTime_Hour"></ReportField>
+        <ReportField Name="CreatedDateTime_Month"></ReportField>
+        <ReportField Name="CreatedDateTime_Quarter"></ReportField>
+        <ReportField Name="DocType"></ReportField>
+        <ReportField Name="EstCost">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="ExpireDate">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="ExpireDate_Day"></ReportField>
+        <ReportField Name="ExpireDate_Hour"></ReportField>
+        <ReportField Name="ExpireDate_Month"></ReportField>
+        <ReportField Name="ExpireDate_Quarter"></ReportField>
+        <ReportField Name="FromLocationID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="FromSiteID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="InventoryID"></ReportField>
+        <ReportField Name="InventoryID_description"></ReportField>
+        <ReportField Name="InventoryID_InventoryItem_descr"></ReportField>
+        <ReportField Name="InventoryID_Segment1"></ReportField>
+        <ReportField Name="InvtMult">
+          <DataType>Int16</DataType>
+        </ReportField>
+        <ReportField Name="IsFixedInTransit">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="IsStockItem">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="LastModifiedByID"></ReportField>
+        <ReportField Name="LastModifiedByID_description"></ReportField>
+        <ReportField Name="LastModifiedByID_Modifier_displayName"></ReportField>
+        <ReportField Name="LastModifiedByID_Modifier_Username"></ReportField>
+        <ReportField Name="LastModifiedByScreenID"></ReportField>
+        <ReportField Name="LastModifiedDateTime">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="LastModifiedDateTime_Day"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Hour"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Month"></ReportField>
+        <ReportField Name="LastModifiedDateTime_Quarter"></ReportField>
+        <ReportField Name="LineNbr">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="LocationID"></ReportField>
+        <ReportField Name="LocationID_description"></ReportField>
+        <ReportField Name="LocationID_INLocation_descr"></ReportField>
+        <ReportField Name="LocationID_Segment1"></ReportField>
+        <ReportField Name="LotSerClassID"></ReportField>
+        <ReportField Name="LotSerialNbr"></ReportField>
+        <ReportField Name="MaxTransferBaseQty">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="OrigModule"></ReportField>
+        <ReportField Name="OrigPlanType"></ReportField>
+        <ReportField Name="PlanID">
+          <DataType>Int64</DataType>
+        </ReportField>
+        <ReportField Name="POLineType"></ReportField>
+        <ReportField Name="ProjectID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="Qty">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="QtyIn">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="QtyOut">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="RefNbr"></ReportField>
+        <ReportField Name="Released">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="ReleasedDateTime">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="ReleasedDateTime_Day"></ReportField>
+        <ReportField Name="ReleasedDateTime_Hour"></ReportField>
+        <ReportField Name="ReleasedDateTime_Month"></ReportField>
+        <ReportField Name="ReleasedDateTime_Quarter"></ReportField>
+        <ReportField Name="ShipmentLineNbr">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="ShipmentLineSplitNbr">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="ShipmentNbr"></ReportField>
+        <ReportField Name="SiteID"></ReportField>
+        <ReportField Name="SiteID_description"></ReportField>
+        <ReportField Name="SiteID_INSite_descr"></ReportField>
+        <ReportField Name="SiteID_Segment1"></ReportField>
+        <ReportField Name="SkipCostUpdate">
+          <DataType>Boolean</DataType>
+        </ReportField>
+        <ReportField Name="SOLineType"></ReportField>
+        <ReportField Name="SplitLineNbr">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="SubItemID"></ReportField>
+        <ReportField Name="SubItemID_Segment1"></ReportField>
+        <ReportField Name="TaskID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="ToLocationID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="ToSiteID">
+          <DataType>Int32</DataType>
+        </ReportField>
+        <ReportField Name="TotalCost">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="TotalQty">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="TranDate">
+          <DataType>DateTime</DataType>
+        </ReportField>
+        <ReportField Name="TranDate_Day"></ReportField>
+        <ReportField Name="TranDate_Hour"></ReportField>
+        <ReportField Name="TranDate_Month"></ReportField>
+        <ReportField Name="TranDate_Quarter"></ReportField>
+        <ReportField Name="TransferType"></ReportField>
+        <ReportField Name="TranType"></ReportField>
+        <ReportField Name="tstamp"></ReportField>
+        <ReportField Name="UnitCost">
+          <DataType>Decimal</DataType>
+        </ReportField>
+        <ReportField Name="UOM"></ReportField>
+        <ReportField Name="UsrCOO"></ReportField>
+        <ReportField Name="UsrCOO_Country_description"></ReportField>
+        <ReportField Name="UsrCOO_description"></ReportField>
+        <ReportField Name="UsrDateCode"></ReportField>
+        <ReportField Name="ValMethod"></ReportField>
+      </Fields>
+      <FullName>PX.Objects.IN.INTranSplit</FullName>
+    </ReportTable>
   </Tables>
   <ViewerFields>
     <ViewerField Name="SOShipment.ShipmentNbr"></ViewerField>
@@ -4082,45 +4145,37 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
     <ViewerField Name="Customer.AcctCD"></ViewerField>
     <ViewerField Name="Branch.LogoName"></ViewerField>
     <ViewerField Name="SOShipment.ShipmentVolume"></ViewerField>
-    <ViewerField Name="InventoryItem.VolumeUOM"></ViewerField>
     <ViewerField Name="SOShipment.ShipmentWeight"></ViewerField>
-    <ViewerField Name="InventoryItem.WeightUOM"></ViewerField>
     <ViewerField Name="SOShipment.ShipmentQty"></ViewerField>
     <ViewerField Name="SOOrder.CustomerOrderNbr"></ViewerField>
     <ViewerField Name="SOShipment.NoteID"></ViewerField>
     <ViewerField Name="Customer.NoteID"></ViewerField>
-    <ViewerField Name="SOOrder.OrderType"></ViewerField>
-    <ViewerField Name="SOOrder.OrderNbr"></ViewerField>
     <ViewerField Name="CompanyContact.FullName"></ViewerField>
+    <ViewerField Name="SOOrder.OrderNbr"></ViewerField>
+    <ViewerField Name="SOShipLine.LotSerialNbr"></ViewerField>
+    <ViewerField Name="SOLine.TranDesc"></ViewerField>
+    <ViewerField Name="SOLine.CuryLineAmt"></ViewerField>
+    <ViewerField Name="NonStockItem.InventoryCD"></ViewerField>
+    <ViewerField Name="ShippingAddress.CountryID_Country_description"></ViewerField>
+    <ViewerField Name="SOLine.AlternateID"></ViewerField>
     <ViewerField Name="ShippingContact.Phone1"></ViewerField>
-    <ViewerField Name="ShippingContact.Fax"></ViewerField>
     <ViewerField Name="SOOrder.ShipTermsID"></ViewerField>
     <ViewerField Name="SOOrder.CuryID"></ViewerField>
     <ViewerField Name="Customer.AcctReferenceNbr"></ViewerField>
     <ViewerField Name="Terms.Descr"></ViewerField>
-    <ViewerField Name="SOShipLine.LotSerialNbr"></ViewerField>
     <ViewerField Name="SOOrder.NoteText"></ViewerField>
-    <ViewerField Name="CompanyContact.EMail"></ViewerField>
-    <ViewerField Name="Branch.AcctName"></ViewerField>
-    <ViewerField Name="SOLine.TranDesc"></ViewerField>
-    <ViewerField Name="SOLine.CuryLineAmt"></ViewerField>
-    <ViewerField Name="SOLine.BranchID"></ViewerField>
-    <ViewerField Name="ShippingAddress.CountryID_Country_description"></ViewerField>
-    <ViewerField Name="InventoryItem.InventoryCD"></ViewerField>
-    <ViewerField Name="SOLine.AlternateID"></ViewerField>
-    <ViewerField Name="SOLine.LineNbr"></ViewerField>
     <ViewerField Name="CompanyAddress.CountryID_description"></ViewerField>
     <ViewerField Name="CompanyContact.Fax"></ViewerField>
+    <ViewerField Name="CompanyContact.EMail"></ViewerField>
     <ViewerField Name="BAccount.TaxRegistrationID"></ViewerField>
-    <ViewerField Name="SOShipment.ShipTermsID"></ViewerField>
-    <ViewerField Name="SOShipment.ShipmentType"></ViewerField>
+    <ViewerField Name="Branch.AcctName"></ViewerField>
   </ViewerFields>
   <Width>8.25in</Width>
   <Sections>
     <PageHeader Name="pageHeaderSection1">
       <Height>1in</Height>
       <Items>
-        <PictureBox Name="pictureBox2">
+        <PictureBox Name="pictureBox1">
           <Location>18px, 16px</Location>
           <MimeType>image/png</MimeType>
           <QRCodeSettings />
@@ -4128,88 +4183,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <Source>Database</Source>
           <Value>=[Branch.BranchOrOrganizationLogoNameReport]</Value>
         </PictureBox>
-        <TextBox Name="textBox10">
-          <Location>754px, 56px</Location>
-          <Size>18px, 14px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-            <TextAlign>Right</TextAlign>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>='of ' + [PageCount]</Value>
-        </TextBox>
-        <TextBox Name="textBox18">
-          <Location>586px, 56px</Location>
-          <Size>58px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-            <TextAlign>Left</TextAlign>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <StyleName>Heading 1</StyleName>
-          <Value>Page No.:</Value>
-        </TextBox>
-        <TextBox Name="textBox20">
-          <Location>586px, 44px</Location>
-          <Size>48px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-          </Style>
-          <StyleName>Heading 1</StyleName>
-          <Value>Date:</Value>
-        </TextBox>
-        <TextBox Name="textBox21">
-          <Location>682px, 44px</Location>
-          <Size>90px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-            <TextAlign>Right</TextAlign>
-          </Style>
-          <StyleName>Normal</StyleName>
-          <Value>=[SOShipment.ShipDate]</Value>
-        </TextBox>
-        <TextBox Name="textBox25">
-          <Location>586px, 32px</Location>
-          <Size>84px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-          </Style>
-          <StyleName>Heading 1</StyleName>
-          <Value>Doc. No.:</Value>
-        </TextBox>
-        <TextBox Name="textBox27">
-          <Location>742px, 56px</Location>
-          <Size>12px, 14px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-            <TextAlign>Right</TextAlign>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>=[PageIndex]</Value>
-        </TextBox>
-        <TextBox Name="textBox32">
-          <Location>586px, 0px</Location>
-          <Size>188px, 22px</Size>
+        <TextBox Name="textBox2">
+          <Location>585px, 0px</Location>
+          <Size>190px, 22px</Size>
           <Style>
             <BackColor>LightBlue</BackColor>
             <Font>
@@ -4222,20 +4198,120 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           <StyleName>Report Name</StyleName>
           <Value>Certificate of Conformance</Value>
         </TextBox>
-        <TextBox Name="textBox33">
-          <Location>684px, 32px</Location>
-          <Size>88px, 12px</Size>
+        <TextBox Name="textBox21">
+          <Location>585px, 32px</Location>
+          <Size>70px, 12px</Size>
+          <Style>
+            <Color>Black</Color>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Left</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <StyleName>Heading 1</StyleName>
+          <Value>Doc. No.:</Value>
+        </TextBox>
+        <TextBox Name="textBox27">
+          <Location>674px, 32px</Location>
+          <Size>100px, 12px</Size>
           <Style>
             <Font>
               <Name>Arial</Name>
               <Size>9px</Size>
             </Font>
             <TextAlign>Right</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
           </Style>
           <StyleName>Normal</StyleName>
           <Value>=[SOShipment.ShipmentNbr]</Value>
         </TextBox>
-        <TextBox Name="textBox8">
+        <TextBox Name="textBox28">
+          <Location>674px, 44px</Location>
+          <Size>100px, 12px</Size>
+          <Style>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Right</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <StyleName>Normal</StyleName>
+          <Value>=[SOShipment.ShipDate]</Value>
+        </TextBox>
+        <TextBox Name="textBox32">
+          <Location>585px, 44px</Location>
+          <Size>40px, 12px</Size>
+          <Style>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Left</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <StyleName>Heading 1</StyleName>
+          <Value>Date:</Value>
+        </TextBox>
+        <TextBox Name="textBox34">
+          <Location>585px, 56px</Location>
+          <Size>70px, 12px</Size>
+          <Style>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Left</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <StyleName>Heading 1</StyleName>
+          <Value>Page No.:</Value>
+        </TextBox>
+        <TextBox Name="textBox35">
+          <Location>752px, 56px</Location>
+          <Size>22px, 14px</Size>
+          <Style>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Left</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <StyleName>Report Params</StyleName>
+          <Value>='of ' + [PageCount]</Value>
+        </TextBox>
+        <TextBox Name="textBox36">
+          <Location>744px, 56px</Location>
+          <Size>8px, 14px</Size>
+          <Style>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Left</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
+          <StyleName>Report Params</StyleName>
+          <Value>=[PageIndex]</Value>
+        </TextBox>
+        <TextBox Name="textBox43">
+          <Location>246px, 32px</Location>
+          <Size>300px, 64px</Size>
+          <Style>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Center</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+          <StyleName>Normal</StyleName>
+          <Value>=IIf([CompanyAddress.AddressLine1]&lt;&gt; null, [CompanyAddress.AddressLine1]+' ', '')#010;+IIf([CompanyAddress.AddressLine2]&lt;&gt;null,[CompanyAddress.AddressLine2]+' ','')#010;+IIf([CompanyAddress.AddressLine3]&lt;&gt; null,[CompanyAddress.AddressLine3]+' ', '')#010;+IIf([CompanyAddress.City]&lt;&gt;null, [CompanyAddress.City],'')#010;+IIf([CompanyAddress.State]&lt;&gt;null,[CompanyAddress.State],'')#010;+IIf([CompanyAddress.CountryID_description] &lt;&gt; null,' ' + [CompanyAddress.CountryID_description],' ')#010;+IIf([CompanyAddress.PostalCode]&lt;&gt;null,' ' +[CompanyAddress.PostalCode],'')#010;+'{br}'#010;+IIf([CompanyContact.Phone1] &lt;&gt;null,'Tel: ' + [CompanyContact.Phone1]+ ' ','')#010;+IIf([CompanyContact.Fax] &lt;&gt;null,'Fax: ' + [CompanyContact.Fax]+ '{br}','')#010;+IIf([CompanyContact.EMail]&lt;&gt;null,'Email: '+[CompanyContact.EMail]+'{br}','')#010;+IIf([BAccount.TaxRegistrationID] &lt;&gt;null,'Tax Registration ID:'+[BAccount.TaxRegistrationID],'')</Value>
+        </TextBox>
+        <TextBox Name="textBox65">
           <Location>234px, 0px</Location>
           <Size>325px, 24px</Size>
           <Style>
@@ -4248,86 +4324,219 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
           </Style>
           <Value>=[Branch.AcctName]</Value>
         </TextBox>
-        <TextBox Name="textBox9">
-          <Location>246px, 30px</Location>
-          <Size>300px, 64px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-            <TextAlign>Center</TextAlign>
-            <VerticalAlign>Top</VerticalAlign>
-          </Style>
-          <StyleName>Normal</StyleName>
-          <Value>=IIf([CompanyAddress.AddressLine1]&lt;&gt; null, [CompanyAddress.AddressLine1]+' ','')#010;+IIf([CompanyAddress.AddressLine2]&lt;&gt;null,[CompanyAddress.AddressLine2]+' ','')#010;+IIf([CompanyAddress.AddressLine3]&lt;&gt; null,[CompanyAddress.AddressLine3]+' ', '')#010;+IIf([CompanyAddress.City]&lt;&gt;null, [CompanyAddress.City],'')#010;+IIf([CompanyAddress.State]&lt;&gt;null,[CompanyAddress.State],'')#010;+IIf([CompanyAddress.CountryID_description] &lt;&gt; null,' '+ [CompanyAddress.CountryID_description],' ')#010;+IIf([CompanyAddress.PostalCode]&lt;&gt;null,' ' +[CompanyAddress.PostalCode],'')#010;+'{br}'#010;+IIf([CompanyContact.Phone1] &lt;&gt;null,'Tel: ' + [CompanyContact.Phone1]+ ' ','')#010;+IIf([CompanyContact.Fax] &lt;&gt;null,'Fax: ' + [CompanyContact.Fax]+ '{br}','')#010;+IIf([CompanyContact.EMail]&lt;&gt;null,'Email: '+[CompanyContact.EMail]+'{br}','')#010;+IIf([Branch.AcctName]='Flexxon Global Limited','','Tax Registration ID:'+[BAccount.TaxRegistrationID])</Value>
-        </TextBox>
       </Items>
     </PageHeader>
     <Detail Name="detailSection1">
       <GridSize>2px, 2px</GridSize>
-      <Height>0in</Height>
-      <Visible>False</Visible>
+      <Height>0.22in</Height>
+      <KeepTogether>False</KeepTogether>
+      <PrintEmpty>False</PrintEmpty>
+      <Variables>
+        <ReportVariable>
+          <Name>LineNbr</Name>
+          <ResetGroup>groupInvoice</ResetGroup>
+          <ValueExpr>=$LineNbr+1</ValueExpr>
+        </ReportVariable>
+      </Variables>
+      <Items>
+        <Panel Name="panel2">
+          <GridSize>8px, 8px</GridSize>
+          <Location>18px, 0px</Location>
+          <Size>762px, 20px</Size>
+          <Style>
+            <BackColor>Transparent</BackColor>
+            <BorderColor>
+              <Bottom>Transparent</Bottom>
+              <Default>Transparent</Default>
+              <Left>Transparent</Left>
+              <Right>Transparent</Right>
+              <Top>Transparent</Top>
+            </BorderColor>
+            <BorderStyle>
+              <Bottom>Inset</Bottom>
+              <Default>Inset</Default>
+              <Left>Inset</Left>
+              <Right>Inset</Right>
+              <Top>Inset</Top>
+            </BorderStyle>
+            <BorderWidth>
+              <Bottom>1px</Bottom>
+              <Default>1px</Default>
+              <Left>1px</Left>
+              <Right>1px</Right>
+              <Top>1px</Top>
+            </BorderWidth>
+            <Color>Transparent</Color>
+          </Style>
+          <StyleName>BoxedPanel</StyleName>
+          <Items>
+            <TextBox Name="textBox10">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Location>656px, 0px</Location>
+              <Size>100px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[SOShipLineSplit.LotSerialNbr]</Value>
+            </TextBox>
+            <TextBox Name="textBox4">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Format>=[SOLine.CuryLineAmt.Format]</Format>
+              <Location>150px, 0px</Location>
+              <Size>184px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[NonStockItem.Descr]#010;/*[SOLine.TranDesc]*/</Value>
+            </TextBox>
+            <TextBox Name="textBox49">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Format>N0</Format>
+              <Location>551px, 0px</Location>
+              <Size>55px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[SOShipLineSplit.Qty]</Value>
+            </TextBox>
+            <TextBox Name="textBox51">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Location>334px, 0px</Location>
+              <Size>74px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[SOOrder.CustomerOrderNbr]</Value>
+            </TextBox>
+            <TextBox Name="textBox55">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Location>606px, 0px</Location>
+              <Size>50px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[SOShipLineSplit.UsrDateCode]</Value>
+            </TextBox>
+            <TextBox Name="textBox56">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Location>20px, 0px</Location>
+              <Size>130px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[SOLine.UsrBrand] + ' ' + [NonStockItem.InventoryCD]</Value>
+            </TextBox>
+            <TextBox Name="textBox57">
+              <CanGrow>True</CanGrow>
+              <Location>516px, 0px</Location>
+              <Size>35px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[SOShipLineSplit.UsrCOO]</Value>
+            </TextBox>
+            <TextBox Name="textBox8">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Location>0px, 0px</Location>
+              <Size>20px, 24px</Size>
+              <Style>
+                <BorderColor>
+                  <Right>Black</Right>
+                </BorderColor>
+                <BorderWidth>
+                  <Right>2px</Right>
+                </BorderWidth>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=$LineNbr</Value>
+            </TextBox>
+            <TextBox Name="textBox9">
+              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
+              <Location>408px, 0px</Location>
+              <Size>108px, 24px</Size>
+              <Style>
+                <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+              <StyleName>Normal</StyleName>
+              <Value>=[SOLine.AlternateID]</Value>
+            </TextBox>
+          </Items>
+        </Panel>
+      </Items>
     </Detail>
     <PageFooter Name="pageFooterSection1">
-      <Height>0.25in</Height>
-      <Items>
-        <Line Name="line3">
-          <Location>18px, 0px</Location>
-          <Size>756px, 4px</Size>
-        </Line>
-        <TextBox Name="textBox13">
-          <Location>232px, 8px</Location>
-          <Size>320px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>9px</Size>
-            </Font>
-            <TextAlign>Center</TextAlign>
-            <VerticalAlign>Middle</VerticalAlign>
-          </Style>
-          <StyleName>Heading 1</StyleName>
-          <Value>This is a Computerised Generated Document, Signature is not required.</Value>
-        </TextBox>
-        <TextBox Name="textBox14">
-          <Location>658px, 8px</Location>
-          <Size>22px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>8px</Size>
-            </Font>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>Page:</Value>
-        </TextBox>
-        <TextBox Name="textBox15">
-          <Location>680px, 8px</Location>
-          <Size>8px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>8px</Size>
-            </Font>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>=[PageIndex]</Value>
-        </TextBox>
-        <TextBox Name="textBox16">
-          <Location>688px, 8px</Location>
-          <Size>20px, 12px</Size>
-          <Style>
-            <Font>
-              <Name>Arial</Name>
-              <Size>8px</Size>
-            </Font>
-            <TextAlign>Right</TextAlign>
-          </Style>
-          <StyleName>Report Params</StyleName>
-          <Value>='of ' + [PageCount]</Value>
-        </TextBox>
-      </Items>
+      <Height>0in</Height>
+      <PrintEmpty>False</PrintEmpty>
     </PageFooter>
   </Sections>
   <Items />
@@ -4337,24 +4546,29 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
         <GroupExp>
           <DataField>SOShipment.ShipmentNbr</DataField>
         </GroupExp>
-        <GroupExp>
-          <DataField>SOShipment.ShipmentType</DataField>
-        </GroupExp>
       </Grouping>
       <Headers>
         <Header Name="groupHeaderSection1">
           <GridSize>2px, 2px</GridSize>
-          <Height>2.08333in</Height>
+          <Height>2.14in</Height>
           <PrintForEmptyGroup>True</PrintForEmptyGroup>
           <PrintOnEveryPage>True</PrintOnEveryPage>
           <ProcessOrder>Always</ProcessOrder>
+          <Style>
+            <Font>
+              <Name>Arial</Name>
+              <Size>9px</Size>
+            </Font>
+            <TextAlign>Right</TextAlign>
+            <VerticalAlign>Middle</VerticalAlign>
+          </Style>
           <Items>
             <Panel Name="panel1">
               <GridSize>8px, 8px</GridSize>
               <Location>18px, 2px</Location>
               <Size>756px, 98px</Size>
               <Style>
-                <BackColor>White</BackColor>
+                <BackColor>Transparent</BackColor>
                 <BorderColor>
                   <Bottom>Black</Bottom>
                   <Default>Black</Default>
@@ -4376,56 +4590,56 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Right>1px</Right>
                   <Top>1px</Top>
                 </BorderWidth>
-                <Color>Black</Color>
                 <Font>
                   <Name>Arial</Name>
+                  <Size>8px</Size>
                   <Style>Bold</Style>
                 </Font>
               </Style>
-              <StyleName>Normal</StyleName>
+              <StyleName>BoxedPanel</StyleName>
               <Items>
                 <Line Name="line1">
                   <Direction>Vertical</Direction>
-                  <Location>376px, 0px</Location>
-                  <Size>8px, 98px</Size>
+                  <Location>364px, 0px</Location>
+                  <Size>13px, 98px</Size>
+                  <Style>
+                    <BackColor>Transparent</BackColor>
+                    <BorderColor>
+                      <Bottom>White</Bottom>
+                      <Default>White</Default>
+                      <Left>White</Left>
+                      <Right>White</Right>
+                      <Top>White</Top>
+                    </BorderColor>
+                    <Color>Black</Color>
+                  </Style>
                   <StyleName>Normal</StyleName>
                 </Line>
-                <TextBox Name="textBox11">
-                  <Location>390px, 70px</Location>
-                  <Size>352px, 16px</Size>
-                  <Style>
-                    <Color>Black</Color>
-                    <Font>
-                      <Name>Microsoft YaHei UI</Name>
-                      <Size>9px</Size>
-                    </Font>
-                  </Style>
-                  <Value>=[@AddPoints]</Value>
-                </TextBox>
                 <TextBox Name="textBox19">
-                  <Location>76px, 44px</Location>
-                  <Size>294px, 34px</Size>
+                  <Location>74px, 48px</Location>
+                  <Size>286px, 32px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
-                  <Value>=IIf([ShippingAddress.AddressLine1]&lt;&gt;null,[ShippingAddress.AddressLine1]+'{br}','')#010;+IIf([ShippingAddress.AddressLine2]&lt;&gt;null,[ShippingAddress.AddressLine2]+'{br}','')#010;+IIf([ShippingAddress.AddressLine3]&lt;&gt;null,[ShippingAddress.AddressLine3]+'{br}','')#010;+IIf([ShippingAddress.City]&lt;&gt;null,[ShippingAddress.City] + ' ','')#010;+IIf([ShippingAddress.PostalCode]&lt;&gt;null,[ShippingAddress.PostalCode] + ' ','')#010;+IIf([ShippingAddress.State]&lt;&gt;null,[ShippingAddress.State] + ' ','')#010;+IIf([ShippingAddress.CountryID_Country_description]&lt;&gt;null,[ShippingAddress.CountryID_Country_description],'')</Value>
+                  <Value>=IIf([ShippingAddress.AddressLine1]&lt;&gt;null,[ShippingAddress.AddressLine1],'')#010;+IIf([ShippingAddress.AddressLine2]&lt;&gt;null,[ShippingAddress.AddressLine2] +'{br}','')#010;+IIf([ShippingAddress.AddressLine3]&lt;&gt;null,[ShippingAddress.AddressLine3]+'{br}','')#010;+IIf([ShippingAddress.City]&lt;&gt;null,[ShippingAddress.City] + ' ','')#010;+IIf([ShippingAddress.PostalCode]&lt;&gt;null,[ShippingAddress.PostalCode] + ' ','')#010;+IIf([ShippingAddress.State]&lt;&gt;null,[ShippingAddress.State] + ' ','')#010;+IIf([ShippingAddress.CountryID_Country_description]&lt;&gt;null,[ShippingAddress.CountryID_Country_description],'')</Value>
                 </TextBox>
                 <TextBox Name="textBox22">
-                  <Location>390px, 8px</Location>
-                  <Size>352px, 58px</Size>
+                  <Location>378px, 8px</Location>
+                  <Size>368px, 70px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
-                  <Value>='All Parts delivered shall comply with the following:#010;1) RoHS  Directive(Recast) under EU Directive 2011/65/EU#010;2) REACH Regulation(Registration, Evaluation, Authrization and Restriction of Chemicals EC 1907/2006).#010;3) Conflict-free minerals'</Value>
+                  <Value>='All Parts delivered shall comply with the following:#010;1) RoHS Directive (Recast) under EU Directive 2011 /65/EU#010;2) REACH Regulation (Registration, Evaluation, Authorization and Restriction of Chemicals EC 1907/2006). #010;3) Conflict-free minerals'</Value>
                 </TextBox>
                 <TextBox Name="textBox6">
                   <Location>8px, 8px</Location>
@@ -4443,20 +4657,21 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Company:</Value>
                 </TextBox>
                 <TextBox Name="textBox7">
-                  <Location>76px, 8px</Location>
-                  <Size>298px, 24px</Size>
+                  <Location>74px, 8px</Location>
+                  <Size>290px, 24px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
                   <Value>=[ShippingContact.FullName]</Value>
                 </TextBox>
                 <TextBox Name="textBox80">
-                  <Location>8px, 44px</Location>
-                  <Size>64px, 12px</Size>
+                  <Location>8px, 48px</Location>
+                  <Size>64px, 14px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4468,8 +4683,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Address:</Value>
                 </TextBox>
                 <TextBox Name="textBox81">
-                  <Location>8px, 78px</Location>
-                  <Size>64px, 12px</Size>
+                  <Location>8px, 80px</Location>
+                  <Size>64px, 14px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4482,7 +4697,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
                 <TextBox Name="textBox83">
                   <Location>8px, 32px</Location>
-                  <Size>64px, 12px</Size>
+                  <Size>64px, 14px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4494,166 +4709,30 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Attention:</Value>
                 </TextBox>
                 <TextBox Name="textBox85">
-                  <Location>76px, 32px</Location>
-                  <Size>298px, 12px</Size>
+                  <Location>74px, 32px</Location>
+                  <Size>290px, 14px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
                   <Value>=[ShippingContact.Attention]</Value>
                 </TextBox>
                 <TextBox Name="textBox86">
-                  <Location>76px, 78px</Location>
-                  <Size>272px, 12px</Size>
+                  <Location>74px, 80px</Location>
+                  <Size>264px, 14px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
                   <Value>=[ShippingContact.Phone1]</Value>
-                </TextBox>
-              </Items>
-            </Panel>
-            <Panel Name="panel2">
-              <GridSize>8px, 8px</GridSize>
-              <Location>18px, 188px</Location>
-              <Size>756px, 14px</Size>
-              <Style>
-                <BackColor>LightBlue</BackColor>
-                <BorderColor>
-                  <Bottom>Transparent</Bottom>
-                  <Default>Transparent</Default>
-                  <Left>Transparent</Left>
-                  <Right>Transparent</Right>
-                  <Top>Transparent</Top>
-                </BorderColor>
-                <BorderStyle>
-                  <Bottom>Solid</Bottom>
-                  <Default>Solid</Default>
-                  <Left>Solid</Left>
-                  <Right>Solid</Right>
-                  <Top>Solid</Top>
-                </BorderStyle>
-                <BorderWidth>
-                  <Bottom>1px</Bottom>
-                  <Default>1px</Default>
-                  <Left>1px</Left>
-                  <Right>1px</Right>
-                  <Top>1px</Top>
-                </BorderWidth>
-                <Color>Black</Color>
-              </Style>
-              <StyleName>BoxedPanel</StyleName>
-              <Items>
-                <TextBox Name="textBox28">
-                  <Location>176px, 0px</Location>
-                  <Size>220px, 12px</Size>
-                  <Style>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>Description</Value>
-                </TextBox>
-                <TextBox Name="textBox4">
-                  <Location>508px, 0px</Location>
-                  <Size>110px, 12px</Size>
-                  <Style>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>Cust. Part Number</Value>
-                </TextBox>
-                <TextBox Name="textBox45">
-                  <Location>24px, 0px</Location>
-                  <Size>152px, 12px</Size>
-                  <Style>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>MFG Part Number</Value>
-                </TextBox>
-                <TextBox Name="textBox46">
-                  <Location>396px, 0px</Location>
-                  <Size>112px, 12px</Size>
-                  <Style>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>Customer PO</Value>
-                </TextBox>
-                <TextBox Name="textBox47">
-                  <Location>688px, 0px</Location>
-                  <Size>65px, 12px</Size>
-                  <Style>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>Qty</Value>
-                </TextBox>
-                <TextBox Name="textBox48">
-                  <Location>618px, 0px</Location>
-                  <Size>70px, 12px</Size>
-                  <Style>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>COO</Value>
-                </TextBox>
-                <TextBox Name="textBox53">
-                  <Location>2px, 0px</Location>
-                  <Size>21px, 12px</Size>
-                  <Style>
-                    <BorderColor>
-                      <Right>Black</Right>
-                    </BorderColor>
-                    <BorderWidth>
-                      <Right>2px</Right>
-                    </BorderWidth>
-                    <Color>Black</Color>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Middle</VerticalAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>No.</Value>
                 </TextBox>
               </Items>
             </Panel>
@@ -4684,12 +4763,16 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Top>1px</Top>
                 </BorderWidth>
                 <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                </Font>
               </Style>
               <StyleName>BoxedPanel</StyleName>
               <Items>
                 <TextBox Name="textBox60">
-                  <Location>86px, 2px</Location>
-                  <Size>116px, 12px</Size>
+                  <Location>100px, 2px</Location>
+                  <Size>96px, 12px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4703,8 +4786,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
                 <TextBox Name="textBox62">
                   <CanGrow>True</CanGrow>
-                  <Location>420px, 2px</Location>
-                  <Size>78px, 12px</Size>
+                  <Location>404px, 2px</Location>
+                  <Size>88px, 12px</Size>
                   <Style>
                     <Color>Black</Color>
                     <Font>
@@ -4718,7 +4801,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
                 <TextBox Name="textBox63">
                   <Location>676px, 2px</Location>
-                  <Size>80px, 12px</Size>
+                  <Size>76px, 12px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4731,8 +4814,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>=[SOOrder.CuryID]</Value>
                 </TextBox>
                 <TextBox Name="textBox64">
-                  <Location>2px, 2px</Location>
-                  <Size>84px, 12px</Size>
+                  <Location>8px, 2px</Location>
+                  <Size>88px, 12px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4745,8 +4828,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>=[ShippingContact.Attention]</Value>
                 </TextBox>
                 <TextBox Name="textBox69">
-                  <Location>310px, 2px</Location>
-                  <Size>110px, 12px</Size>
+                  <Location>290px, 2px</Location>
+                  <Size>114px, 12px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4759,8 +4842,8 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>=[Customer.AcctReferenceNbr]</Value>
                 </TextBox>
                 <TextBox Name="textBox76">
-                  <Location>202px, 2px</Location>
-                  <Size>108px, 12px</Size>
+                  <Location>196px, 2px</Location>
+                  <Size>92px, 12px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
@@ -4770,11 +4853,11 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                     <VerticalAlign>Top</VerticalAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
-                  <Value>=[SOOrder.TermsID_Terms_descr]</Value>
+                  <Value>=[SOOrder.TermsID_description]</Value>
                 </TextBox>
                 <TextBox Name="textBox77">
-                  <Location>498px, 2px</Location>
-                  <Size>178px, 12px</Size>
+                  <Location>492px, 2px</Location>
+                  <Size>184px, 12px</Size>
                   <Style>
                     <Color>Black</Color>
                     <Font>
@@ -4817,14 +4900,18 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Top>1px</Top>
                 </BorderWidth>
                 <Color>Black</Color>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                  <Style>Bold</Style>
+                </Font>
               </Style>
               <StyleName>BoxedPanel</StyleName>
               <Items>
                 <TextBox Name="textBox17">
-                  <Location>2px, 2px</Location>
-                  <Size>84px, 16px</Size>
+                  <Location>8px, 4px</Location>
+                  <Size>88px, 10px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
@@ -4837,10 +4924,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Buyer </Value>
                 </TextBox>
                 <TextBox Name="textBox26">
-                  <Location>676px, 2px</Location>
-                  <Size>80px, 16px</Size>
+                  <Location>676px, 4px</Location>
+                  <Size>76px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
@@ -4853,10 +4939,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Currency</Value>
                 </TextBox>
                 <TextBox Name="textBox66">
-                  <Location>310px, 2px</Location>
-                  <Size>110px, 16px</Size>
+                  <Location>290px, 4px</Location>
+                  <Size>114px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
@@ -4869,10 +4954,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Vendor Code</Value>
                 </TextBox>
                 <TextBox Name="textBox67">
-                  <Location>86px, 2px</Location>
-                  <Size>116px, 16px</Size>
+                  <Location>100px, 4px</Location>
+                  <Size>96px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
@@ -4885,10 +4969,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Delivery Term</Value>
                 </TextBox>
                 <TextBox Name="textBox68">
-                  <Location>202px, 2px</Location>
-                  <Size>108px, 16px</Size>
+                  <Location>196px, 4px</Location>
+                  <Size>92px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
@@ -4901,10 +4984,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Payment Term</Value>
                 </TextBox>
                 <TextBox Name="textBox71">
-                  <Location>498px, 2px</Location>
-                  <Size>178px, 16px</Size>
+                  <Location>492px, 4px</Location>
+                  <Size>184px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
@@ -4917,10 +4999,9 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Value>Tracking Number</Value>
                 </TextBox>
                 <TextBox Name="textBox99">
-                  <Location>420px, 2px</Location>
-                  <Size>78px, 16px</Size>
+                  <Location>404px, 4px</Location>
+                  <Size>88px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
@@ -4936,7 +5017,7 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
             </Panel>
             <Panel Name="panel8">
               <GridSize>8px, 8px</GridSize>
-              <Location>18px, 142px</Location>
+              <Location>18px, 144px</Location>
               <Size>756px, 44px</Size>
               <Style>
                 <BorderColor>
@@ -4967,21 +5048,23 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Location>80px, 4px</Location>
                   <Size>674px, 38px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
+                    <TextAlign>Left</TextAlign>
                   </Style>
+                  <StyleName>Normal</StyleName>
                   <Value>=[SOShipment.NoteText]</Value>
                 </TextBox>
                 <TextBox Name="textBox74">
                   <Location>8px, 4px</Location>
-                  <Size>60px, 18px</Size>
+                  <Size>64px, 18px</Size>
                   <Style>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
+                      <Style>Bold</Style>
                     </Font>
                     <TextAlign>Left</TextAlign>
                   </Style>
@@ -4990,168 +5073,12 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                 </TextBox>
               </Items>
             </Panel>
-          </Items>
-        </Header>
-      </Headers>
-      <Footers>
-        <Footer Name="groupFooterSection1">
-          <GridSize>2px, 2px</GridSize>
-          <Height>1.95833in</Height>
-          <PrintAtBottom>True</PrintAtBottom>
-          <PrintOnEveryPage>True</PrintOnEveryPage>
-          <ProcessOrder>Always</ProcessOrder>
-          <ResetPageNumber>True</ResetPageNumber>
-          <Items>
-            <Panel Name="panel3">
-              <GridSize>8px, 8px</GridSize>
-              <Location>18px, 64px</Location>
-              <Size>520px, 108px</Size>
-              <Style>
-                <BorderColor>
-                  <Bottom>Black</Bottom>
-                  <Default>Black</Default>
-                  <Left>Black</Left>
-                  <Right>Black</Right>
-                  <Top>Black</Top>
-                </BorderColor>
-                <BorderStyle>
-                  <Bottom>Solid</Bottom>
-                  <Default>Solid</Default>
-                  <Left>Solid</Left>
-                  <Right>Solid</Right>
-                  <Top>Solid</Top>
-                </BorderStyle>
-                <BorderWidth>
-                  <Bottom>1px</Bottom>
-                  <Default>1px</Default>
-                  <Left>1px</Left>
-                  <Right>1px</Right>
-                  <Top>1px</Top>
-                </BorderWidth>
-              </Style>
-              <StyleName>Normal</StyleName>
-              <VisibleExpr>=([PageIndex]=[PageCount])</VisibleExpr>
-              <Items>
-                <TextBox Name="textBox5">
-                  <Location>6px, 14px</Location>
-                  <Size>504px, 66px</Size>
-                  <Style>
-                    <BackColor>White</BackColor>
-                    <BorderColor>
-                      <Bottom>Transparent</Bottom>
-                      <Default>Transparent</Default>
-                      <Left>Transparent</Left>
-                      <Right>Transparent</Right>
-                      <Top>Transparent</Top>
-                    </BorderColor>
-                    <BorderWidth>
-                      <Bottom>1px</Bottom>
-                      <Default>1px</Default>
-                      <Left>1px</Left>
-                      <Right>1px</Right>
-                    </BorderWidth>
-                    <Color>Black</Color>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                  </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>='We hereby certify that all materials in this shipment are in accordance with the requirements,specifications,and/or drawings listed on above listed purchase order(s).Test reports or any data of any tests performed by the manufacturer are on file(in the plant of the manufacturer) and will be made available upon request. Flexxon warrants that all new Products (other than software) sold will be free of all defects in material or workmanship and will perform in accordance with makers published specifications for a period of '+IIf([@month]='18','Eighteen(18)','Twelve(12)')+ ' months from the date of invoice.'</Value>
-                </TextBox>
-              </Items>
-            </Panel>
-            <Panel Name="panel4">
-              <GridSize>8px, 8px</GridSize>
-              <Location>554px, 64px</Location>
-              <Size>220px, 108px</Size>
-              <Style>
-                <BackColor>White</BackColor>
-                <BorderColor>
-                  <Bottom>Black</Bottom>
-                  <Default>Black</Default>
-                  <Left>Black</Left>
-                  <Right>Black</Right>
-                  <Top>Black</Top>
-                </BorderColor>
-                <BorderStyle>
-                  <Bottom>Solid</Bottom>
-                  <Default>Solid</Default>
-                  <Left>Solid</Left>
-                  <Right>Solid</Right>
-                  <Top>Solid</Top>
-                </BorderStyle>
-                <BorderWidth>
-                  <Bottom>1px</Bottom>
-                  <Default>1px</Default>
-                  <Left>1px</Left>
-                  <Right>1px</Right>
-                  <Top>1px</Top>
-                </BorderWidth>
-                <Color>White</Color>
-                <Font>
-                  <Name>Arial</Name>
-                  <Size>8px</Size>
-                </Font>
-              </Style>
-              <Items>
-                <Line Name="line2">
-                  <LineWidth>2px</LineWidth>
-                  <Location>8px, 60px</Location>
-                  <Size>202px, 4px</Size>
-                </Line>
-                <TextBox Name="textBox24">
-                  <Location>8px, 70px</Location>
-                  <Size>202px, 24px</Size>
-                  <Style>
-                    <Color>Black</Color>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                  <StyleName>Heading 1</StyleName>
-                  <Value>QUALITY ASSURANCE</Value>
-                </TextBox>
-              </Items>
-            </Panel>
-          </Items>
-        </Footer>
-      </Footers>
-    </Group>
-    <Group Name="groupLineSplit">
-      <Grouping>
-        <GroupExp>
-          <DataField>=[SOShipLineSplit.ShipmentNbr]</DataField>
-        </GroupExp>
-        <GroupExp>
-          <DataField>=[SOShipLineSplit.LineNbr]</DataField>
-        </GroupExp>
-        <GroupExp>
-          <DataField>=[SOShipLineSplit.SplitLineNbr]</DataField>
-        </GroupExp>
-      </Grouping>
-      <Headers>
-        <Header Name="groupHeaderSection2">
-          <Height>0in</Height>
-        </Header>
-      </Headers>
-      <Footers>
-        <Footer Name="groupFooterSection2">
-          <Height>0.21in</Height>
-          <Variables>
-            <ReportVariable>
-              <Name>LineNbr</Name>
-              <ValueExpr>=$LineNbr + 1</ValueExpr>
-            </ReportVariable>
-          </Variables>
-          <Items>
             <Panel Name="panel9">
-              <Location>18px, 0px</Location>
-              <Size>756px, 18px</Size>
+              <GridSize>8px, 8px</GridSize>
+              <Location>18px, 190px</Location>
+              <Size>756px, 14px</Size>
               <Style>
-                <BackColor>Transparent</BackColor>
+                <BackColor>LightBlue</BackColor>
                 <BorderColor>
                   <Bottom>Transparent</Bottom>
                   <Default>Transparent</Default>
@@ -5160,43 +5087,116 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                   <Top>Transparent</Top>
                 </BorderColor>
                 <BorderStyle>
-                  <Bottom>Inset</Bottom>
-                  <Default>Inset</Default>
-                  <Left>Inset</Left>
-                  <Right>Inset</Right>
+                  <Bottom>Solid</Bottom>
+                  <Default>Solid</Default>
+                  <Left>Solid</Left>
+                  <Right>Solid</Right>
+                  <Top>Solid</Top>
                 </BorderStyle>
                 <BorderWidth>
                   <Bottom>1px</Bottom>
                   <Default>1px</Default>
                   <Left>1px</Left>
                   <Right>1px</Right>
-                  <Top>0px</Top>
+                  <Top>1px</Top>
                 </BorderWidth>
-                <Color>Transparent</Color>
+                <Color>Black</Color>
               </Style>
               <StyleName>BoxedPanel</StyleName>
               <Items>
-                <TextBox Name="textBox1">
-                  <CanGrow>True</CanGrow>
-                  <CanShrink>True</CanShrink>
-                  <Format>=[SOLine.CuryLineAmt.Format]</Format>
-                  <Location>176px, 2px</Location>
-                  <Size>220px, 15px</Size>
+                <TextBox Name="textBox11">
+                  <Location>516px, 0px</Location>
+                  <Size>35px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
+                      <Style>Bold</Style>
+                    </Font>
+                    <TextAlign>Center</TextAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>COO</Value>
+                </TextBox>
+                <TextBox Name="textBox13">
+                  <Location>334px, 0px</Location>
+                  <Size>74px, 12px</Size>
+                  <Style>
+                    <Font>
+                      <Name>Arial</Name>
+                      <Size>9px</Size>
+                      <Style>Bold</Style>
+                    </Font>
+                    <TextAlign>Center</TextAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>Customer PO</Value>
+                </TextBox>
+                <TextBox Name="textBox14">
+                  <Location>408px, 0px</Location>
+                  <Size>108px, 12px</Size>
+                  <Style>
+                    <Font>
+                      <Name>Arial</Name>
+                      <Size>9px</Size>
+                      <Style>Bold</Style>
                     </Font>
                     <TextAlign>Center</TextAlign>
                     <VerticalAlign>Top</VerticalAlign>
                   </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>=[NonStockItem.Descr]#010;/*[SOLine.TranDesc]*/</Value>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>Cust. Part Number</Value>
                 </TextBox>
-                <TextBox Name="textBox2">
-                  <Location>2px, 2px</Location>
-                  <Size>21px, 15px</Size>
+                <TextBox Name="textBox15">
+                  <Location>150px, 0px</Location>
+                  <Size>184px, 12px</Size>
+                  <Style>
+                    <Font>
+                      <Name>Arial</Name>
+                      <Size>9px</Size>
+                      <Style>Bold</Style>
+                    </Font>
+                    <TextAlign>Center</TextAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>Description</Value>
+                </TextBox>
+                <TextBox Name="textBox16">
+                  <Location>20px, 0px</Location>
+                  <Size>130px, 12px</Size>
+                  <Style>
+                    <Font>
+                      <Name>Arial</Name>
+                      <Size>9px</Size>
+                      <Style>Bold</Style>
+                    </Font>
+                    <TextAlign>Center</TextAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>MFG Part Number</Value>
+                </TextBox>
+                <TextBox Name="textBox18">
+                  <Location>656px, 0px</Location>
+                  <Size>100px, 10px</Size>
+                  <Style>
+                    <Font>
+                      <Name>Arial</Name>
+                      <Size>9px</Size>
+                      <Style>Bold</Style>
+                    </Font>
+                    <TextAlign>Center</TextAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>Lot No.</Value>
+                </TextBox>
+                <TextBox Name="textBox20">
+                  <Location>0px, 0px</Location>
+                  <Size>20px, 12px</Size>
                   <Style>
                     <BorderColor>
                       <Right>Black</Right>
@@ -5208,102 +5208,185 @@ SL29VWFOtLEZdmibeq9VI7WFhjHeTzEs0Vu6sdKUylLwZv+jWAfgObq/2dLiGEULgTQpYGOl1jZ79abS
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
+                      <Style>Bold</Style>
                     </Font>
                     <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Top</VerticalAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
                   </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>=$LineNbr</Value>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>No.</Value>
                 </TextBox>
-                <TextBox Name="textBox23">
-                  <CanGrow>True</CanGrow>
-                  <CanShrink>True</CanShrink>
-                  <Location>618px, 2px</Location>
-                  <Size>70px, 15px</Size>
+                <TextBox Name="textBox25">
+                  <Location>551px, 0px</Location>
+                  <Size>55px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
+                      <Style>Bold</Style>
                     </Font>
                     <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Top</VerticalAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
                   </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>=[SOShipLineSplit.UsrCOO]</Value>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>Qty</Value>
                 </TextBox>
-                <TextBox Name="textBox29">
-                  <CanGrow>True</CanGrow>
-                  <CanShrink>True</CanShrink>
-                  <Format>=[SOShipLine.ShippedQty.Format]</Format>
-                  <Location>396px, 2px</Location>
-                  <Size>112px, 15px</Size>
+                <TextBox Name="textBox33">
+                  <Location>606px, 0px</Location>
+                  <Size>50px, 12px</Size>
                   <Style>
-                    <Color>Black</Color>
                     <Font>
                       <Name>Arial</Name>
                       <Size>9px</Size>
+                      <Style>Bold</Style>
                     </Font>
                     <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Top</VerticalAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
                   </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>=[SOOrder.CustomerOrderNbr]</Value>
-                </TextBox>
-                <TextBox Name="textBox3">
-                  <CanGrow>True</CanGrow>
-                  <CanShrink>True</CanShrink>
-                  <Format>N0</Format>
-                  <Location>688px, 2px</Location>
-                  <Size>65px, 15px</Size>
-                  <Style>
-                    <Color>Black</Color>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Top</VerticalAlign>
-                  </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>=[SOShipLineSplit.Qty]#010;/*IIf([SOShipLine.LotSerialNbr] = Null, Sum([SOShipLineSplit.Qty]), [SOShipLineSplit.Qty])*/</Value>
-                </TextBox>
-                <TextBox Name="textBox30">
-                  <CanGrow>True</CanGrow>
-                  <CanShrink>True</CanShrink>
-                  <Location>24px, 2px</Location>
-                  <Size>152px, 15px</Size>
-                  <Style>
-                    <Color>Black</Color>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Top</VerticalAlign>
-                  </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>=[SOLine.UsrBrand] + ' ' + [NonStockItem.InventoryCD]</Value>
-                </TextBox>
-                <TextBox Name="textBox31">
-                  <CanGrow>True</CanGrow>
-                  <CanShrink>True</CanShrink>
-                  <Location>508px, 2px</Location>
-                  <Size>110px, 15px</Size>
-                  <Style>
-                    <Color>Black</Color>
-                    <Font>
-                      <Name>Arial</Name>
-                      <Size>9px</Size>
-                    </Font>
-                    <TextAlign>Center</TextAlign>
-                    <VerticalAlign>Top</VerticalAlign>
-                  </Style>
-                  <StyleName>Normal</StyleName>
-                  <Value>=[SOLine.AlternateID]</Value>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>Date Code</Value>
                 </TextBox>
               </Items>
             </Panel>
+          </Items>
+        </Header>
+      </Headers>
+      <Footers>
+        <Footer Name="groupFooterSection1">
+          <GridSize>2px, 2px</GridSize>
+          <Height>2in</Height>
+          <PrintAtBottom>True</PrintAtBottom>
+          <PrintEmpty>False</PrintEmpty>
+          <PrintOnEveryPage>True</PrintOnEveryPage>
+          <ProcessOrder>Always</ProcessOrder>
+          <Items>
+            <Line Name="line2">
+              <LineWidth>2px</LineWidth>
+              <Location>18px, 170px</Location>
+              <Size>756px, 4px</Size>
+            </Line>
+            <Panel Name="panel10">
+              <GridSize>8px, 8px</GridSize>
+              <Location>18px, 42px</Location>
+              <Size>520px, 108px</Size>
+              <StyleName>BoxedPanel</StyleName>
+              <Items>
+                <TextBox Name="textBox23">
+                  <Location>6px, 24px</Location>
+                  <Size>504px, 66px</Size>
+                  <Style>
+                    <Font>
+                      <Name>Arial</Name>
+                      <Size>9px</Size>
+                    </Font>
+                  </Style>
+                  <StyleName>Normal</StyleName>
+                  <Value>='We hereby certify that all materials in this shipment are in accordance with the requirements,specifications,and/or drawings listed on above listed purchase order(s).Test reports or any data of any tests performed by the manufacturer are on file(in the plant of the manufacturer) and will be made available upon request. Flexxon warrants that all new Products (other than software) sold will be free of all defects in material or workmanship and will perform in accordance with makers published specifications for a period of '+IIf([@month]='18','Eighteen(18)','Twelve(12)')+' months from the date of invoice.'</Value>
+                </TextBox>
+              </Items>
+            </Panel>
+            <Panel Name="panel6">
+              <GridSize>8px, 8px</GridSize>
+              <Location>554px, 42px</Location>
+              <Size>220px, 108px</Size>
+              <Style>
+                <BorderColor>
+                  <Bottom>Black</Bottom>
+                  <Default>Black</Default>
+                  <Left>Black</Left>
+                  <Right>Black</Right>
+                  <Top>Black</Top>
+                </BorderColor>
+                <BorderStyle>
+                  <Bottom>Solid</Bottom>
+                  <Default>Solid</Default>
+                  <Left>Solid</Left>
+                  <Right>Solid</Right>
+                  <Top>Solid</Top>
+                </BorderStyle>
+                <BorderWidth>
+                  <Bottom>1px</Bottom>
+                  <Default>1px</Default>
+                  <Left>1px</Left>
+                  <Right>1px</Right>
+                  <Top>1px</Top>
+                </BorderWidth>
+              </Style>
+              <Items>
+                <Line Name="line4">
+                  <LineWidth>2px</LineWidth>
+                  <Location>8px, 60px</Location>
+                  <Size>202px, 4px</Size>
+                </Line>
+                <TextBox Name="textBox3">
+                  <Location>8px, 70px</Location>
+                  <Size>202px, 24px</Size>
+                  <Style>
+                    <Font>
+                      <Name>Arial</Name>
+                      <Size>9px</Size>
+                      <Style>Bold</Style>
+                    </Font>
+                    <TextAlign>Center</TextAlign>
+                    <VerticalAlign>Middle</VerticalAlign>
+                  </Style>
+                  <StyleName>Heading 1</StyleName>
+                  <Value>QUALITY ASSURANCE</Value>
+                </TextBox>
+              </Items>
+            </Panel>
+            <TextBox Name="textBox24">
+              <Location>688px, 178px</Location>
+              <Size>20px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                </Font>
+                <TextAlign>Right</TextAlign>
+              </Style>
+              <StyleName>Report Params</StyleName>
+              <Value>='of ' + [PageCount]</Value>
+            </TextBox>
+            <TextBox Name="textBox29">
+              <Location>232px, 178px</Location>
+              <Size>320px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>9px</Size>
+                </Font>
+                <TextAlign>Center</TextAlign>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+              <StyleName>Heading 1</StyleName>
+              <Value>This is a Computerised Generated Document, Signature is not required.</Value>
+            </TextBox>
+            <TextBox Name="textBox30">
+              <Location>658px, 178px</Location>
+              <Size>22px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                </Font>
+              </Style>
+              <StyleName>Report Params</StyleName>
+              <Value>Page:</Value>
+            </TextBox>
+            <TextBox Name="textBox5">
+              <Location>680px, 178px</Location>
+              <ProcessOrder>WhilePrint</ProcessOrder>
+              <Size>8px, 12px</Size>
+              <Style>
+                <Font>
+                  <Name>Arial</Name>
+                  <Size>8px</Size>
+                </Font>
+              </Style>
+              <StyleName>Report Params</StyleName>
+              <Value>=[PageIndex]</Value>
+            </TextBox>
           </Items>
         </Footer>
       </Footers>

@@ -33,7 +33,9 @@
   <ItemGroup>
     <Reference Include="PX.Common">
       <HintPath>..\..\..\..\Bin\PX.Common.dll</HintPath>
-      <Private>False</Private>
+    </Reference>
+    <Reference Include="PX.Common.Std">
+      <HintPath>..\..\..\..\Bin\PX.Common.Std.dll</HintPath>
     </Reference>
     <Reference Include="PX.CS.Contracts">
       <HintPath>..\..\..\..\Bin\PX.CS.Contracts.dll</HintPath>
@@ -111,7 +113,6 @@
     <Compile Include="Descriptor\9FLXAttribute.cs" />
     <Compile Include="Descriptor\FLXAttribute.cs" />
     <Compile Include="Descriptor\FLXMessages.cs" />
-    <Compile Include="Descriptor\LSSOLine2POLine.cs" />
     <Compile Include="Graph\FLXCommissionEntry.cs" />
     <Compile Include="Graph\FLXCreateShipment.cs" />
     <Compile Include="Graph\FLXGenBillAPInvoice.cs" />
