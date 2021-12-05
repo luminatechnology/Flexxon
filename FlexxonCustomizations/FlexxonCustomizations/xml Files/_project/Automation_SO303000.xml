@@ -1,0 +1,19 @@
+﻿<Automation screen="SO303000">
+    <Actions ScreenID="SO303000">
+        <Action IsActive="True" ActionName="printProformaInvoice" ActionType="R" DestinationScreenID="IN643000" DisplayName="Print Proforma Invoice" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+            <Param IsActive="True" Value="[DocType]" ActionName="printProformaInvoice" Name="DocType" FromSchema="False" />
+            <Param IsActive="True" Value="[RefNbr]" ActionName="printProformaInvoice" Name="RefNbr" FromSchema="False" />
+            <StateActionFields />
+            <StateActionParams />
+        </Action>
+        <Action IsActive="True" ActionName="printTaxInvoice" ActionType="R" DestinationScreenID="SO643045" DisplayName="Print Tax Invoice" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+            <Param IsActive="True" Value="[DocType]" ActionName="printTaxInvoice" Name="DocType" FromSchema="False" />
+            <Param IsActive="True" Value="[RefNbr]" ActionName="printTaxInvoice" Name="RefNbr" FromSchema="False" />
+            <StateActionFields />
+            <StateActionParams />
+        </Action>
+        <Category IsActive="True" DisplayName="Actions" CategoryName="Action" LineNbr="0" />
+        <Category IsActive="True" DisplayName="Inquiries" CategoryName="Inquiry" LineNbr="1" />
+        <Category IsActive="True" DisplayName="Reports" CategoryName="Report" LineNbr="2" />
+    </Actions>
+</Automation>

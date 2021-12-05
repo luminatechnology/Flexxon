@@ -20,12 +20,29 @@ namespace PX.Objects.PO
 {
     public class POCreate_Extension : PXGraphExtension<POCreate>
     {
+        #region Delegate Methods
+        [PXOverride]
+        public virtual IEnumerable<Type> GetFixedDemandFieldScope(Func<IEnumerable<Type>> baseFunc)
+        {
+            foreach (Type r in baseFunc())
+            {
+                yield return r;
+            }
+
+            yield return typeof(SOLineExt.usrEndCustomerID);
+            yield return typeof(SOLineExt.usrProjectNbr);
+            yield return typeof(SOLineExt.usrNonStockItem);
+            yield return typeof(SOLineExt.usrBrand);
+            yield return typeof(SOOrder.orderDate);
+            yield return typeof(SOLine.shipDate);
+        }
+        #endregion
+
         [PXMergeAttributes(Method = MergeMethod.Merge)]
         [PXUIField(DisplayName = "SO Order Date", Visibility = PXUIVisibility.SelectorVisible)]
-        protected void _(Events.CacheAttached<PX.Objects.SO.SOOrder.orderDate> e)
-        {
-        }
+        protected void _(Events.CacheAttached<PX.Objects.SO.SOOrder.orderDate> e) { }
 
+        #region Event Handlers
         protected void _(Events.RowSelected<POCreate.POCreateFilter> e)
         {
             POCreate.POCreateFilter filter = this.Base.Filter.Current;
@@ -37,38 +54,36 @@ namespace PX.Objects.PO
             PXUIFieldAttribute.SetVisible<POCreate.POCreateFilter.orderTotal>(e.Cache, (object)null, filter.VendorID.HasValue);
         }
 
-        protected void _(
-          Events.FieldSelecting<POFixedDemandExt.usrOnHand> e)
+        protected void _(Events.FieldSelecting<POFixedDemandExt.usrOnHand> e)
         {
             if (!(e.Row is POFixedDemand row))
                 return;
             e.ReturnValue = (object)POCreate_Extension.GetAllWHQty((PXGraph)this.Base, typeof(Aggregate<Sum<PX.Objects.IN.INSiteStatus.qtyOnHand>>), INQtyType.OnHand, row.InventoryID, row.SubItemID);
         }
 
-        protected void _(
-          Events.FieldSelecting<POFixedDemandExt.usrAvailability> e)
+        protected void _(Events.FieldSelecting<POFixedDemandExt.usrAvailability> e)
         {
             if (!(e.Row is POFixedDemand row))
                 return;
             e.ReturnValue = (object)POCreate_Extension.GetAllWHQty((PXGraph)this.Base, typeof(Aggregate<Sum<PX.Objects.IN.INSiteStatus.qtyAvail>>), INQtyType.Available, row.InventoryID, row.SubItemID);
         }
 
-        protected void _(
-          Events.FieldSelecting<POFixedDemandExt.usrQtyAvailShipping> e)
+        protected void _(Events.FieldSelecting<POFixedDemandExt.usrQtyAvailShipping> e)
         {
             if (!(e.Row is POFixedDemand row))
                 return;
             e.ReturnValue = (object)POCreate_Extension.GetAllWHQty((PXGraph)this.Base, typeof(Aggregate<Sum<PX.Objects.IN.INSiteStatus.qtyHardAvail>>), INQtyType.AvailShipping, row.InventoryID, row.SubItemID);
         }
 
-        protected void _(
-          Events.FieldSelecting<POFixedDemandExt.usrQtyAvailPlus> e)
+        protected void _(Events.FieldSelecting<POFixedDemandExt.usrQtyAvailPlus> e)
         {
             if (!(e.Row is POFixedDemand row))
                 return;
             e.ReturnValue = (object)POCreate_Extension.GetAllWHQty((PXGraph)this.Base, typeof(Aggregate<Sum<PX.Objects.IN.INSiteStatus.qtyAvail, Sum<PX.Objects.IN.INSiteStatus.qtyPOFixedOrders, Sum<PX.Objects.IN.INSiteStatus.qtyPOFixedReceipts, Sum<PX.Objects.IN.INSiteStatus.qtySOFixed>>>>>), INQtyType.AvailPlus, row.InventoryID, row.SubItemID);
         }
+        #endregion
 
+        #region Static Methods
         public static void CreateProc2(System.Collections.Generic.List<POFixedDemand> list, DateTime? orderDate, bool extSort)
         {
             PXRedirectRequiredException poOrders2 = POCreate_Extension.CreatePOOrders2(list, orderDate, extSort);
@@ -635,5 +650,6 @@ namespace PX.Objects.PO
             }
             return nullable1;
         }
+        #endregion
     }
 }

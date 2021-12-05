@@ -1,0 +1,121 @@
+﻿<Actions ScreenID="SO302000">
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="initializeState" ActionType="G" After="Last" BatchMode="False" WindowMode="S" HideCondition="True" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="releaseFromHold" ActionType="G" After="initializeState" BatchMode="False" MenuFolderType="Processing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="putOnHold" ActionType="G" After="confirmShipmentAction" AfterInMenu="releaseFromHold" BatchMode="False" MenuFolderType="Processing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="confirmShipmentAction" ActionType="G" After="putOnHold" DisableCondition="ab7d52e4-6f3c-9405-8c2d-b1ce9ad829b0" MassProcessingScreen="SO503000" BatchMode="True" MenuFolderType="Processing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="createInvoice" ActionType="G" After="confirmShipmentAction" DisableCondition="2a1678f0-0540-ff87-6702-940dab033736" MassProcessingScreen="SO503000" BatchMode="True" MenuFolderType="Processing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="createDropshipInvoice" ActionType="G" After="createInvoice" MassProcessingScreen="SO503000" BatchMode="True" MenuFolderType="Processing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="correctShipmentAction" ActionType="G" After="createDropshipInvoice" DisableCondition="bb5fe564-b749-0c41-9c03-834a15d85317" BatchMode="False" MenuFolderType="Processing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="generatePOReceipt" ActionType="G" After="correctShipmentAction" DisableCondition="bb5fe564-b749-0c41-9c03-834a15d85317" BatchMode="False" MenuFolderType="Intercompany Category" WindowMode="S" HideCondition="b1910c9e-6d1d-2573-13f7-ec5ddb636f24" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="printPickListAction" ActionType="G" After="generatePOReceipt" MassProcessingScreen="SO503000" BatchMode="True" MenuFolderType="Printing and Emailing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="printShipmentConfirmation" ActionType="G" After="printPickListAction" MassProcessingScreen="SO503000" BatchMode="True" MenuFolderType="Printing and Emailing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields>
+            <StateActionField IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" FieldName="ConfirmationPrinted" ActionName="printShipmentConfirmation" IsFromScheme="True" Value="True" StateActionFieldLineNbr="0" />
+        </StateActionFields>
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="emailShipment" ActionType="G" After="printShipmentConfirmation" MassProcessingScreen="SO503000" BatchMode="False" MenuFolderType="Printing and Emailing Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="printLabels" ActionType="G" After="emailShipment" MassProcessingScreen="SO503000" BatchMode="True" MenuFolderType="Labels Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="getReturnLabelsAction" ActionType="G" After="printLabels" BatchMode="False" MenuFolderType="Labels Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="UpdateIN" ActionType="G" After="getReturnLabelsAction" MassProcessingScreen="SO503000" BatchMode="True" MenuFolderType="Other Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="cancelReturn" ActionType="G" After="UpdateIN" BatchMode="False" MenuFolderType="Other Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" ActionName="validateAddresses" ActionType="G" After="cancelReturn" BatchMode="False" MenuFolderType="Other Category" WindowMode="S" ExposedToMobile="False">
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printPackingList" ActionType="R" AfterInMenu="Report" DestinationScreenID="SO643030" DisplayName="Print Packing List" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printPackingList" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printDeliveryOrder" ActionType="R" AfterInMenu="printPackingList2" DestinationScreenID="SO643040" DisplayName="Print Delivery Order" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printDeliveryOrder" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printCOC" ActionType="R" AfterInMenu="printDeliveryOrder" DestinationScreenID="SO643050" DisplayName="Print COC" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printCOC" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printCOC2" ActionType="R" AfterInMenu="printCOC" DestinationScreenID="SO643055" DisplayName="Print COC II" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printCOC2" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printPIWithSOPrice" ActionType="R" AfterInMenu="printInnerLabel" DestinationScreenID="S0643020" DisplayName="Print PI With SO Price" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printPIWithSOPrice" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printPackingList2" ActionType="R" AfterInMenu="printPackingList" DestinationScreenID="SO643031" DisplayName="Print Packing List II" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printPackingList2" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printOuterLabel" ActionType="R" AfterInMenu="printCOC2" DestinationScreenID="SO644011" DisplayName="Print Outer Label" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printOuterLabel" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printInnerLabel" ActionType="R" AfterInMenu="printOuterLabel" DestinationScreenID="SO644020" DisplayName="Print Inner Label" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printInnerLabel" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Action IsActive="True" ActionName="printPIWithPOCost" ActionType="R" DestinationScreenID="SO643025" DisplayName="Print PI With PO Cost" MenuFolderType="Report" WindowMode="S" MapEnableRights="1" ExposedToMobile="False">
+        <Param IsActive="True" Value="[ShipmentNbr]" ActionName="printPIWithPOCost" Name="ShipmentNbr" FromSchema="False" />
+        <StateActionFields />
+        <StateActionParams />
+    </Action>
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Actions" CategoryName="Action" LineNbr="0" />
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Inquiries" CategoryName="Inquiry" After="Action" LineNbr="1" />
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Reports" CategoryName="Report" After="Inquiry" LineNbr="2" />
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Processing" CategoryName="Processing Category" After="Report" LineNbr="3" />
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Intercompany" CategoryName="Intercompany Category" After="Processing Category" LineNbr="4" />
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Printing and Emailing" CategoryName="Printing and Emailing Category" After="Intercompany Category" LineNbr="5" />
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Labels" CategoryName="Labels Category" After="Printing and Emailing Category" LineNbr="6" />
+    <Category IsActive="True" IsSystem="True" IsCustomized="False" IsCustomizedRecursive="False" DisplayName="Other" CategoryName="Other Category" After="Labels Category" LineNbr="7" />
+</Actions>

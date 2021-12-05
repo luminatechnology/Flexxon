@@ -138,6 +138,12 @@ namespace PX.Objects.SO
                                                            .View.Select(Base, row.CustomerID, extension.UsrEndCustomerID, extension.UsrNonStockItem).RowCast<FLXProject>().ToList<FLXProject>();
            
             e.NewValue = list.Count == 1 ? list[0].ProjectNbr : null;
+
+            ///<remarks> The following modification is added due to customizing the new standard that affects SO upgrades using drop-ship logic. </remarks>
+            if (e.NewValue == null && extension.UsrNonStockItem != null && extension.UsrEndCustomerID != null)
+            {
+                Base.Transactions.SetValueExt<SOLine.pOCreate>(row, false);
+            }
         }
 
         protected void _(Events.FieldUpdated<SOLineExt.usrNonStockItem> e)

@@ -4003,7 +4003,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                   <Size>335px, 12px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4033,7 +4033,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                   <Size>335px, 12px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4157,7 +4157,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                   <Size>335px, 12px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>arial unicode ms</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4179,7 +4179,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                     <VerticalAlign>Middle</VerticalAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
-                  <Value>=[ShippingContact.Attention]</Value>
+                  <Value>=[ShipContact.Attention]</Value>
                 </TextBox>
                 <TextBox Name="textBox54">
                   <Location>446px, 70px</Location>
@@ -4214,7 +4214,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                   <Size>335px, 34px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>Arial</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>
@@ -4283,7 +4283,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                   <Size>335px, 22px</Size>
                   <Style>
                     <Font>
-                      <Name>Microsoft YaHei UI</Name>
+                      <Name>arial unicode ms</Name>
                       <Size>9px</Size>
                     </Font>
                     <TextAlign>Left</TextAlign>

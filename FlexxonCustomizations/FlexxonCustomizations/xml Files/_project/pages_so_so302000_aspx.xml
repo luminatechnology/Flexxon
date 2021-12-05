@@ -35,6 +35,7 @@
                     <Prop Key="ID" Value="CstPXTextEdit3" />
                 </PXTextEdit>
             </AddItem>
+            <PXLayoutRule OriginalIndex="22" />
         </Children>
     </PXFormView>
     <PXNumberEdit DataField="PackageCount" ParentId="phF_form_PXNumberEdit3" TypeFullName="PX.Web.UI.PXNumberEdit">
