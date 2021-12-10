@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report Name="report1">
+<Report version="" Name="report1">
   <ExportFileName>=Format( 'DO {0}', [SOShipment.ShipmentNbr])</ExportFileName>
   <Filters>
     <FilterExp>
@@ -28,10 +28,12 @@
   <LayoutUnit>Inch</LayoutUnit>
   <MailSettings>
     <ActivitySource>SOShipment.NoteID</ActivitySource>
+    <Bcc></Bcc>
     <Body>='Dear Customer,#010;#010;This is an automatic email to notify you that Order # '+[SOShipment.ShipmentNbr]+' has been shipped with Shipment # '+[SOShipment.ShipmentNbr]+'. You can find a copy of the shipment confirmation attached to this email.#010;#010;Track your shipment at [Tracking Link]#010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
+    <Cc></Cc>
+    <Format></Format>
     <ParentSource>Customer.NoteID</ParentSource>
     <Subject>=[CompanyContact.FullName]+' Shipment # '+[SOShipment.ShipmentNbr]+' has been shipped.'</Subject>
-    <TemplateID></TemplateID>
     <To>=IsNull([BillingContact.EMail],'')</To>
   </MailSettings>
   <PageSettings>
@@ -4106,6 +4108,7 @@
       <FullName>PX.Objects.IN.INItemCost</FullName>
     </ReportTable>
   </Tables>
+  <Version></Version>
   <ViewerFields>
     <ViewerField Name="SOShipment.ShipmentNbr"></ViewerField>
     <ViewerField Name="SOShipment.ShipmentType"></ViewerField>
@@ -4144,12 +4147,10 @@
       <Height>0px</Height>
     </PageHeader>
     <Detail Name="detailSection1">
-      <GridSize>2px, 2px</GridSize>
       <Height>0in</Height>
       <Visible>False</Visible>
     </Detail>
     <PageFooter Name="pageFooterSection1">
-      <GridSize>4px, 4px</GridSize>
       <Height>0px</Height>
       <Visible>False</Visible>
       <Items>
@@ -4178,7 +4179,6 @@
           <ProcessOrder>Always</ProcessOrder>
           <Items>
             <Panel Name="panel1">
-              <GridSize>8px, 8px</GridSize>
               <Location>18px, 202px</Location>
               <Size>756px, 20px</Size>
               <Style>
@@ -4249,8 +4249,8 @@
                   <Value>Payment Term</Value>
                 </TextBox>
                 <TextBox Name="textBox71">
-                  <Location>448px, 2px</Location>
-                  <Size>230px, 16px</Size>
+                  <Location>478px, 2px</Location>
+                  <Size>200px, 16px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
                     <VerticalAlign>Middle</VerticalAlign>
@@ -4260,7 +4260,7 @@
                 </TextBox>
                 <TextBox Name="textBox99">
                   <Location>348px, 2px</Location>
-                  <Size>100px, 16px</Size>
+                  <Size>130px, 16px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
                     <VerticalAlign>Middle</VerticalAlign>
@@ -4271,7 +4271,6 @@
               </Items>
             </Panel>
             <Panel Name="panel10">
-              <GridSize>8px, 8px</GridSize>
               <Location>18px, 244px</Location>
               <Size>756px, 44px</Size>
               <Style>
@@ -4314,7 +4313,6 @@
               </Items>
             </Panel>
             <Panel Name="panel6">
-              <GridSize>8px, 8px</GridSize>
               <Location>18px, 222px</Location>
               <Size>756px, 20px</Size>
               <Style>
@@ -4366,13 +4364,13 @@
                 </TextBox>
                 <TextBox Name="textBox70">
                   <Location>348px, 2px</Location>
-                  <Size>100px, 14px</Size>
+                  <Size>130px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
                     <VerticalAlign>Top</VerticalAlign>
                   </Style>
                   <StyleName>Normal</StyleName>
-                  <Value>=[SOShipment.OwnerID_EPEmployee_acctName]</Value>
+                  <Value>=[SOShipment.OwnerID_Owner_displayName]</Value>
                 </TextBox>
                 <TextBox Name="textBox72">
                   <Location>248px, 3px</Location>
@@ -4395,8 +4393,8 @@
                   <Value>=[Customer.TermsID_description]</Value>
                 </TextBox>
                 <TextBox Name="textBox75">
-                  <Location>448px, 2px</Location>
-                  <Size>230px, 14px</Size>
+                  <Location>478px, 2px</Location>
+                  <Size>200px, 14px</Size>
                   <Style>
                     <TextAlign>Center</TextAlign>
                     <VerticalAlign>Top</VerticalAlign>
@@ -4407,7 +4405,6 @@
               </Items>
             </Panel>
             <Panel Name="panel8">
-              <GridSize>8px, 8px</GridSize>
               <Location>18px, 100px</Location>
               <Size>756px, 98px</Size>
               <Style>
@@ -4564,7 +4561,6 @@
               </Items>
             </Panel>
             <Panel Name="panel9">
-              <GridSize>8px, 8px</GridSize>
               <Location>18px, 294px</Location>
               <Size>756px, 18px</Size>
               <Style>
@@ -4824,7 +4820,6 @@
           <ResetPageNumber>True</ResetPageNumber>
           <Items>
             <Panel Name="panel12">
-              <GridSize>8px, 8px</GridSize>
               <Location>568px, 36px</Location>
               <Size>208px, 94px</Size>
               <Style>
@@ -4891,7 +4886,6 @@
               </Items>
             </Panel>
             <Panel Name="panel2">
-              <GridSize>8px, 8px</GridSize>
               <Location>600px, 0px</Location>
               <Size>174px, 18px</Size>
               <Style>
@@ -4923,7 +4917,6 @@
               </Items>
             </Panel>
             <Panel Name="panel3">
-              <GridSize>8px, 8px</GridSize>
               <Location>10px, 4px</Location>
               <Size>484px, 126px</Size>
               <Style>
