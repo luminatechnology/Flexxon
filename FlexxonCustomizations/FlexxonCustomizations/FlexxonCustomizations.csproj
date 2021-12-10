@@ -135,6 +135,7 @@
     <Compile Include="Graph_Extension\OpportunityMaint.cs" />
     <Compile Include="Graph_Extension\POCreate.cs" />
     <Compile Include="Graph_Extension\POOrderEntry.cs" />
+    <Compile Include="Graph_Extension\POOrderEntry_Workflow.cs" />
     <Compile Include="Graph_Extension\POReceiptEntry.cs" />
     <Compile Include="Graph_Extension\QuoteMaint.cs" />
     <Compile Include="Graph_Extension\SOOrderEntry.cs" />
