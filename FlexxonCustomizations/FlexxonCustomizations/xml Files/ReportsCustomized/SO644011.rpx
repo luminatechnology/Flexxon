@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report Name="report1">
+<Report version="" Name="report1">
   <Filters>
     <FilterExp>
       <DataField>SOShipment.ShipmentNbr</DataField>
@@ -2354,6 +2354,7 @@
       <FullName>PX.Objects.SO.SOShipment</FullName>
     </ReportTable>
   </Tables>
+  <Version></Version>
   <ViewerFields>
     <ViewerField Name="SOPackageDetail.UsrCarton"></ViewerField>
     <ViewerField Name="SOShipment.ShipmentNbr"></ViewerField>
@@ -2534,7 +2535,7 @@
                 </TextBox>
                 <TextBox Name="textBox20">
                   <Location>73px, 184px</Location>
-                  <Size>104px, 16px</Size>
+                  <Size>119px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + [SOLine.AlternateID]</Value>
                 </TextBox>
