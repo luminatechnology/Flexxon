@@ -2354,7 +2354,6 @@
       <FullName>PX.Objects.SO.SOShipment</FullName>
     </ReportTable>
   </Tables>
-  <Version></Version>
   <ViewerFields>
     <ViewerField Name="SOPackageDetail.UsrCarton"></ViewerField>
     <ViewerField Name="SOShipment.ShipmentNbr"></ViewerField>
@@ -2428,7 +2427,7 @@
                     <TopMargin>0</TopMargin>
                   </BarcodeSettings>
                   <BarcodeType>Code128</BarcodeType>
-                  <Location>200px, 152px</Location>
+                  <Location>208px, 152px</Location>
                   <MimeType>image/bmp</MimeType>
                   <QRCodeSettings />
                   <Size>156px, 24px</Size>
@@ -2470,7 +2469,7 @@
                     <TopMargin>0</TopMargin>
                   </BarcodeSettings>
                   <BarcodeType>Code128</BarcodeType>
-                  <Location>200px, 248px</Location>
+                  <Location>208px, 248px</Location>
                   <MimeType>image/bmp</MimeType>
                   <QRCodeSettings />
                   <Size>156px, 24px</Size>
@@ -2517,37 +2516,37 @@
                 </PictureBox>
                 <TextBox Name="textBox17">
                   <Location>8px, 64px</Location>
-                  <Size>65px, 16px</Size>
+                  <Size>55px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>MFG</Value>
                 </TextBox>
                 <TextBox Name="textBox18">
-                  <Location>250px, 232px</Location>
+                  <Location>258px, 232px</Location>
                   <Size>102px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + [SOPackageDetail.UsrDateCode]</Value>
                 </TextBox>
                 <TextBox Name="textBox19">
                   <Location>8px, 184px</Location>
-                  <Size>65px, 16px</Size>
+                  <Size>55px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>CUST P/N</Value>
                 </TextBox>
                 <TextBox Name="textBox20">
-                  <Location>73px, 184px</Location>
+                  <Location>63px, 184px</Location>
                   <Size>119px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + [SOLine.AlternateID]</Value>
                 </TextBox>
                 <TextBox Name="textBox21">
-                  <Location>200px, 136px</Location>
+                  <Location>208px, 136px</Location>
                   <Size>50px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>QTY</Value>
                 </TextBox>
                 <TextBox Name="textBox22">
                   <Format>N0</Format>
-                  <Location>250px, 136px</Location>
+                  <Location>258px, 136px</Location>
                   <Size>102px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + [SOPackageDetail.Qty]</Value>
@@ -2588,36 +2587,36 @@
                 </TextBox>
                 <TextBox Name="textBox27">
                   <Location>8px, 80px</Location>
-                  <Size>65px, 16px</Size>
+                  <Size>55px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>MFG P/N</Value>
                 </TextBox>
                 <TextBox Name="textBox28">
-                  <Location>73px, 64px</Location>
+                  <Location>63px, 64px</Location>
                   <Size>182px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + [SOLine.UsrBrand]</Value>
                 </TextBox>
                 <TextBox Name="textBox29">
-                  <Location>73px, 80px</Location>
+                  <Location>63px, 80px</Location>
                   <Size>182px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + [NonStockItem.InventoryCD]</Value>
                 </TextBox>
                 <TextBox Name="textBox30">
                   <Location>8px, 136px</Location>
-                  <Size>65px, 16px</Size>
+                  <Size>55px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>PO No.</Value>
                 </TextBox>
                 <TextBox Name="textBox31">
-                  <Location>73px, 136px</Location>
-                  <Size>104px, 16px</Size>
+                  <Location>66px, 136px</Location>
+                  <Size>135px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + IsNull([SOOrder.CustomerOrderNbr], [SOOrder.OrderNbr])</Value>
                 </TextBox>
                 <TextBox Name="textBox32">
-                  <Location>200px, 232px</Location>
+                  <Location>208px, 232px</Location>
                   <Size>50px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>D/C</Value>
