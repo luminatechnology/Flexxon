@@ -2534,7 +2534,7 @@
                 </TextBox>
                 <TextBox Name="textBox20">
                   <Location>63px, 184px</Location>
-                  <Size>119px, 16px</Size>
+                  <Size>297px, 16px</Size>
                   <StyleName>Heading 1</StyleName>
                   <Value>=': ' + [SOLine.AlternateID]</Value>
                 </TextBox>
