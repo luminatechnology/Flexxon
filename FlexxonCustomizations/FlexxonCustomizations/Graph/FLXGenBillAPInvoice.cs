@@ -1,44 +1,44 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: FlexxonCustomizations.Graph.FLXGenBillAPInvoice
-// Assembly: FlexxonCustomizations, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: A59FE566-6025-4730-961E-B73CC13C04A9
-// Assembly location: C:\Program Files\Acumatica ERP\Flexxon\Bin\FlexxonCustomizations.dll
-
-using FlexxonCustomizations.DAC;
+﻿using FlexxonCustomizations.DAC;
 using PX.Common;
 using PX.Data;
-using PX.Data.BQL;
-using PX.Data.BQL.Fluent;
 using PX.Objects.AP;
+using PX.Objects.AR;
 using PX.Objects.CR;
-using System;
 using System.Collections;
 
 namespace FlexxonCustomizations.Graph
 {
     public class FLXGenBillAPInvoice : PXGraph<FLXGenBillAPInvoice>
     {
-        public PXProcessing<FLXCommissionTran, Where<FLXCommissionTran.aPBillCreated, Equal<False>, Or<FLXCommissionTran.aPBillCreated, PX.Data.IsNull>>, OrderBy<Asc<FLXCommissionTran.salesRepID>>> ComisionTranProc;
+        #region Features
+        public PXCancel<FLXCommissionTran> Cancel;
+        public PXProcessing<FLXCommissionTran, Where<FLXCommissionTran.aPBillCreated, Equal<False>, 
+                                                     Or<FLXCommissionTran.aPBillCreated, IsNull>>, 
+                                               OrderBy<Asc<FLXCommissionTran.salesRepID>>> ComisionTranProc;
         public PXFilter<SmartPanelParm> Parm;
         public PXSetup<FLXSetup> Setup;
-        public PXAction<FLXCommissionTran> enterAPDate;
-        public PXAction<FLXCommissionTran> updateTranAPDate;
+        #endregion
 
+        #region Ctor
         public FLXGenBillAPInvoice()
         {
             FLXSetup setup = this.Setup.Current;
-            this.ComisionTranProc.SetProcessDelegate((PXProcessingBase<FLXCommissionTran>.ProcessListDelegate)(list => FLXGenBillAPInvoice.CreateAPBill(list, setup)));
-        }
 
-        [PXUIField(DisplayName = "Enter Bill", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select)]
-        [PXButton]
+            ComisionTranProc.SetProcessDelegate((PXProcessingBase<FLXCommissionTran>.ProcessListDelegate)(list => FLXGenBillAPInvoice.CreateAPBill(list, setup)));
+        }
+        #endregion
+
+        #region Actions
+        public PXAction<FLXCommissionTran> enterAPDate;
+        [PXUIField(DisplayName = "Enter Bill", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select), PXButton]
         public virtual IEnumerable EnterAPDate(PXAdapter adapter) => adapter.Get();
 
-        [PXUIField(DisplayName = "OK", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select)]
-        [PXLookupButton]
+        public PXAction<FLXCommissionTran> updateTranAPDate;
+        [PXUIField(DisplayName = "OK", MapEnableRights = PXCacheRights.Select, MapViewRights = PXCacheRights.Select), PXLookupButton]
         public virtual IEnumerable UpdateTranAPDate(PXAdapter adapter)
         {
             SmartPanelParm current = this.Parm.Current;
+
             foreach (FLXCommissionTran flxCommissionTran in this.ComisionTranProc.Cache.Updated)
             {
                 bool? selected = flxCommissionTran.Selected;
@@ -51,71 +51,94 @@ namespace FlexxonCustomizations.Graph
             }
             return adapter.Get();
         }
+        #endregion
 
+        #region Event Handlers
         protected virtual void _(Events.RowSelected<FLXCommissionTran> e)
         {
             bool enabled = e.Row != null && e.Row.APDate.HasValue;
-            this.ComisionTranProc.SetProcessEnabled(enabled);
-            this.ComisionTranProc.SetProcessAllEnabled(enabled);
-        }
 
+            ComisionTranProc.SetProcessEnabled(enabled);
+            ComisionTranProc.SetProcessAllEnabled(enabled);
+        }
+        #endregion
+
+        #region Static Methods
         public static void CreateAPBill(System.Collections.Generic.List<FLXCommissionTran> list, FLXSetup setup)
         {
             try
             {
-                APInvoiceEntry instance1 = PXGraph.CreateInstance<APInvoiceEntry>();
-                string str = string.Empty;
-                string format = "[{0}] Isn't A Vendor.";
+                APInvoiceEntry invoiceEntry = PXGraph.CreateInstance<APInvoiceEntry>();
+
+                string str = string.Empty, format = "[{0}] Isn't A Vendor.", acctCD = string.Empty;
+
                 for (int index = 0; index < list.Count; ++index)
                 {
                     FLXCommissionTran flxCommissionTran = list[index];
-                    if (FLXGenBillAPInvoice.CheckBAType((PXGraph)instance1, flxCommissionTran.SalesRepID))
+
+                    if (CheckBAcctType(invoiceEntry, flxCommissionTran.SalesRepID, ref acctCD))
                     {
-                        if (instance1.CurrentDocument.Current == null)
+                        if (invoiceEntry.CurrentDocument.Current == null)
                         {
-                            APInvoice instance2 = instance1.Document.Cache.CreateInstance() as APInvoice;
-                            instance2.DocType = "INV";
-                            instance2.VendorID = flxCommissionTran.SalesRepID;
-                            instance2.DocDate = flxCommissionTran.APDate;
-                            instance2.InvoiceNbr = string.Format("{0} {1}", (object)flxCommissionTran.CommissionTranID, (object)instance1.vendor.Select((object)instance2.VendorID).TopFirst.AcctCD.Trim());
-                            instance1.Document.Insert(instance2);
+                            APInvoice invoice = invoiceEntry.Document.Cache.CreateInstance() as APInvoice;
+                            invoice.DocType    = APDocType.Invoice;
+                            invoice.VendorID   = flxCommissionTran.SalesRepID;
+                            invoice.DocDate    = flxCommissionTran.APDate;
+                            invoice.InvoiceNbr = string.Format("{0} {1}", flxCommissionTran.CommissionTranID, invoiceEntry.vendor.Select(invoice.VendorID).TopFirst.AcctCD.Trim());
+
+                            invoiceEntry.Document.Insert(invoice);
                         }
-                        APTran instance3 = instance1.Transactions.Cache.CreateInstance() as APTran;
-                        instance3.BranchID = flxCommissionTran.BranchID;
-                        instance3.InventoryID = setup.CommissionItem;
-                        instance3.Qty = new Decimal?((Decimal)1);
-                        instance3.CuryUnitCost = flxCommissionTran.CommisionAmt;
-                        instance3.TranDesc = string.Format("{0},{1},{2},{3},{4}", (object)flxCommissionTran.CommissionTranID, (object)flxCommissionTran.OrderNbr, (object)flxCommissionTran.ProjectNbr, (object)instance1.nonStockItem.Select((object)flxCommissionTran.InventoryID).TopFirst.InventoryCD.Trim(), (object)instance1.nonStockItem.Select((object)flxCommissionTran.NonStockItem).TopFirst.InventoryCD.Trim());
-                        instance3.SubID = instance1.nonStockItem.Select((object)instance3.InventoryID).TopFirst.COGSSubID;
-                        instance1.Transactions.Insert(instance3);
-                        str = str + flxCommissionTran.CommissionTranID + "/";
+
+                        APTran tran = invoiceEntry.Transactions.Cache.CreateInstance() as APTran;
+
+                        tran.BranchID     = flxCommissionTran.BranchID;
+                        tran.InventoryID  = setup.CommissionItem;
+                        tran.Qty          = 1m;
+                        tran.CuryUnitCost = flxCommissionTran.CommisionAmt;
+                        tran.TranDesc     = string.Format("{0},{1},{2},{3},{4}", flxCommissionTran.CommissionTranID, flxCommissionTran.OrderNbr, flxCommissionTran.ProjectNbr,
+                                                                                 invoiceEntry.nonStockItem.Select(flxCommissionTran.InventoryID).TopFirst.InventoryCD.Trim(),
+                                                                                 invoiceEntry.nonStockItem.Select(flxCommissionTran.NonStockItem).TopFirst.InventoryCD.Trim());
+                        tran.SubID = ARTran.PK.Find(invoiceEntry, flxCommissionTran.DocType, flxCommissionTran.RefNbr, flxCommissionTran.ARLineNbr).SubID; //invoiceEntry.nonStockItem.Select(tran.InventoryID).TopFirst.COGSSubID;
+
+                        invoiceEntry.Transactions.Insert(tran);
+
+                        str += flxCommissionTran.CommissionTranID + "/";
                     }
                     else
-                        throw new PXException(format, new object[1]
-                        {
-              (object) SelectFrom<BAccountR>.Where<BAccountR.bAccountID.IsEqual<P.AsInt>>.View.Select((PXGraph) instance1, (object) flxCommissionTran.SalesRepID).TopFirst.AcctCD.Trim()
-                        });
+                    {
+                        throw new PXException(format, acctCD.Trim());
+                    }
                 }
-                instance1.Document.Current.DocDesc = str.Substring(0, (str.Length > PX.Objects.Common.Constants.TranDescLength ? PX.Objects.Common.Constants.TranDescLength : str.Length) - 1);
-                instance1.Document.UpdateCurrent();
-                instance1.Save.Press();
+
+                invoiceEntry.Document.Current.DocDesc = str.Substring(0, (str.Length > PX.Objects.Common.Constants.TranDescLength ? PX.Objects.Common.Constants.TranDescLength : str.Length) - 1);
+                invoiceEntry.Document.UpdateCurrent();
+                invoiceEntry.Save.Press();
+
                 for (int index = 0; index < list.Count; ++index)
                 {
-                    FLXCommissionTran flxCommissionTran = list[index];
-                    PXUpdate<Set<FLXCommissionTran.aPBillCreated, Required<FLXCommissionTran.aPBillCreated>, Set<FLXCommissionTran.aPBillRefNBr, Required<APInvoice.refNbr>>>, FLXCommissionTran, Where<FLXCommissionTran.commissionTranID, Equal<Required<FLXCommissionTran.commissionTranID>>>>.Update((PXGraph)instance1, (object)true, (object)instance1.Document.Current.RefNbr, (object)flxCommissionTran.CommissionTranID);
+                    PXUpdate<Set<FLXCommissionTran.aPBillCreated, Required<FLXCommissionTran.aPBillCreated>, 
+                                 Set<FLXCommissionTran.aPBillRefNBr, Required<APInvoice.refNbr>>>, 
+                             FLXCommissionTran, 
+                             Where<FLXCommissionTran.commissionTranID, Equal<Required<FLXCommissionTran.commissionTranID>>>>
+                            .Update(invoiceEntry, true, invoiceEntry.Document.Current.RefNbr, list[index].CommissionTranID);
                 }
             }
             catch (PXException ex)
             {
-                PXProcessing.SetError((Exception)ex);
-                throw ex;
+                PXProcessing.SetError(ex);
+
+                throw;
             }
         }
 
-        public static bool CheckBAType(PXGraph graph, int? bAcctID)
+        public static bool CheckBAcctType(PXGraph graph, int? bAcctID, ref string acctCD)
         {
-            BAccountR baccountR = SelectFrom<BAccountR>.Where<BAccountR.bAccountID.IsEqual<P.AsInt>>.View.ReadOnly.SelectSingleBound(graph, (object[])null, (object)bAcctID);
-            return baccountR.Type.Equals("VE") || baccountR.Type.Equals("VC");
+            var baccountR = BAccount.PK.Find(graph, bAcctID.Value);
+
+            acctCD = baccountR.AcctCD;
+
+            return baccountR.Type.IsIn("VE", "VC");
         }
+        #endregion
     }
 }
