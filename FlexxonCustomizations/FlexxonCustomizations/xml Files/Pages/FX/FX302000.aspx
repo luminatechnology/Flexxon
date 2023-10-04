@@ -30,6 +30,7 @@
 		<Levels>
 			<px:PXGridLevel DataMember="ProjComision">
 			    <Columns>
+				<px:PXGridColumn DataField="LineNbr" Width="70" ></px:PXGridColumn>
 				<px:PXGridColumn DataField="RepType" Width="70" ></px:PXGridColumn>
 				<px:PXGridColumn DataField="SalesRepID" Width="140" ></px:PXGridColumn>
 				<px:PXGridColumn DataField="Percentage" Width="100" ></px:PXGridColumn>
