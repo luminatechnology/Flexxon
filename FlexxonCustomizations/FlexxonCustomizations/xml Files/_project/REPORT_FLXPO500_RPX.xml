@@ -273,17 +273,9 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
         <LayoutUnit>Inch</LayoutUnit>
         <MailSettings>
             <ActivitySource>POOrder.NoteID</ActivitySource>
-            <Bcc>
-            </Bcc>
             <Body>='Dear Customer, This is an automatic email to notify you that you have a new Purchase Order available on your account.  You will find a copy of Purchase Order #'+[POOrder.OrderNbr]+' attached to this email.  #010;#010;If you have any questions, please don’t hesitate to contact us at email.  #010;#010;Thank you for choosing '+[CompanyContact.FullName]+'.'</Body>
-            <Cc>
-            </Cc>
-            <Format>
-            </Format>
             <ParentSource>Vendor.NoteID</ParentSource>
             <Subject>=[CompanyContact.FullName]+' Purchase Order #'+[POOrder.OrderNbr]+' is now available'</Subject>
-            <TemplateID>
-            </TemplateID>
             <To>=[RemitContact.EMail]</To>
         </MailSettings>
         <PageSettings>
@@ -5647,8 +5639,8 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                             <TextBox Name="textBox11">
                                 <CanGrow>True</CanGrow>
                                 <ConvertHtmlToText>True</ConvertHtmlToText>
-                                <Location>312px, 3px</Location>
-                                <Size>156px, 35px</Size>
+                                <Location>300px, 3px</Location>
+                                <Size>150px, 35px</Size>
                                 <Style>
                                     <TextAlign>Center</TextAlign>
                                     <VerticalAlign>Top</VerticalAlign>
@@ -5692,8 +5684,8 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                             <TextBox Name="textBox51">
                                 <CanGrow>True</CanGrow>
                                 <Format>N0</Format>
-                                <Location>470px, 3px</Location>
-                                <Size>20px, 35px</Size>
+                                <Location>450px, 3px</Location>
+                                <Size>40px, 35px</Size>
                                 <Style>
                                     <TextAlign>Center</TextAlign>
                                     <VerticalAlign>Top</VerticalAlign>
@@ -5707,7 +5699,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                                 <CanSplit>True</CanSplit>
                                 <ConvertHtmlToText>True</ConvertHtmlToText>
                                 <Location>130px, 3px</Location>
-                                <Size>182px, 35px</Size>
+                                <Size>170px, 35px</Size>
                                 <Style>
                                     <TextAlign>Center</TextAlign>
                                     <VerticalAlign>Top</VerticalAlign>
@@ -6449,8 +6441,8 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                                         <Value>Flexxon Part Nbr.</Value>
                                     </TextBox>
                                     <TextBox Name="textBox13">
-                                        <Location>322px, 0px</Location>
-                                        <Size>128px, 12px</Size>
+                                        <Location>300px, 0px</Location>
+                                        <Size>150px, 12px</Size>
                                         <Style>
                                             <BackColor>LightBlue</BackColor>
                                             <Color>Black</Color>
@@ -6540,7 +6532,7 @@ DfUhz4E76MiSaGpuaDb6NSzhW0+K9ocaejSYn7z8zJfykiplefTMgvN23YMKu1EHeXuYmIkXAyeG5+xj
                                     </TextBox>
                                     <TextBox Name="textBox56">
                                         <Location>130px, 0px</Location>
-                                        <Size>192px, 12px</Size>
+                                        <Size>170px, 12px</Size>
                                         <Style>
                                             <BackColor>LightBlue</BackColor>
                                             <Color>Black</Color>
